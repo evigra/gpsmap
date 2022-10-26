@@ -1,0 +1,31 @@
+<templates xml:space="preserve">
+    <t t-name="gpsmaps_filters">
+        <table>
+            <tr>
+                <td>
+                    <div>
+                        <button aria-expanded="true" class="o_dropdown_toggler_btn btn btn-sm dropdown-toggle" data-toggle="dropdown">
+                            <span class="fa fa-bars"></span>
+                        </button>
+                        <ul class="dropdown-menu o_group_by_menu" role="menu">
+                            <li filter="Report" class="type_report select">Report</li>
+                            <li filter="Movement" class="type_report">Movement</li>
+                            <li filter="Stopped" class="type_report">Stopped</li>
+                            <li filter="Offline" class="type_report">OffLine</li>
+                            <li filter="Alarm" class="type_report">Alarm</li>
+                            <li filter="Alarm_PowerCut" class="type_report">Alarm Power Cut</li>
+                            <li filter="Alarm_PowerOff" class="type_report">Alarm Power Off</li>
+                        </ul>
+                    </div>
+                </td>
+                <td class="filtro"><input id="start" name="start" type="text" placeholder="0000-00-00 00:00:00" value=""/></td>
+                <td class="filtro"><input id="end" name="end" type="text" placeholder="0000-00-00 00:00:00"  value=""/></td>
+                <td>
+                    <button id="action_search" custom="click" string="ADD pruea" class="btn btn-secondary" aria-label="View kanban"  title="" tabindex="-1" type="button">
+                        <span class="fa fa-search"></span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </t>
+</templates>

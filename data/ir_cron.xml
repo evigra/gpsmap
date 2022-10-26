@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record forcecreate="True" id="ir_cron_gps_positions_get" model="ir.cron">
+        <field name="name">GPSMap: Read positions</field>
+        <field name="model_id" ref="model_gps_positions"/>
+        <field name="state">code</field>
+        <field name="code">model.run_scheduler_get_position()</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field eval="False" name="doall" />
+        <field name="active" eval="True"/>
+    </record>
+
+    <record forcecreate="True" id="get_positions_online" model="ir.cron">
+        <field name="name">GPSMap: Get positions</field>
+        <field name="model_id" ref="model_fleet_vehicle"/>
+        <field name="state">code</field>
+        <field name="code">model.get_last_vehicle_position()</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field eval="False" name="doall" />
+        <field name="active" eval="False"/>
+    </record>
+
+    <record forcecreate="True" id="ir_cron_fleet_vehicle_odometer_set" model="ir.cron">
+        <field name="name">FLEET: Odometer</field>
+        <field name="model_id" ref="model_fleet_vehicle_odometer"/>
+        <field name="state">code</field>
+        <field name="code">model.run_scheduler_set_odometer()</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field eval="False" name="doall" />
+        <field name="active" eval="False"/>
+    </record>
+
+</odoo>

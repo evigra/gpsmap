@@ -1,0 +1,34 @@
+<odoo>
+    <record id='gps_devices_view_form' model='ir.ui.view'>
+        <field name="name">gps_devices.form</field>
+        <field name="model">gps_devices</field>
+        <field name="arch" type="xml">
+            <form string="GPS">
+                <group col="4" string="GPS Configuration">                   
+                    <field name="name" />
+                    <field name="positionid" />
+                    
+                    <field name="lastupdate"/>
+                    <field name="uniqueid"/>
+                    <field name="icc"/>                
+                    <field name="phone"/>
+                </group>                
+            </form>
+        </field>
+    </record>
+    <record id='gps_devices_view_tree' model='ir.ui.view'>
+        <field name="name">gps_devices.tree</field>
+        <field name="model">gps_devices</field>
+        <field name="arch" type="xml">
+            <tree string="Models">
+                <field name="name" />
+                <field name="positionid" />
+                <field name="company_id" />
+                <field name="uniqueid"/>                
+                <field name="icc"/>
+                <field name="lastupdate"/>                    
+                <field name="phone"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,61 @@
+<templates xml:space="preserve">
+    <t t-name="gpsmaps_odometers_speed">        
+        
+            <div style="z-index:100; position:absolute; bottom:100px; right:0px; width:370px; height:250px">                    
+                <!-- AGUJA -->
+                <svg style="width:380px; height:400px;">		                   
+                    <text font-size="23px" fill="#ffffff" stroke="none" font="10px &quot;Arial&quot;" style="text-anchor: middle; font: 21px &quot;Arial&quot;;" text-anchor="end" width="150" y="290" x="253">
+                        <tspan id="distance">000000000</tspan>
+                    </text>
+                    <text font-size="23px" fill="#ffffff" stroke="none" font="10px &quot;Arial&quot;" style="text-anchor: middle; font: 15px &quot;Arial&quot;;" text-anchor="end" width="150" y="220" x="253">
+                        <tspan id="unity">0000 / HR</tspan>
+                    </text>
+
+
+                    <path class="speed" transform="rotate(-110 250 250)" cy="250" cx="250" stroke-width="0" style="stroke-width: 0;" d="M251.11304347826086,166.52173913043478L252.7826086956522,250L251.94782608695652,269.47826086956525L248.05217391304348,269.47826086956525L247.2173913043478,250L248.88695652173914,166.52173913043478Z" stroke="#000000" fill="#ff6622"></path>
+                    <path class="speed" transform="rotate(-110 250 250)" opacity="0.5" style="opacity: 0.5;" d="M251.11304347826086,166.52173913043478C251.11304347826086,166.52173913043478,252.7826086956522,250,252.7826086956522,250C252.7826086956522,250,251.94782608695652,269.47826086956525,251.94782608695652,269.47826086956525C251.94782608695652,269.47826086956525,249.8528309178744,269.47826086956525,248.7355001610306,269.47826086956525" stroke="#ffffff" fill="none"></path>
+                    <path class="speed" transform="rotate(-110 250 250)" opacity="0.5" style="opacity: 0.5;" d="M248.7355001610306,269.47826086956525C248.32919806763283,269.47826086956525,248.05217391304348,269.47826086956525,248.05217391304348,269.47826086956525C248.05217391304348,269.47826086956525,247.2173913043478,250,247.2173913043478,250C247.2173913043478,250,248.88695652173914,166.52173913043478,248.88695652173914,166.52173913043478C248.88695652173914,166.52173913043478,251.11304347826086,166.52173913043478,251.11304347826086,166.52173913043478" stroke="#000000" fill="none"></path>           
+
+
+                    <!-- LINEA SECCIONAL TACOMETRO -->                        
+                    <path opacity="0.65" stroke-linecap="round" stroke-width="1.6695652173913045" style="stroke-width: 1.66957; stroke-linecap: round; opacity: 0.65;" d="M169,279A85,85,10,1,1,330,280" stroke="#ffdd33" fill="none"></path>
+
+                    <text font-size="10px" fill="#ffffff" stroke="none" font="10px &quot;Arial&quot;" style="text-anchor: middle; font: 12px &quot;Arial&quot;;" text-anchor="middle" y="279.3817855336773" x="178.87582098702137">
+                        <tspan>0 </tspan>
+                    </text>
+                    <text font-size="10px" fill="#ffffff" stroke="none" font="10px &quot;Arial&quot;" style="text-anchor: middle; font: 12px &quot;Arial&quot;;" text-anchor="middle" y="248.22133436619725" x="174.4973435734026">
+                        <tspan>15 </tspan>
+                    </text>
+                    <text font-size="10px" fill="#ffffff" stroke="none" font="10px &quot;Arial&quot;" style="text-anchor: middle; font: 12px &quot;Arial&quot;;" text-anchor="middle" y="217.9732926705771" x="183.16910841683006">
+                        <tspan>30 </tspan>
+                    </text>
+                    <text font-size="10px" fill="#ffffff" stroke="none" font="10px &quot;Arial&quot;" style="text-anchor: middle; font: 12px &quot;Arial&quot;;" text-anchor="middle" y="193.86584175530288" x="203.39224597603294">
+                        <tspan>45 </tspan>
+                    </text>
+                    <text font-size="10px" fill="#ffffff" stroke="none" font="10px &quot;Arial&quot;" style="text-anchor: middle; font: 12px &quot;Arial&quot;;" text-anchor="middle" y="180.06585041323024" x="231.6712918947108">
+                        <tspan>60 </tspan>
+                    </text>
+                    <text font-size="10px" fill="#ffffff" stroke="none" font="10px &quot;Arial&quot;" style="text-anchor: middle; font: 12px &quot;Arial&quot;;" text-anchor="middle" y="178.95857787034436" x="263.1183598718609">
+                        <tspan>75 </tspan>
+                    </text>
+                    <text font-size="10px" fill="#ffffff" stroke="none" font="10px &quot;Arial&quot;" style="text-anchor: middle; font: 12px &quot;Arial&quot;;" text-anchor="middle" y="190.73539257449687" x="292.2979874377013">
+                        <tspan>90 </tspan>
+                    </text>
+                    <text font-size="10px" fill="#ffffff" stroke="none" font="10px &quot;Arial&quot;" style="text-anchor: middle; font: 12px &quot;Arial&quot;;" text-anchor="middle" y="213.36075366556793" x="314.1666274281026">
+                        <tspan>105 </tspan>
+                    </text>
+                    <text font-size="10px" fill="#ffffff" stroke="none" font="10px &quot;Arial&quot;" style="text-anchor: middle; font: 12px &quot;Arial&quot;;" text-anchor="middle" y="242.92397023659203" x="324.9443989327246">
+                        <tspan>120 </tspan>
+                    </text>
+                    <text font-size="10px" fill="#ffffff" stroke="none" font="10px &quot;Arial&quot;" style="text-anchor: middle; font: 12px &quot;Arial&quot;;" text-anchor="middle" y="274.3152084012702" x="322.76842009040865">
+                        <tspan>135 </tspan>
+                    </text>
+
+                </svg>                     
+            </div>
+
+            <t t-call="gpsmaps_template_odometers"/>                    
+        
+
+    </t>
+</templates>

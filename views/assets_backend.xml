@@ -1,0 +1,11 @@
+<odoo>
+    <template id="assets_backend" name="gpsmap_assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/gpsmap/static/css/index.css"/>
+            <t t-set="solesgps_key" t-value="request.env['ir.config_parameter'].sudo().get_param('solesgps_key')"/>            
+            <script t-attf-src="https://maps.googleapis.com/maps/api/js?key={{solesgps_key}}"></script>                                    
+            <script type="text/javascript" src="/gpsmap/static/js/maplabel.js"/>
+            <script type="text/javascript" src="/gpsmap/static/js/index.js"/>            
+        </xpath>
+    </template>
+</odoo>

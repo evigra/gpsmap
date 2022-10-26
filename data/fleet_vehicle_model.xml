@@ -1,0 +1,35 @@
+<odoo>
+    <record id="vehicle_model_international" model="fleet.vehicle.model">
+        <field name="name">Tracto</field>
+        <field name="brand_id" ref="brand_international"/>                
+    </record>
+    <record id="vehicle_model_freightliner" model="fleet.vehicle.model">
+        <field name="name">Tracto</field>
+        <field name="brand_id" ref="brand_freightliner"/>                
+    </record>
+    <record id="vehicle_model_kenworth" model="fleet.vehicle.model">
+        <field name="name">Tracto</field>
+        <field name="brand_id" ref="brand_kenworth"/>                
+    </record>
+    <record id="vehicle_model_nisan_np300" model="fleet.vehicle.model">
+        <field name="name">NP300</field>
+        <field name="brand_id" ref="fleet.brand_nissan"/>                
+    </record>
+    <record id="vehicle_model_nisan_versa" model="fleet.vehicle.model">
+        <field name="name">Versa</field>
+        <field name="brand_id" ref="fleet.brand_nissan"/>                
+    </record>
+
+    <record id="vehicle_model_honda_cargo" model="fleet.vehicle.model">
+        <field name="name">Cargo</field>
+        <field name="brand_id" ref="fleet.brand_honda"/>                
+    </record>    
+    <record id="vehicle_model_dodge_ram" model="fleet.vehicle.model">
+        <field name="name">Ram</field>
+        <field name="brand_id" ref="fleet.brand_dodge"/>                
+    </record>
+    <record id="vehicle_model_chevrolet_tornado" model="fleet.vehicle.model">
+        <field name="name">Tornado</field>
+        <field name="brand_id" ref="fleet.brand_chevrolet"/>                
+    </record> 	    
+</odoo>

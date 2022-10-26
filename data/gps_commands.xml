@@ -1,0 +1,93 @@
+<odoo>
+    <record id="command_tk103_factory" model="gps_commands">
+        <field name="name">Factory</field>
+        <field name="command">940#</field>
+        <field name="sample">940#</field>
+        <field name="priority">0</field>
+        <field name="optional" eval="True"/>
+        <field name="protocol_id" ref="protocol_tk103"/>        
+    </record>
+    <record id="command_tk103_reset" model="gps_commands">
+        <field name="name">reset</field>
+        <field name="command">930#</field>
+        <field name="sample">930#</field>
+        <field name="optional" eval="True"/>
+        <field name="priority">0</field>
+        <field name="protocol_id" ref="protocol_tk103"/>
+    </record>
+    <record id="command_tk103_admin" model="gps_commands">
+        <field name="name">Add admin</field>
+        <field name="command">710#{PHONE}#</field>
+        <field name="sample">710#3143520972#</field>
+        <field name="priority">1</field>
+        <field name="protocol_id" ref="protocol_tk103"/>
+    </record>
+    <record id="command_tk103_apn" model="gps_commands">
+        <field name="name">APN setting</field>
+        <field name="command">802#{INTERNET}#{USER}#{PASS}#</field>
+        <field name="sample">802#m2mglobal.telefonica.mx#</field>
+        <field name="priority">2</field>
+        <field name="protocol_id" ref="protocol_tk103"/>
+    </record>
+    <record id="command_tk103_server" model="gps_commands">
+        <field name="name">SERVER setting</field>
+        <field name="command">803#{SERVER}#{PORT}#</field>
+        <field name="sample">803#51.79.79.134#5023#</field>
+        <field name="priority">3</field>
+        <field name="protocol_id" ref="protocol_tk103"/>
+    </record>
+    <record id="command_tk103_timer" model="gps_commands">
+        <field name="name">TIMER setting</field>
+        <field name="command">730#{SECONDS}#</field>
+        <field name="sample">730#60#</field>
+        <field name="priority">4</field>
+        <field name="protocol_id" ref="protocol_tk103"/>
+    </record>
+    <record id="command_tk103_timer_static" model="gps_commands">
+        <field name="name">TIMER STATIC setting</field>
+        <field name="command">SUP#{MINUTES}#</field>
+        <field name="sample">SUP#5#</field>
+        <field name="priority">5</field>
+        <field name="protocol_id" ref="protocol_tk103"/>
+    </record>
+
+
+
+    <record id="command_gt06_factory" model="gps_commands">
+        <field name="name">Factory</field>
+        <field name="command">begin123456</field>
+        <field name="sample">begin123456</field>
+        <field name="priority">0</field>
+        <field name="optional" eval="True"/>
+        <field name="protocol_id" ref="protocol_gt06"/>
+    </record>
+    <record id="command_gt06_apn" model="gps_commands">
+        <field name="name">APN setting</field>
+        <field name="command">apn123456 {INTERNET}</field>
+        <field name="sample">apn123456 m2mglobal.telefonica.mx</field>
+        <field name="priority">1</field>
+        <field name="protocol_id" ref="protocol_gt06"/>
+    </record>
+    <record id="command_gt06_server" model="gps_commands">
+        <field name="name">SERVER setting</field>
+        <field name="command">adminip123456 {SERVER} {PORT}</field>
+        <field name="sample">adminip 51.79.79.134 5023</field>
+        <field name="priority">3</field>
+        <field name="protocol_id" ref="protocol_gt06"/>
+    </record>
+    <record id="command_gt06_timer" model="gps_commands">
+        <field name="name">TIMER setting</field>
+        <field name="command">fix{SECONDS}s***n123456</field>
+        <field name="sample">fix060s***n123456</field>
+        <field name="priority">4</field>
+        <field name="protocol_id" ref="protocol_gt06"/>
+    </record>
+    <record id="command_gt06_gprs" model="gps_commands">
+        <field name="name">GPRS setting</field>
+        <field name="command">gprs123456</field>
+        <field name="sample">gprs123456</field>
+        <field name="priority">5</field>
+        <field name="protocol_id" ref="protocol_gt06"/>
+    </record>
+
+</odoo>

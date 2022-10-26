@@ -1,0 +1,62 @@
+<templates xml:space="preserve">
+    <t t-name="gpsmaps_template_odometers">        
+            
+                <div style="z-index:1; position:absolute; bottom:100px; right:0px; width:370px; height:250px">                                        
+                    <svg style="width:380px; height:400px;">
+                        <!-- FONDO -->
+                        
+                        <circle stroke-width="0" style="opacity: 1; fill-opacity: 1; stroke-width: 0;" fill-opacity="1" opacity="1" stroke="#333333" fill="url(#r-1ad5cc38271d43ad873613284f569139)" r="105.73913043478262" cy="250" cx="250"></circle>
+                        
+
+                        <circle stroke-width="2.782608695652174" style="stroke-width: 2.78261;" stroke="#ffffff" fill="none" r="105" cy="249" cx="249"></circle>
+                        <circle stroke-width="2.782608695652174" style="stroke-width: 2.78261;" stroke="#333333" fill="none" r="105" cy="250" cx="250"></circle>
+                        <circle stroke-width="2.782608695652174" style="stroke-width: 2.78261;" stroke="#cccccc" fill="none" r="105" cy="250" cx="250"></circle>
+                        <circle stroke-width="2.782608695652174" style="stroke-width: 9;" stroke="#333333" fill="none" r="112" cy="250" cx="250"></circle>
+                        <defs>
+                            <radialGradient fy="0.3155646940654273" fx="0.31551003284316154" id="r-1ad5cc38271d43ad873613284f569139">
+                                <stop stop-color="#555555" offset="0%"></stop>
+                                <stop stop-color="#2a2a2a" offset="100%"></stop>
+                            </radialGradient>
+                        </defs>
+
+                        <!-- PUNTO BASE AGUJA -->
+                        <circle stroke-width="2.22609" style="stroke-width: 2.22609;" stroke="#000000" fill="#ffffff" r="2.22609" cy="310.10434782608695" cx="275.6"></circle>
+                        <circle stroke-width="0" style="stroke-width: 0;" stroke="#000" fill="#191919" r="10.017391304347827" cy="250.3079267716473" cx="250.30801803212273"></circle>
+                        <circle stroke-width="0" style="stroke-width: 0;" stroke="#000" fill="#666666" r="10.017391304347827" cy="249.6920732283527" cx="249.69198196787727"></circle>
+                        <circle stroke-width="0" style="stroke-width: 0;" stroke="#000" fill="#333333" r="9.460869565217392" cy="250" cx="250"></circle>		                                       
+
+                        <!-- ESCALA -->
+                        <path opacity="0.65" stroke-linecap="butt" stroke-width="2.782608695652174" style="stroke-width: 2.78261; stroke-linecap: butt; opacity: 0.65;" d="M169.46232670589183,279.3073099527472L157.95694480673353,283.4940685174254" stroke="#ffdd33" fill="none">                            </path>
+                        <path stroke-linecap="butt" stroke-width="1.6695652173913045" style="stroke-width: 1.66957; stroke-linecap: butt;" d="M161.27165261212036,262.4675727315207L156.86279063011392,263.0870794510993" stroke="#ffffff" fill="none">                            </path>
+
+                        <path opacity="0.65" stroke-linecap="butt" stroke-width="2.782608695652174" style="stroke-width: 2.78261; stroke-linecap: butt; opacity: 0.65;" d="M164.50434492870585,244.0226928951913L152.290679918521,243.16879188021863" stroke="#ffdd33" fill="none">                            </path>
+                        <path stroke-linecap="butt" stroke-width="1.6695652173913045" style="stroke-width: 1.66957; stroke-linecap: butt;" d="M163.86965111195886,225.30743025879414L159.5898822231121,224.0804702716535" stroke="#ffffff" fill="none">                            </path>
+
+                        <path opacity="0.65" stroke-linecap="butt" stroke-width="2.782608695652174" style="stroke-width: 2.78261; stroke-linecap: butt; opacity: 0.65;" d="M174.3238433543517,209.771222344717L163.5129638335448,204.024254108248" stroke="#ffdd33" fill="none">                            </path>
+                        <path stroke-linecap="butt" stroke-width="1.6695652173913045" style="stroke-width: 1.66957; stroke-linecap: butt;" d="M181.35483334639363,192.41527029586217L177.94389338845048,189.55391726708515" stroke="#ffffff" fill="none">                            </path>
+
+                        <path opacity="0.65" stroke-linecap="butt" stroke-width="2.782608695652174" style="stroke-width: 2.78261; stroke-linecap: butt; opacity: 0.65;" d="M197.22357264933143,182.4730871992914L189.68408302780733,172.82638537061877" stroke="#ffdd33" fill="none"></path>
+                        <path stroke-linecap="butt" stroke-width="1.6695652173913045" style="stroke-width: 1.66957; stroke-linecap: butt;" d="M210.7049763252996,169.47633196131252L208.75242856506605,165.47515590970073" stroke="#ffffff" fill="none"></path>
+
+                        <path opacity="0.65" stroke-linecap="butt" stroke-width="2.782608695652174" style="stroke-width: 2.78261; stroke-linecap: butt; opacity: 0.65;" d="M229.24543346901075,166.84662842430475L226.28049539315515,154.9675753420626" stroke="#ffdd33" fill="none"></path>
+                        <path stroke-linecap="butt" stroke-width="1.6695652173913045" style="stroke-width: 1.66957; stroke-linecap: butt;" d="M246.84706018048132,160.45549167874952L246.69039236336238,156.0060751162029" stroke="#ffffff" fill="none"></path>
+
+                        <path opacity="0.65" stroke-linecap="butt" stroke-width="2.782608695652174" style="stroke-width: 2.78261; stroke-linecap: butt; opacity: 0.65;" d="M264.85461338431304,165.59279830786068L266.97670101064347,153.53462663755508" stroke="#ffdd33" fill="none"></path>
+                        <path stroke-linecap="butt" stroke-width="1.6695652173913045" style="stroke-width: 1.66957; stroke-linecap: butt;" d="M283.5341133177254,166.91195486717746L285.2004046627055,162.7833563512608" stroke="#ffffff" fill="none"></path>
+
+                        <path opacity="0.65" stroke-linecap="butt" stroke-width="2.782608695652174" style="stroke-width: 2.78261; stroke-linecap: butt; opacity: 0.65;" d="M297.8962504809265,178.92831487741935L304.73857197820166,168.77521700276498" stroke="#ffdd33" fill="none"></path>
+                        <path stroke-linecap="butt" stroke-width="1.6695652173913045" style="stroke-width: 1.66957; stroke-linecap: butt;" d="M314.42496903114755,187.7297553775828L317.6262097283475,184.6355817317484" stroke="#ffffff" fill="none"></path>
+
+                        <path opacity="0.65" stroke-linecap="butt" stroke-width="2.782608695652174" style="stroke-width: 2.78261; stroke-linecap: butt; opacity: 0.65;" d="M322.65926929358676,204.54820331365391L333.0391649069563,198.05508950131875" stroke="#ffdd33" fill="none"></path>
+                        <path stroke-linecap="butt" stroke-width="1.6695652173913045" style="stroke-width: 1.66957; stroke-linecap: butt;" d="M334.1803032536596,219.31064444922455L338.3631754650215,217.7857075274469" stroke="#ffffff" fill="none"></path>
+
+                        <path opacity="0.65" stroke-linecap="butt" stroke-width="2.782608695652174" style="stroke-width: 2.78261; stroke-linecap: butt; opacity: 0.65;" d="M334.8635105561734,238.02419888370153L346.9868692070554,236.31337015280175" stroke="#ffdd33" fill="none"></path>
+                        <path stroke-linecap="butt" stroke-width="1.6695652173913045" style="stroke-width: 1.66957; stroke-linecap: butt;" d="M339.38550900751443,256.1960293307536L343.8270249830431,256.5039065645799" stroke="#ffffff" fill="none"></path>
+
+                        <path opacity="0.65" stroke-linecap="butt" stroke-width="2.782608695652174" style="stroke-width: 2.78261; stroke-linecap: butt; opacity: 0.65;" d="M332.3995345141392,273.57014951475867L344.17089658758766,276.9373137311528" stroke="#ffdd33" fill="none"></path>
+                        <path opacity="0.65" stroke-linecap="round" stroke-width="1.6695652173913045" style="stroke-width: 1.66957; stroke-linecap: round; opacity: 0.65;" d="M169.66944936510254,279.87035103558503A85.70434782608697,85.70434782608697,10,1,1,330.2584096516356,280.0636477574687" stroke="#ffdd33" fill="none"></path>
+                    </svg>                     
+                </div>                        
+        
+    </t>
+</templates>
