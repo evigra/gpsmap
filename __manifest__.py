@@ -43,6 +43,8 @@ Main features
         'views/gps_devices.xml',
         'views/gps_positions.xml',
         'views/gpsmaps_maponline.xml',
+        
+        'views/res_config_settings_views.xml',
         'views/menuitem.xml',
     ],
     'demo': ['data/demo.xml'],
