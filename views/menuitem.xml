@@ -43,6 +43,13 @@
     </record>
     <menuitem action="gps_commands_action" parent="gpsmap_configuration" id="gps_commands_menu"  groups="fleet.fleet_group_manager"/>
 
+
+    <record id='gps_mirror_action' model='ir.actions.act_window'>
+        <field name="name">Mirror</field>
+        <field name="res_model">gps_mirror</field>
+    </record>
+    <menuitem action="gps_mirror_action" parent="gpsmap_configuration" id="gps_mirror_menu"/>
+
     <record id='gps_protocol_action' model='ir.actions.act_window'>
         <field name="name">Protocol</field>
         <field name="res_model">gps_protocol</field>
