@@ -1,0 +1,43 @@
+<odoo>
+    <record id='gps_commands_view_form' model='ir.ui.view'>
+        <field name="name">gps_commands.form</field>
+        <field name="model">gps_commands</field>
+        <field name="arch" type="xml">
+            <form string="Commands">
+                <group col="4" string="GPS Configuration">                   
+                    <field name="protocol_id"/>
+                    <field name="priority"/>    
+                    <field name="name"/>                    
+                    <field name="command"/>                    
+                    <field name="sample"/>
+                    <field name="optional"/>
+                </group>                
+            </form>
+        </field>
+    </record>
+    <record id='gps_commands_view_tree' model='ir.ui.view'>
+        <field name="name">gps_commands.tree</field>
+        <field name="model">gps_commands</field>
+        <field name="arch" type="xml">
+            <tree string="Commands">
+                <field name="protocol_id"/>
+                <field name="priority"/>
+                <field name="name"/>
+                <field name="command"/>                    
+                <field name="sample"/>
+                <field name="optional"/>
+            </tree>
+        </field>
+    </record>
+    <record id='gps_commands_view_search' model='ir.ui.view'>
+        <field name="name">gps_commands.search</field>
+        <field name="model">gps_commands</field>
+        <field name="arch" type="xml">
+            <search string="Commands">
+                <field name="protocol_id"/>
+                <filter string="protocol" name="groupby_protocol" domain="[]" context="{'group_by':'protocol_id'}"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

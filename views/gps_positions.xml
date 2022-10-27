@@ -1,0 +1,49 @@
+<odoo>
+    <record id='gps_positions_view_form' model='ir.ui.view'>
+        <field name="name">gps_positions.form</field>
+        <field name="model">gps_positions</field>
+        <field name="arch" type="xml">
+            <form string="GPS">
+                <group col="4" string="GPS Configuration">                                       
+                    <field name="deviceid"/>
+                    <field name="vehicleid"/>      
+                    <field name="protocol"/>
+                    <field name="devicetime"/>
+                    <field name="latitude"/>
+                    <field name="longitude"/>
+                    <field name="altitude"/>
+                    <field name="speed"/>
+                    <field name="course"/>
+                    <field name="distance"/>
+                    <field name="totalDistance"/>
+                    <field name="gas"/>
+                    <field name="event"/>
+                    <field name="status"/>
+                </group>                
+            </form>
+        </field>
+    </record>
+    <record id='gps_positions_view_tree' model='ir.ui.view'>
+        <field name="name">gps_positions.tree</field>
+        <field name="model">gps_positions</field>
+        <field name="arch" type="xml">
+            <tree string="Models">          
+                <field name="deviceid"/>      
+                <field name="vehicleid"/>      
+                <field name="protocol"/>
+                <field name="devicetime"/>            
+                <field name="latitude"/>
+                <field name="longitude"/>
+                <field name="altitude"/>
+                <field name="speed"/>
+                <field name="course"/>
+                <field name="distance"/>
+                <field name="totalDistance"/>
+                <field name="gas"/>
+                <field name="batery"/>
+                <field name="event"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

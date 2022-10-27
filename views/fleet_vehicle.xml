@@ -1,0 +1,18 @@
+<odoo>
+    <record id="fleet_vehicle_view_form" model="ir.ui.view">
+        <field name="name">gpsmap.vehicle.form</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="after">            
+                <group col="4" string="GPS Configuration">                    
+                    <field name="gps1_id"/>
+                    <field name="economic_number"/>
+                    <field name="image_vehicle"/>
+                    <field name="speed"/>
+                    <field name="temporal_id"/>
+                </group>                
+            </xpath>
+        </field>
+    </record>      
+</odoo>

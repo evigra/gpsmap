@@ -1,0 +1,61 @@
+<odoo>
+      <record id="base.main_company" model="res.company">
+          <field name="name">SolesGPS</field>
+          <field name="company_registry">Eduardo Vizcaino Granados</field>
+          <field name="vat">VIGE850830GKA</field>
+          <field name="website">http://www.soelsgps.com</field>
+          <field name="phone">52 (312) 454 - 9998</field>
+          <field name="email">contacto@solesgps.com</field>
+          <field name="street2">Jardines de Bugambilias</field>
+          <field name="zip">28978</field>
+          <field name="city">Villa de Alvarez</field>
+          <field name="state_id" ref="base.state_mx_col" />
+          <field name="country_id" ref="base.mx" />
+      </record>
+
+      <record id="gps_1" model="gps_devices"> 
+          <field name="id">1</field>
+          <field name="solesgps_id">1</field>
+          <field name="name">UHCAM 02</field>
+      </record>
+      <record id="gps_2" model="gps_devices"> 
+          <field name="id">2</field>
+          <field name="solesgps_id">2</field>
+          <field name="name">UHCAM Frei- plana</field>
+      </record>
+      <record id="gps_3" model="gps_devices"> 
+          <field name="id">3</field>
+          <field name="solesgps_id">3</field>
+          <field name="name">UHCAM 01</field>
+      </record>
+      <record id="gps_4" model="gps_devices"> 
+          <field name="id">4</field>
+          <field name="solesgps_id">4</field>
+          <field name="name">UHCAM 65 - 743EW3</field>
+      </record>
+
+      <record id="fleet.vehicle_1" model="fleet.vehicle">
+          <field name="image_vehicle">02</field>
+          <field name="gps1_id" ref="gpsmap.gps_1"/>
+          <field name="economic_number">01</field>
+      </record>
+      <record id="fleet.vehicle_2" model="fleet.vehicle">
+          <field name="image_vehicle">05</field>
+          <field name="gps1_id" ref="gpsmap.gps_2"/>
+          <field name="economic_number">02</field>
+      </record>
+      <record id="fleet.vehicle_3" model="fleet.vehicle">
+          <field name="image_vehicle">90</field>
+          <field name="gps1_id" ref="gpsmap.gps_3"/>
+          <field name="economic_number">03</field>
+      </record>
+      <record id="fleet.vehicle_4" model="fleet.vehicle">
+          <field name="image_vehicle">06</field>
+          <field name="gps1_id" ref="gpsmap.gps_4"/>
+          <field name="economic_number">04</field>
+      </record>
+      <record id="fleet.vehicle_5" model="fleet.vehicle">
+          <field name="image_vehicle">01</field>
+          <field name="economic_number">05</field>
+      </record>
+</odoo>

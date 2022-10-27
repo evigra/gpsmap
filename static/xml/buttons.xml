@@ -1,0 +1,15 @@
+<templates xml:space="preserve">
+    <t t-name="gpsmaps_buttons">                
+        <div id="buttons_history" style="z-index:120; position:absolute; bottom:10px; right:220px;">                    
+            <button id="action_play" custom="click" string="ADD pruea" class="btn btn-secondary" aria-label="View kanban"  title="" tabindex="-1" type="button">
+                <span class="fa fa-play"></span>
+            </button>		        
+            <button id="action_pause" custom="click" string="ADD pruea" class="btn btn-secondary" aria-label="View kanban"  title="" tabindex="-1" type="button">
+                <span class="fa fa-pause"></span>
+            </button>
+            <button id="action_stop" custom="click" string="ADD pruea" class="btn btn-secondary" aria-label="View kanban"  title="" tabindex="-1" type="button">
+                <span class="fa fa-stop"></span>
+            </button>            
+        </div>            
+    </t>
+</templates>

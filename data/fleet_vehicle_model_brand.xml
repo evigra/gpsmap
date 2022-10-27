@@ -1,0 +1,14 @@
+<odoo>
+    <record id="brand_international" model="fleet.vehicle.model.brand">
+        <field name="name">International</field>
+        <field name="image_128" type="base64" file="gpsmap/static/img/brand/international.png"/>
+    </record>
+    <record id="brand_freightliner" model="fleet.vehicle.model.brand">
+        <field name="name">Freightliner</field>
+        <field name="image_128" type="base64" file="gpsmap/static/img/brand/international.png"/>
+    </record>
+    <record id="brand_kenworth" model="fleet.vehicle.model.brand">
+        <field name="name">Kenworth</field>
+        <field name="image_128" type="base64" file="gpsmap/static/img/brand/kenworth.png"/>
+    </record>
+</odoo>

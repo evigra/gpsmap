@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<odoo>
+        <record id="rule_gps_devices_manager" model="ir.rule">
+            <field name="name">Manager has all rights on GPS devices</field>
+            <field name="model_id" ref="model_gps_devices"/>
+            <field name="groups" eval="[(4, ref('fleet.fleet_group_manager'))]"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>            
+        </record>        
+
+        <record id="rule_gps_positions_user" model="ir.rule">
+            <field name="name">The user can only see the positions of his vehicle.</field>
+            <field name="model_id" ref="model_gps_positions"/>
+            <field name="groups" eval="[(4, ref('fleet.fleet_group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>            
+        </record>
+
+        <record id="rule_gps_positions_manager" model="ir.rule">
+            <field name="name">Manager all the rights on the positions of the vehicles.</field>
+            <field name="model_id" ref="model_gps_positions"/>
+            <field name="groups" eval="[(4, ref('fleet.fleet_group_manager'))]"/>
+            <field name="domain_force"></field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>            
+        </record>        
+
+        <record id="rule_gps_commands_manager" model="ir.rule">
+            <field name="name">The manager has all the rights to the commands of the GPS devices</field>
+            <field name="model_id" ref="model_gps_commands"/>
+            <field name="groups" eval="[(4, ref('fleet.fleet_group_manager'))]"/>
+            <field name="domain_force"></field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>            
+        </record>        
+
+        <record id="rule_gps_protocol_manager" model="ir.rule">
+            <field name="name">The manager has all the rights to the protocols of the GPS devices</field>
+            <field name="model_id" ref="model_gps_protocol"/>
+            <field name="groups" eval="[(4, ref('fleet.fleet_group_manager'))]"/>
+            <field name="domain_force"></field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>            
+        </record>        
+</odoo>
