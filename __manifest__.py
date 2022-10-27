@@ -44,6 +44,8 @@ Main features
         'views/gps_positions.xml',
         'views/gpsmaps_maponline.xml',
         'views/menuitem.xml',
+        
+        'views/res_config_settings_views.xml',
     ],
     'demo': ['data/demo.xml'],
     'qweb': ['static/xml/*.xml'],
