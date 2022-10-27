@@ -5,7 +5,7 @@
     'images': ['static/description/map_online.png'],
     'author': "SolesGPS :: Eduardo Vizcaino",
     'category': 'Human Resources/Fleet GPS',
-    "version": "13.0.0.0.0",
+    "version": "14.0.0.0.0",
     'website' : 'https://odoo.solesgps.com:8069',
     'summary' : 'Locate the satellite coordinates that your GPS devices throw. Save that information here and see it on the map.',
     'description' : """
