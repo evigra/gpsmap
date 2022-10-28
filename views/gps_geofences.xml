@@ -1,0 +1,37 @@
+<odoo>
+    <record id='gps_geofences_view_form' model='ir.ui.view'>
+        <field name="name">gps_geofences.form</field>
+        <field name="model">gps_geofences</field>
+        <field name="arch" type="xml">
+            <form string="GPS">
+                <sheet>
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="description"/>      
+                        <field name="area"/>                    
+                        <field name="color"/>
+                        <field name="hidden"/>
+                        <field name="company_ids" widget="many2many_tags"/>                        
+                    </group>
+                    <div style="position:relative; width:100%; height:400px; display:block;">
+                        <field name="map" widget="map_drawing_shape"/>    
+                    </div>                    
+                </sheet>                                                    
+            </form>
+        </field>
+    </record>
+    <record id='gps_geofences_view_tree' model='ir.ui.view'>
+        <field name="name">gps_geofences.tree</field>
+        <field name="model">gps_geofences</field>
+        <field name="arch" type="xml">
+            <tree string="Models">          
+                    <field name="name"/>
+                    <field name="description"/>      
+                    <field name="area"/>                
+                    <field name="color"/>
+                    <field name="hidden"/>
+                    <field name="company_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

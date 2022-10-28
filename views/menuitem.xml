@@ -58,8 +58,6 @@
     <menuitem action="fleet_gps_positions_action" parent="fleet.menu_fleet_reporting" id="fleet_gps_positions_menu"  groups="fleet.fleet_group_manager"/>
     <menuitem action="fleet_gps_positions_action" parent="gpsmap_report" id="gps_positions_menu"  groups="fleet.fleet_group_manager"/>
 
-
-
     <record id='fleet_gps_positions_distance_action' model='ir.actions.act_window'>
         <field name="name">Distance</field>
         <field name="res_model">gps_positions</field>
@@ -68,5 +66,11 @@
         <field name="context">{"search_default_groupby_vehicleid" : True, "search_default_today" : True}</field>
     </record>
     <menuitem action="fleet_gps_positions_distance_action" parent="gpsmap_report" id="gps_positions_distancemenu"  groups="fleet.fleet_group_manager"/>
+
+    <record id='fleet_geofences_action' model='ir.actions.act_window'>
+        <field name="name">Geofences</field>
+        <field name="res_model">gps_geofences</field>
+    </record>
+    <menuitem action="fleet_geofences_action" parent="gpsmap_configuration" id="gps_geofences_menu"  groups="fleet.fleet_group_manager"/>
 
 </odoo>
