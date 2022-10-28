@@ -41,6 +41,7 @@ Main features
         'views/fleet_vehicle.xml',
         'views/gps_commands.xml',
         'views/gps_devices.xml',
+        'views/gps_geofences.xml',
         'views/gps_positions.xml',
         'views/gpsmaps_maponline.xml',
         'views/menuitem.xml',
