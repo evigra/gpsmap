@@ -14,23 +14,25 @@
       </record>
 
       <record id="gps_1" model="gps_devices"> 
-          <field name="id">1</field>
-          <field name="solesgps_id">1</field>
+          <field name="solesgps_id">5</field>
           <field name="name">UHCAM 02</field>
       </record>
-      <record id="gps_2" model="gps_devices"> 
-          <field name="id">2</field>
-          <field name="solesgps_id">2</field>
+      <record id="gps_2" model="gps_devices">
+          <field name="solesgps_id">7</field>
           <field name="name">UHCAM Frei- plana</field>
       </record>
-      <record id="gps_3" model="gps_devices"> 
-          <field name="id">3</field>
-          <field name="solesgps_id">3</field>
+      <record id="gps_3" model="gps_devices">
+          <field name="solesgps_id">36</field>
           <field name="name">UHCAM 01</field>
       </record>
       <record id="gps_4" model="gps_devices"> 
           <field name="id">4</field>
           <field name="solesgps_id">4</field>
+          <field name="name">UHCAM 65 - 743EW3</field>
+      </record>
+      <record id="gps_5" model="gps_devices"> 
+          <field name="id">5</field>
+          <field name="solesgps_id">53</field>
           <field name="name">UHCAM 65 - 743EW3</field>
       </record>
 
@@ -57,5 +59,6 @@
       <record id="fleet.vehicle_5" model="fleet.vehicle">
           <field name="image_vehicle">01</field>
           <field name="economic_number">05</field>
+          <field name="gps1_id" ref="gpsmap.gps_5"/>
       </record>
 </odoo>
