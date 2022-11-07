@@ -35,6 +35,7 @@
                 <field name="latitude"/>
                 <field name="longitude"/>
                 <field name="altitude"/>
+                <field name="speed" />
                 <field name="speed"/>
                 <field name="course"/>
                 <field name="distance"/>
@@ -61,8 +62,9 @@
                 <filter string="Alarm" name="Alarm" domain="[('status', '=', 'Alarm')]"/>
 
                 <group expand="0" string="Group By">
-                    <filter string="Vehicle" name="group_by_vehicleid" domain="[]" context="{'group_by': 'vehicleid'}"/>
-                    <filter string="Device GPS" name="group_by_deviceid" domain="[]" context="{'group_by': 'deviceid'}"/>
+                    <filter string="Vehicle" name="groupby_vehicleid" domain="[]" context="{'group_by': 'vehicleid'}"/>
+                    <filter string="Device GPS" name="groupby_deviceid" domain="[]" context="{'group_by': 'deviceid'}"/>
+                    <filter string="Device Time" name="groupby_deviceday" domain="[]" context="{'group_by': 'devicetime:day'}"/>
                 </group>
             </search>
         </field>
