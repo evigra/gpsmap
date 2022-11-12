@@ -27,7 +27,7 @@
         <field name="name">gps_positions.tree</field>
         <field name="model">gps_positions</field>
         <field name="arch" type="xml">
-            <tree>          
+            <tree default_order="devicetime desc">
                 <field name="deviceid"/>
                 <field name="vehicleid"/>      
                 <field name="protocol"/>
@@ -35,7 +35,6 @@
                 <field name="latitude"/>
                 <field name="longitude"/>
                 <field name="altitude"/>
-                <field name="speed" />
                 <field name="speed"/>
                 <field name="course"/>
                 <field name="distance"/>
@@ -47,6 +46,17 @@
             </tree>
         </field>
     </record>
+
+    <record id='gps_positions_view_graph' model='ir.ui.view'>
+        <field name="name">gps_positions.graph</field>
+        <field name="model">gps_positions</field>
+        <field name="arch" type="xml">
+            <graph>
+                <field name="totalDistance" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
     <record id='gps_positions_view_search' model='ir.ui.view'>
         <field name="name">gps_positions.search</field>
         <field name="model">gps_positions</field>
@@ -60,6 +70,9 @@
                 <filter string="Stopped" name="Stopped" domain="[('event', '=', 'Stopped')]"/>
                 <filter string="Moving" name="Moving" domain="[('event', '=', 'Moving')]"/>
                 <filter string="Alarm" name="Alarm" domain="[('status', '=', 'Alarm')]"/>
+                <filter string="Today" name="today" domain="[('devicetime', '&gt;', context_today().strftime('%%Y-%%m-%%d 00:00:00'))]"/>
+
+                <filter string="Device Time" name="date" date="devicetime"/>
 
                 <group expand="0" string="Group By">
                     <filter string="Vehicle" name="groupby_vehicleid" domain="[]" context="{'group_by': 'vehicleid'}"/>
