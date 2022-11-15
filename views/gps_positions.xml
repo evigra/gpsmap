@@ -23,6 +23,7 @@
             </form>
         </field>
     </record>
+
     <record id='gps_positions_view_tree' model='ir.ui.view'>
         <field name="name">gps_positions.tree</field>
         <field name="model">gps_positions</field>
@@ -47,12 +48,30 @@
         </field>
     </record>
 
+    <record id='gps_positions_distance_view_tree' model='ir.ui.view'>
+        <field name="name">gps_positions_distance.tree</field>
+        <field name="model">gps_positions</field>
+        <field name="arch" type="xml">
+            <tree default_order="devicetime desc">
+                <field name="deviceid"/>
+                <field name="vehicleid"/>
+                <field name="devicetime"/>
+                <field name="speed"/>
+                <field name="distance"/>
+                <field name="event"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+
     <record id='gps_positions_view_graph' model='ir.ui.view'>
         <field name="name">gps_positions.graph</field>
         <field name="model">gps_positions</field>
         <field name="arch" type="xml">
             <graph>
                 <field name="totalDistance" type="measure"/>
+                <field name="distance" type="measure"/>
             </graph>
         </field>
     </record>
