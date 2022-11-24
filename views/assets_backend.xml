@@ -2,8 +2,13 @@
     <template id="assets_backend" name="gpsmap_assets" inherit_id="web.assets_backend">
         <xpath expr="." position="inside">
             <link rel="stylesheet" href="/gpsmap/static/css/index.css"/>
-            <t t-set="solesgps_key" t-value="request.env['ir.config_parameter'].sudo().get_param('solesgps_key')"/>            
-            <script t-attf-src="https://maps.googleapis.com/maps/api/js?key={{solesgps_key}}"></script>                                    
+            <t t-set="google_maps_api_key" t-value="request.env['ir.config_parameter'].sudo().get_param('base_geolocalize.google_map_api_key')"/>
+            <t t-if="google_maps_api_key">
+                <script t-attf-src="https://maps.googleapis.com/maps/api/js?v=quarterly&amp;key=#{google_maps_api_key}&amp;libraries=#{google_maps_libraries}#{'&amp;language=' + google_maps_lang_localization if google_maps_lang_localization else ''}#{'&amp;region=' + google_maps_region_localization if google_maps_region_localization else ''}"></script>
+            </t>
+            <t t-if="not google_maps_api_key">
+                <script t-attf-src="https://maps.googleapis.com/maps/api/js?v=quarterly&amp;key=#{google_maps_api_key}&amp;libraries=#{google_maps_libraries}#{'&amp;language=' + google_maps_lang_localization if google_maps_lang_localization else ''}#{'&amp;region=' + google_maps_region_localization if google_maps_region_localization else ''}"></script>
+            </t>
             <script type="text/javascript" src="/gpsmap/static/js/maplabel.js"/>
             <script type="text/javascript" src="/gpsmap/static/js/index.js"/>            
         </xpath>
