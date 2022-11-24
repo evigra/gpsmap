@@ -1,0 +1,71 @@
+#########################################
+TIPOS DE CONFIGURACION:  ################
+#########################################
+
+Pasos para rastrear dispositivo android.
+Pasos para rastrear dispositivo GPS.
+Pasos para configurar el modulo.
+1.- Agregar la llave de google maps
+2.- Crear dispositivo GPS
+3.- Relacionar vehiculo con el dispositivo GPS
+
+#########################################
+PASOS DETALLADOS PARA LA CONFIGURACION: #
+#########################################    
+
+    Pasos para rastrear dispositivo android #######
+    ###############################################
+    
+    1.- Bajar e instalar la aplicacion oculta
+        La aplicacion es un apk para android, que necesita obtener la ubicacion GPS del dispositivo, 
+        utiliza el internet del dispositivo para conectarse al servidor SolesGPS.com
+        con la finalidad de dejar informacion que sera procesada por la plataforma.
+          
+        - Puedes bajar la aplicacion oculta aqui        
+    
+    2.- Configurar la aplicacion con los siguientes parametros
+        url del servidor: http://gps.solesgps.com:5055
+        precision de posicion: alta
+        frecuencia de rastreo: 60
+        angulo:35
+        distancia:500
+    
+    3.- Recordar el valor indicado por el campo identificador del dispositivo
+        Este dato, sera utilizado al configurar el dispositivo en el modulo
+    
+    
+    Pasos para rastrear dispositivo GPS ###########
+    ###############################################
+
+    1.- Conocer el modelo del dispositivo GPS, para poder determinar el protocolo a usar
+    2.- Determinar el puerto necesario, con base al protocolo. 
+        El modulo GPSMAP trae los puertos que requiere cada protocolo.
+    3.- El dispositivo GPS, puede ser configurado por SMS.
+    4.- Configurar el dispositivo GPS, con los siguientes parametros
+        SERVIDOR:   gps.solesgps.com 
+                    51.79.79.134
+        PUERTO:     Deperminado por el protocolo del GPS, dentro del rango 5001 - 5240
+        FRECUENCIA: 60 Segundos
+        APN:        Determinado por chip GSM instalado en el dispositivo GPS
+        USER_APN:   Determinado por el proveedor del chip GSM
+        PASS_APN:   Determinado por el proveedor del chip GSM
+    5.- Agregar el dispositivo al modulo GPSMAP, usando su IMEI.
+    
+    
+    Pasos para configurar el modulo ###############
+    ###############################################
+    1.- Agregar la llave de google maps
+        Activar el check Geolocalizacion
+            Esta Ubicado en el modulo CONFIGURACION, seccion CONFIGURACION GENERAL, apartado INTEGRACIONES.
+        Guardar la modificacion
+        En API Seleccionar la opcion: GOOGLE PLACE MAP
+        Agregar la llave de Google
+        
+    2.- Crear dispositivo GPS usando su IMEI
+        Llenando los datos del formulario en GPS / Configuracion / Dispositivo GPS
+        El campo IMEI no puede repetirse, Es unico en el mundo, 
+        En el caso de los dispositivos android, el imei es un valor aleatorio, debemos remplazarlo en caso de duplicarse
+        
+    3.- Relacionar vehiculo con el dispositivo GPS
+        Ingresar al formularion del vehiculo
+        Seleccionar el Dispositivo GPS que trae el vehiculo en el apartado CONFIGURACION GPS
