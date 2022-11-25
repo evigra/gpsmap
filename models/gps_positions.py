@@ -111,6 +111,8 @@ class gps_positions(models.Model):
             'fleet.vehicle', 'cron_positions',[])
 
         for data in yaml.load(datas):
+            print("###############")
+            print(data)
             device = self.env['gps_devices'].search([["solesgps_id","=",data["deviceid"]]])
             if(device.name):
                 fleet = self.env['fleet.vehicle'].search([["gps1_id","=",device.id]])
