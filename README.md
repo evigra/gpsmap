@@ -25,13 +25,14 @@ The application is an apk for android, which needs to get the GPS location of th
 You can download the hidden application ![App hidden](static/app/app-hidden-release.zip?raw=true "App hidden")
     
 1.2 Configure the application with the following parameters
-- **Server**:               http://gps.solesgps.com:5055
-- **Position accuracy**:    high
-- **Scan rate**:            60
-- **Angle**:                35
-- **Distance**:             500
+
+    Server:               http://gps.solesgps.com:5055
+    Position accuracy:    high
+    Scan rate:            60
+    Angle:                35
+    Distance:             500
     
-Remember the value indicated by the device identifier field, this data will be used when configuring the device in the GPSMAP module 
+Remember the value of the device identifier field, this data will be the IMEI, when configuring the device in the GPSMAP module
     
 ## 2.- Steps to track GPS device. 
 
@@ -41,13 +42,14 @@ Remember the value indicated by the device identifier field, this data will be u
     The GPS device can be configured by SMS.
 
 2.2- Configure the GPS device, with the following parameters
-- **SERVER**:               gps.solesgps.com
-                            51.79.79.134
-- **PORT**:                 Determined by the GPS protocol, within the range 5001 - 5240
-- **FREQUENCY**:            60 Seconds
-- **APN**:                  Determined by GSM chip installed in the GPS device
-- **USER_APN**:             Determined by the GSM chip provider
-- **PASS_APN**:             Determined by the GSM chip provider
+
+    SERVER WITH DOMAIN:   gps.solesgps.com
+    SERVER WITH IP:       51.79.79.134
+    PORT:                 Determined by the GPS protocol, within the range 5001 - 5240
+    FREQUENCY:            60 Seconds
+    APN:                  Determined by GSM chip installed in the GPS device
+    USER_APN:             Determined by the GSM chip provider
+    PASS_APN:             Determined by the GSM chip provider
         
 Add the device to the GPSMAP module, using its IMEI.
     
@@ -57,7 +59,7 @@ Add the device to the GPSMAP module, using its IMEI.
 3.1- Add the google maps key.
 
     3.1.1- Activate the Geolocation check
-        It is located in the SETTINGS module, GENERAL SETTINGS section, INTEGRATIONS section.
+        It is located in the SETTINGS module, GENERAL SETTINGS section, INTEGRATIONS header.
 
     3.1.2- Save the modification
 
@@ -69,20 +71,29 @@ Add the device to the GPSMAP module, using its IMEI.
 
 ![Add key google maps](static/description/settings_geolocation.png "Add key google maps")
         
+3.2- Synchronize with SolesGPS.
 
-3.2 Create GPS device using its IMEI.
+    3.2.1- Activate Sync GPS Devices check
+        It is located in the SETTINGS module, FLEET section, GPS DEVICE header.
 
-    3.2.1- Filling out the form data in GPS / Configuration / GPS Device
+    3.2.2- Save the modification
+
+![Add key google maps](static/description/setting_sync.png "Add key google maps")
+
+
+3.3 Create GPS device using its IMEI.
+
+    3.3.1- Filling out the form data in GPS / Configuration / GPS Device
 
     - The IMEI field cannot be repeated, it is unique in the world,
 
     - In the case of android devices, the imei is a random value, we must replace it in case of duplicate
         
 
-3.3 Match the vehicle with the GPS device.
+3.4 Match the vehicle with the GPS device.
     
-    3.3.1- Enter the vehicle form
+    3.4.1- Enter the vehicle form
 
-    3.3.2- Select the GPS device that comes with the vehicle in the GPS CONFIGURATION section
+    3.4.2- Select the GPS device that comes with the vehicle in the GPS CONFIGURATION section
 
 ![Add key google maps](static/description/fleet_gps.png "Add key google maps")    
