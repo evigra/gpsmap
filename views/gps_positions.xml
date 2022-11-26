@@ -46,4 +46,25 @@
             </tree>
         </field>
     </record>
+    <record id='gps_positions_view_search' model='ir.ui.view'>
+        <field name="name">gps_positions.search</field>
+        <field name="model">gps_positions</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="vehicleid"/>
+                <field name="deviceid"/>
+                <field name="event"/>
+                <separator/>
+
+                <filter string="Stopped" name="Stopped" domain="[('event', '=', 'Stopped')]"/>
+                <filter string="Moving" name="Moving" domain="[('event', '=', 'Moving')]"/>
+                <filter string="Alarm" name="Alarm" domain="[('status', '=', 'Alarm')]"/>
+
+                <group expand="0" string="Group By">
+                    <filter string="Vehicle" name="group_by_vehicleid" domain="[]" context="{'group_by': 'vehicleid'}"/>
+                    <filter string="Device GPS" name="group_by_deviceid" domain="[]" context="{'group_by': 'deviceid'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
 </odoo>

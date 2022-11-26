@@ -85,7 +85,7 @@ class gps_positions(models.Model):
 
         data="Offline"
         if("alarm" in json_vals and json_vals["alarm"]):
-            data = "alarm"
+            data = "Alarm"
         elif(devicetime < time_before):
             data = "Offline"
         elif(time_before < devicetime and devicetime < time_after and fixtime<time_before):
@@ -111,9 +111,9 @@ class gps_positions(models.Model):
             'fleet.vehicle', 'cron_positions',[])
 
         for data in yaml.load(datas):
-            device = self.env['gps_devices'].search([["id","=",data["deviceid"]]])
+            device = self.env['gps_devices'].search([["solesgps_id","=",data["deviceid"]]])
             if(device.name):
-                fleet = self.env['fleet.vehicle'].search([["gps1_id","=",data["deviceid"]]])
+                fleet = self.env['fleet.vehicle'].search([["gps1_id","=",device.id]])
                 json_vals = yaml.load(data["attributes"])
                 data.pop("attributes")
 
@@ -127,6 +127,7 @@ class gps_positions(models.Model):
                 data["status"] = self.get_status(json_vals, data, fleet)
 
                 data["vehicleid"] = fleet.id
+                data["deviceid"] = device.id
 
                 position = self.create(data)
                 device.write({"positionid": position})
