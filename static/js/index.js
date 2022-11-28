@@ -31,6 +31,8 @@ odoo.define('gpsmap', function (require) {
         events: {
             'click div.vehicle': function (e) {
                 var objeto = e.currentTarget.attributes;
+                console.log(objeto.device_id.value);
+                console.log(objeto);
                 this.$("div.vehicle").removeClass("vehicle_active");
                 this.device_active = objeto.device_id.value;
                 this.$("[device_id = '" + this.device_active + "']").addClass("vehicle_active");
@@ -248,6 +250,8 @@ odoo.define('gpsmap', function (require) {
             {
                 if(_.size(this.data_positions[this.device_active]) > isimulacion)
                 {
+                    console.log(this.device_active);
+                    console.log(this.data_positions);
                     localizacion_anterior = undefined;
                     var vehicle = this.data_positions[this.device_active][isimulacion];
                     if(vehicle["psp"] > 4)

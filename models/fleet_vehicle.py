@@ -60,5 +60,6 @@ class vehicle(models.Model):
                 "cou": pos.course,
                 "bat": pos.batery,
             }
-            positions[pos.deviceid.id] = {0: position}
+            if(pos.deviceid.id>0):
+                positions[pos.deviceid.id] = {0: position}
         return positions
