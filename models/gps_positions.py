@@ -114,24 +114,25 @@ class gps_positions(models.Model):
             device = self.env['gps_devices'].search([["solesgps_id","=",data["deviceid"]]])
             if(device.name):
                 fleet = self.env['fleet.vehicle'].search([["gps1_id","=",device.id]])
-                json_vals = yaml.load(data["attributes"])
-                data.pop("attributes")
+                if(fleet.id>0):
+                    json_vals = yaml.load(data["attributes"])
+                    data.pop("attributes")
 
-                data = self.get_other_information(json_vals,data, fleet)
+                    data = self.get_other_information(json_vals,data, fleet)
 
-                data["distance"] = self.get_distance(json_vals)
-                data["gas"] = self.get_gas(json_vals)
-                data["totalDistance"] = self.get_totalDistance(json_vals)
-                data["batery"] = self.get_batery(json_vals)
-                data["event"] = self.get_event(json_vals, data, fleet)
-                data["status"] = self.get_status(json_vals, data, fleet)
+                    data["distance"] = self.get_distance(json_vals)
+                    data["gas"] = self.get_gas(json_vals)
+                    data["totalDistance"] = self.get_totalDistance(json_vals)
+                    data["batery"] = self.get_batery(json_vals)
+                    data["event"] = self.get_event(json_vals, data, fleet)
+                    data["status"] = self.get_status(json_vals, data, fleet)
 
-                data["vehicleid"] = fleet.id
-                data["deviceid"] = device.id
+                    data["vehicleid"] = fleet.id
+                    data["deviceid"] = device.id
 
-                position = self.create(data)
-                device.write({"positionid": position})
-                fleet.write({"positionid": position})
+                    position = self.create(data)
+                    device.write({"positionid": position})
+                    fleet.write({"positionid": position})
 
     def js_positions_history(self,arg):
         data_arg = arg["data"]["domain"]
@@ -185,9 +186,10 @@ class gps_positions(models.Model):
                 }
                 if(not positions):
                     positions = {}
-                if(vehicle.gps1_id.id not in positions ):
+                if(vehicle.gps1_id.id not in positions and vehicle.gps1_id.id>0):                    
                     positions[vehicle.gps1_id.id] = {}                
-                positions[vehicle.gps1_id.id][i] = position
+                if(vehicle.gps1_id.id>0):    
+                    positions[vehicle.gps1_id.id][i] = position
             return positions
         except re.error:
             raise UserError(_('Error in the filter'))
