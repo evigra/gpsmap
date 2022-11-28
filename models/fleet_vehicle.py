@@ -36,6 +36,7 @@ class vehicle(models.Model):
 
             position = {
                 "idv": vehicle["id"],
+                "idg": pos.deviceid.id,
                 "nam": vehicle["name"],
                 "lic": vehicle["license_plate"],
                 "ima": vehicle["image_vehicle"],
@@ -59,5 +60,5 @@ class vehicle(models.Model):
                 "cou": pos.course,
                 "bat": pos.batery,
             }
-            positions[vehicle["id"]] = {0: position}
+            positions[pos.deviceid.id] = {0: position}
         return positions

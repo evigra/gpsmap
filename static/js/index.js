@@ -22,7 +22,6 @@ odoo.define('gpsmap', function (require) {
     var class_gpsmap = AbstractAction.extend({
         ////////////////////////////////////////////////
         start: function() { 
-            console.log("entra a modulo");
             this.get_menu_vehicle();
             this.map();
             var data=this._super.apply(this, arguments);
@@ -33,13 +32,13 @@ odoo.define('gpsmap', function (require) {
             'click div.vehicle': function (e) {
                 var objeto = e.currentTarget.attributes;
                 this.$("div.vehicle").removeClass("vehicle_active");
-                this.device_active = objeto.vehicle.value;
-                this.$("[vehicle = '" + this.device_active + "']").addClass("vehicle_active");
+                this.device_active = objeto.device_id.value;
+                this.$("[device_id = '" + this.device_active + "']").addClass("vehicle_active");
 
                 if(this.template  ==  "gpsmaps_maphistory")
                     this.status_device();
                 else
-                    this.status_device(this.$("div.vehicle[vehicle = '" + this.device_active + "']"));
+                    this.status_device(this.$("div.vehicle[device_id = '" + this.device_active + "']"));
             },
             'click button#action_play': function (e) {
                 if(_.size(this.data_positions)>0)
@@ -313,7 +312,7 @@ odoo.define('gpsmap', function (require) {
             if(vehicle["psp"]<5 && vehicle["sta"] == "Online")        icon_status = "stop.png";
             if(vehicle["psp"]>5 && vehicle["sta"] == "Online")        icon_status = "car_signal1.png";
 
-            this.$("div.vehicle[vehicle = " + vehicle["idv"] + "]")
+            this.$("div.vehicle[device_id = " + vehicle["idg"] + "]")
             .attr("latitude", vehicle["lat"])
             .attr("longitude", vehicle["lon"])
             .attr("position", vehicle["idp"])
@@ -330,7 +329,7 @@ odoo.define('gpsmap', function (require) {
                 {
                     img_icon = "<a href = \"tel:" + vehicle["te"] +"\">"+img_icon +"</a>";
                 }
-                $("div.vehicle[vehicle = " + vehicle["idv"] + "] div.event_device").html(img_icon);
+                $("div.vehicle[device_id = " + vehicle["idg"] + "] div.event_device").html(img_icon);
             }
 
             var icon = undefined;
@@ -355,9 +354,9 @@ odoo.define('gpsmap', function (require) {
                 icon = "/gpsmap/static/img/vehicles/vehicle_" +image+ "/i"+icon+ ".png";
             }
 
-            if(labels[vehicle["idv"]]  ==  undefined)
+            if(labels[vehicle["idg"]]  ==  undefined)
             {
-                labels[vehicle["idv"]] = new MapLabel({
+                labels[vehicle["idg"]] = new MapLabel({
                     text:             vehicle["nam"],
                     position:         posicion,
                     map:             this.obj_map,
@@ -367,8 +366,8 @@ odoo.define('gpsmap', function (require) {
                     strokeWeight:    5,
                 });
             }
-            labels[vehicle["idv"]].set('position', posicion);
-            if(this.device_active  ==  vehicle["idv"] && vehicle["se"]  ==  undefined || vehicle["se"]  ==  "simulator")
+            labels[vehicle["idg"]].set('position', posicion);
+            if(this.device_active  ==  vehicle["idg"] && vehicle["se"]  ==  undefined || vehicle["se"]  ==  "simulator")
             {
                 this.centerMap(posicion);
                 this.func_odometer(vehicle);
@@ -379,7 +378,7 @@ odoo.define('gpsmap', function (require) {
         ////////////////////////////////////////////////
         fn_localizaciones: function(position, vehiculo)
         {
-            var ivehiculo = vehiculo["idv"];
+            var ivehiculo = vehiculo["idg"];
             if(localizaciones[ivehiculo]  ==  undefined)
             {
                 localizaciones[ivehiculo] = Array(position);

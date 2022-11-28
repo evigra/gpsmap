@@ -150,7 +150,6 @@ class gps_positions(models.Model):
             positions_arg.insert(0,'&')
             positions_arg.insert(6,('deviceid', '=', int(data_arg[3])))
             
-        print(positions_arg)
         try:
             data_positions = self.search(positions_arg, order='devicetime asc')
             positions = {}
@@ -161,6 +160,7 @@ class gps_positions(models.Model):
                 totalDistance = int(pos.totalDistance / 1000)                
                 position = {
                     "idv": vehicle.id,
+                    "idg": vehicle.gps1_id.id,
                     "nam": vehicle.name,
                     "lic": vehicle.license_plate,
                     "ima": vehicle.image_vehicle,
@@ -185,9 +185,9 @@ class gps_positions(models.Model):
                 }
                 if(not positions):
                     positions = {}
-                if(vehicle.id not in positions ):
-                    positions[vehicle.id] = {}                
-                positions[vehicle.id][i] = position
+                if(vehicle.gps1_id.id not in positions ):
+                    positions[vehicle.gps1_id.id] = {}                
+                positions[vehicle.gps1_id.id][i] = position
             return positions
         except re.error:
             raise UserError(_('Error in the filter'))
