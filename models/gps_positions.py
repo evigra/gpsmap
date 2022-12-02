@@ -1,5 +1,5 @@
 import xmlrpc.client
-import datetime, time
+import datetime, time, string
 import yaml
 from odoo import fields, models, _
 import re
@@ -9,10 +9,12 @@ class gps_positions(models.Model):
     _name = "gps_positions"
     _description = 'GPS Positions'
     _order = "devicetime DESC"
+    _pointOnVertex = ""
 
     protocol = fields.Char(size = 15)
     deviceid = fields.Many2one('gps_devices', ondelete = 'set null', string = "GPS Device", index = True)
     vehicleid = fields.Many2one('fleet.vehicle', ondelete = 'set null', string = "Vehicle", index = True)
+    geofence_ids = fields.Many2many('gps_geofences', 'gps_positions_geofences_rel', 'positions_id', 'geofence', string = 'Geofences')
     servertime = fields.Datetime('Server Time')
     devicetime = fields.Datetime('Device Time')
     fixtime = fields.Datetime('Error Time')
@@ -27,6 +29,16 @@ class gps_positions(models.Model):
     gas = fields.Float('Gas', digits = (5, 2))
     status = fields.Char('Type', size = 50)
     event = fields.Char(size = 70)
+
+    def get_geofence(self, data, fleet):
+        data_return = []
+        for alert in self.env['gps_alerts'].search([]):
+            if(data["vehicleid"] in alert.vehicle_ids.mapped("id")):
+                point = '%s %s' % (data["longitude"],data["latitude"])
+                for geofence in alert.geofence_ids:
+                    if("IN" == self.pointInPolygon(point, geofence.area.split(', '))):
+                        data_return.append(geofence.id)
+        return data_return
 
     def get_distance(self, json_vals):
         data = 0
@@ -119,7 +131,6 @@ class gps_positions(models.Model):
                     data.pop("attributes")
 
                     data = self.get_other_information(json_vals,data, fleet)
-
                     data["distance"] = self.get_distance(json_vals)
                     data["gas"] = self.get_gas(json_vals)
                     data["totalDistance"] = self.get_totalDistance(json_vals)
@@ -129,7 +140,9 @@ class gps_positions(models.Model):
 
                     data["vehicleid"] = fleet.id
                     data["deviceid"] = device.id
-
+                    geofences = self.get_geofence(data, fleet)
+                    if(len(geofences)>0):
+                        data["geofence_ids"] =[[6, False, geofences]]
                     position = self.create(data)
                     device.write({"positionid": position})
                     fleet.write({"positionid": position})
@@ -193,3 +206,41 @@ class gps_positions(models.Model):
             return positions
         except re.error:
             raise UserError(_('Error in the filter'))
+        
+    def pointInPolygon(self, point, polygon, pointOnVertex=True):
+        _pointOnVertex = pointOnVertex
+        point = self.pointStringToCoordinates(point)
+
+        vertices = []
+        for vertex in polygon:
+            vertices.append(self.pointStringToCoordinates(vertex))
+
+        intersections = 0
+        for i in range(len(vertices)):
+            vertex1 = vertices[i - 1]
+            vertex2 = vertices[i]
+            if float(vertex1['y']) == float(vertex2['y']) and float(vertex1['y']) == float(point['y']) and float(
+                    point['x']) > min(float(vertex1['x']), float(vertex2['x'])) and float(point['x']) < max(
+                    float(vertex1['x']), float(vertex2['x'])):
+                return 'BORDE'
+            if float(point['y']) > min(float(vertex1['y']), float(vertex2['y'])) and float(point['y']) <= max(
+                    float(vertex1['y']), float(vertex2['y'])) and float(point['x']) <= max(float(vertex1['x']), float(
+                    vertex2['x'])) and float(vertex1['y']) != float(vertex2['y']):
+                xinters = (float(point['y']) - float(vertex1['y'])) * (float(vertex2['x']) - float(vertex1['x'])) / (
+                            float(vertex2['y']) - float(vertex1['y'])) + float(vertex1['x'])
+                if xinters == float(point['x']):
+                    return 'BORDE'
+                if float(vertex1['x']) == float(vertex2['x']) or float(point['x']) <= float(xinters):
+                    intersections = intersections + 1
+
+        if intersections % 2 != 0:
+            return 'IN'
+        else:
+            return 'OUT'
+
+    def pointStringToCoordinates(self, point):
+        coordinates = point.split(' ')
+        coordinate = {}
+        coordinate['x'] = coordinates[0]
+        coordinate['y'] = coordinates[1]
+        return coordinate

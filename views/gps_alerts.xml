@@ -1,0 +1,32 @@
+<odoo>
+    <record id='gps_alerts_view_form' model='ir.ui.view'>
+        <field name="name">gps_alerts.form</field>
+        <field name="model">gps_alerts</field>
+        <field name="arch" type="xml">
+            <form string="GPS">
+                <sheet>                
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="description"/>      
+                    </group>
+                    <group col="2">
+                        <field name="vehicle_ids" widget="many2many_tags"/>
+                        <field name="geofence_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>                                                    
+            </form>
+        </field>
+    </record>
+    <record id='gps_alerts_view_tree' model='ir.ui.view'>
+        <field name="name">gps_alerts.tree</field>
+        <field name="model">gps_alerts</field>
+        <field name="arch" type="xml">
+            <tree string="Models">          
+                <field name="name"/>
+                <field name="description"/>      
+                <field name="vehicle_ids"/>
+                <field name="geofence_ids"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

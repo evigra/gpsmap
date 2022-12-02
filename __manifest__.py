@@ -39,6 +39,7 @@ Main features
         'views/assets_backend.xml',
         'views/fleet_vehicle_odometer.xml',
         'views/fleet_vehicle.xml',
+        'views/gps_alerts.xml',
         'views/gps_commands.xml',
         'views/gps_devices.xml',
         'views/gps_geofences.xml',

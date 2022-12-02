@@ -26,8 +26,7 @@
         <field name="arch" type="xml">
             <tree string="Models">          
                     <field name="name"/>
-                    <field name="description"/>      
-                    <field name="area"/>                
+                    <field name="description"/>                          
                     <field name="color"/>
                     <field name="hidden"/>
                     <field name="company_ids" widget="many2many_tags"/>
