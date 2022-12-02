@@ -73,4 +73,13 @@
     </record>
     <menuitem action="fleet_geofences_action" parent="gpsmap_configuration" id="gps_geofences_menu"  groups="fleet.fleet_group_manager"/>
 
+    
+    <record id='gps_alerts_action' model='ir.actions.act_window'>
+        <field name="name">Alerts</field>
+        <field name="res_model">gps_alerts</field>
+    </record>
+    
+    <menuitem action="gps_alerts_action" parent="gpsmap_configuration" id="gps_alerts_menu"  groups="fleet.fleet_group_manager"/>
+    
+
 </odoo>

@@ -42,6 +42,7 @@
                 <field name="totalDistance"/>
                 <field name="gas"/>
                 <field name="batery"/>
+                <field name="geofence_ids" widget="many2many_tags"/>
                 <field name="event"/>
                 <field name="status"/>
             </tree>
