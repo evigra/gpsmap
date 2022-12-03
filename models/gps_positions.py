@@ -1,6 +1,6 @@
 import xmlrpc.client
 import datetime, time, string
-import yaml
+import json
 from odoo import fields, models, _
 import re
 
@@ -122,12 +122,12 @@ class gps_positions(models.Model):
         datas=solesgps_models.execute_kw(solesgps_db, solesgps_uid, solesgps_pass,
             'fleet.vehicle', 'cron_positions',[])
 
-        for data in yaml.load(datas):
+        for data in json.loads(datas):
             device = self.env['gps_devices'].search([["solesgps_id","=",data["deviceid"]]])
             if(device.name):
                 fleet = self.env['fleet.vehicle'].search([["gps1_id","=",device.id]])
                 if(fleet.id>0):
-                    json_vals = yaml.load(data["attributes"])
+                    json_vals = json.loads(data["attributes"])
                     data.pop("attributes")
 
                     data = self.get_other_information(json_vals,data, fleet)

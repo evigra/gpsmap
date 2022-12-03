@@ -2,7 +2,7 @@
 
 This repository contains the GPSMAP module, with which we can geolocate devices using the [SolesGPS](http://solesgps.com) platform.
 
-You can see the functionality in [Odoo14](http://odoo14.solesgps.com:8114).
+You can see the functionality in [Odoo15](http://odoo15.solesgps.com:8115).
 
     User admin
     Pass admin

@@ -5,7 +5,7 @@
     'images': ['static/description/map_online.png'],
     'author': "SolesGPS :: Eduardo Vizcaino",
     'category': 'Human Resources/Fleet GPS',
-    "version": "14.0.0.0.0",
+    "version": "15.0.0.0.0",
     'website' : 'https://odoo.solesgps.com:8069',
     'summary' : 'Locate the satellite coordinates that your GPS devices throw. Save that information here and see it on the map.',
     'description' : """
@@ -49,8 +49,19 @@ Main features
         
         'views/res_config_settings_views.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            '/gpsmap/static/js/google.js',
+            '/gpsmap/static/js/maplabel.js',
+            '/gpsmap/static/js/AbstractAction.js',
+            '/gpsmap/static/js/index.js',
+        ],
+        'web.assets_qweb': [
+            'gpsmap/static/xml/*.xml',
+        ],        
+    },    
     'demo': ['data/demo.xml'],
-    'qweb': ['static/xml/*.xml'],
+    #'qweb': ['static/xml/*.xml'],
     'installable': True,
     'application': True,
 }

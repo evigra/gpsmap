@@ -64,6 +64,22 @@
             </tree>
         </field>
     </record>
+    <record id='gps_positions_geofence_view_tree' model='ir.ui.view'>
+        <field name="name">gps_positions_geofence.tree</field>
+        <field name="model">gps_positions</field>
+        <field name="arch" type="xml">
+            <tree default_order="devicetime desc">
+                <field name="deviceid"/>
+                <field name="vehicleid"/>
+                <field name="devicetime"/>
+                <field name="speed"/>
+                <field name="event"/>
+                <field name="status"/>
+                <field name="geofence_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
 
 
     <record id='gps_positions_view_graph' model='ir.ui.view'>

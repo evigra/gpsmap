@@ -534,7 +534,7 @@ odoo.define('gpsmap.action', function (require) {
 
     ////////////////////////////////////////////////
     local.maponline = class_gpsmap.extend({
-        template: 'js_maponline',   
+        contentTemplate: 'js_maponline',   
         start: function() {
             var data = this._super.apply(this, arguments);
             this._initMap();
@@ -549,7 +549,7 @@ odoo.define('gpsmap.action', function (require) {
     core.action_registry.add('gpsmap.maponline', local.maponline);
     ////////////////////////////////////////////////
     local.streetonline = class_gpsmap.extend({
-        template: 'gpsmaps_streetonline',   
+        contentTemplate: 'gpsmaps_streetonline',   
         start: function() {
             var data = this._super.apply(this, arguments);
             this._initMap();
@@ -564,7 +564,7 @@ odoo.define('gpsmap.action', function (require) {
     core.action_registry.add('gpsmap.streetonline', local.streetonline);
     ////////////////////////////////////////////////
     local.maphistory = class_gpsmap.extend({
-        template: 'gpsmaps_maphistory',   
+        contentTemplate: 'gpsmaps_maphistory',   
         start: function() {
             var data = this._super.apply(this, arguments);
             this._initMap();
