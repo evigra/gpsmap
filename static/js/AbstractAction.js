@@ -27,7 +27,7 @@ odoo.define('gpsmap.action', function (require) {
                 this.device_active = objeto.device_id.value;
                 this.$("[device_id = '" + this.device_active + "']").addClass("vehicle_active");
 
-                if(this.template  ==  "gpsmaps_maphistory")
+                if(this.contentTemplate  ==  "gpsmaps_maphistory")
                     this.status_device();
                 else
                     this.status_device(this.$("div.vehicle[device_id = '" + this.device_active + "']"));
@@ -140,7 +140,7 @@ odoo.define('gpsmap.action', function (require) {
             if(this.time  ==  undefined)    this.time = 1000;
             else if(this.time  ==  1000)    this.time = 20000;
             
-            if(this.template != "gpsmaps_maphistory" && this.$("div#maponline").length > 0)
+            if(this.contentTemplate != "gpsmaps_maphistory" && this.$("div#maponline").length > 0)
                 this.positions_search(argument);
             if(typeof argument != "number")
             {
@@ -154,7 +154,7 @@ odoo.define('gpsmap.action', function (require) {
         ////////////////////////////////////////////////
         positions_search:function(argument){
             var model;
-            if(this.template  ==  "gpsmaps_maphistory")
+            if(this.contentTemplate  ==  "gpsmaps_maphistory")
             {
                 var start_time = this.$("input#start").val();
                 var end_time = this.$("input#end").val();
@@ -374,7 +374,7 @@ odoo.define('gpsmap.action', function (require) {
             if(!(item["ad"]  ==  undefined || item["ad"]  ==  false || item["ad"]  ==  "false"))
                 tablero1 = "UBICACION :: " + item["ad"] + tablero1;
  
-            if(this.template  ==  "gpsmaps_streetonline") this.execute_streetMap(item);
+            if(this.contentTemplate  ==  "gpsmaps_streetonline") this.execute_streetMap(item);
  
             var tablero = "\
                 <table id = \"data_tablero\">\
