@@ -145,7 +145,14 @@ class gps_positions(models.Model):
                         data["geofence_ids"] =[[6, False, geofences]]
                     position = self.create(data)
                     device.write({"positionid": position})
-                    fleet.write({"positionid": position})
+                    for geofence in geofences:
+                        if(geofence not in fleet.geofence_ids.mapped("id") and data["status"]!='Alert'):
+                            data["event"] ="Enter geofence"
+                    for geofence in fleet.geofence_ids.mapped("id"):
+                        if(geofence not in geofences):
+                            data["event"] ="Exit geofence"
+
+                    fleet.write({"positionid": position, "geofence_ids":[[6, False, geofences]]})
 
     def js_positions_history(self,arg):
         data_arg = arg["data"]["domain"]
