@@ -24,6 +24,7 @@ class vehicle(models.Model):
     motor = fields.Boolean('Motor', default = True, tracking = True)
     gps1_id = fields.Many2one('gps_devices', ondelete = 'set null', string = "GPS", index = True)
     positionid = fields.Many2one('gps_positions', ondelete = 'set null', string = "Position", index = True)
+    geofence_ids = fields.Many2many('gps_geofences', 'fleet_geofences_rel', 'fleet_id', 'geofence', string = 'Geofences')
 
     def get_last_vehicle_position(self):
         positions_arg = [('positionid', '!=', False)]

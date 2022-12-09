@@ -14,5 +14,26 @@
                 </group>                
             </xpath>
         </field>
-    </record>      
+    </record>
+    <record id="fleet_vehicle_view_kanban" model="ir.ui.view">
+        <field name="name">gpsmap.vehicle.kanban</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/field[@name='activity_ids']" position="after">
+                <field name="geofence_ids"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="fleet_vehicle_view_tree" model="ir.ui.view">
+        <field name="name">gpsmap.vehicle.tree</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="geofence_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

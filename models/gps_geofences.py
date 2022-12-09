@@ -5,8 +5,8 @@ class gps_geofences(models.Model):
     _name = "gps_geofences"
     _description = 'GPS Geofence'
 
-    name = fields.Char('Name', size = 75 , required=True)
-    map = fields.Char('Name', size = 75)
+    name = fields.Char(size = 75 , required=True)
+    map = fields.Char(size = 75)
     description = fields.Char('Description', size = 150)
     area = fields.Text('area')
     attributes = fields.Text('Attributes')
