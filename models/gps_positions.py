@@ -162,6 +162,14 @@ class gps_positions(models.Model):
             ('devicetime', '<', data_arg[1]),
             ('status', 'in', ('Online','Offline','Alarm','GPS Offline'))
         ]
+        
+        positions_arg = [
+            '&','&',
+            ('devicetime', '>', datetime.datetime.strptime(data_arg[0], '%Y-%m-%d %H:%M') + datetime.timedelta(hours = 6)),
+            ('devicetime', '<', datetime.datetime.strptime(data_arg[1], '%Y-%m-%d %H:%M') + datetime.timedelta(hours = 6)),
+            ('status', 'in', ('Online','Offline','Alarm','GPS Offline'))
+        ]
+ 
         if(data_arg[2] in ['Movement','Stopped']):
             positions_arg.insert(5,('event', '=', data_arg[2]))
         if(data_arg[2] in ['Offline','Alarm','GPS Offline']):
@@ -179,6 +187,9 @@ class gps_positions(models.Model):
                 i+=1    
                 vehicle = pos.vehicleid
                 totalDistance = int(pos.totalDistance / 1000)                
+                
+                devicetime = pos.devicetime - datetime.timedelta(hours = 6)
+                
                 position = {
                     "idv": vehicle.id,
                     "idg": vehicle.gps1_id.id,
@@ -191,9 +202,9 @@ class gps_positions(models.Model):
                     "lon": pos.longitude,
                     "alt": pos.altitude,
                     "psp": pos.speed,
-                    "tde": pos.devicetime,
-                    "dat": pos.devicetime.strftime("%Y-%m-%d"),
-                    "tim": pos.devicetime.strftime("%H:%M"),
+                    "tde": devicetime,
+                    "dat": devicetime.strftime("%Y-%m-%d"),
+                    "tim": devicetime.strftime("%H:%M"),
                     "tse": pos.servertime,
                     "tfi": pos.fixtime,
                     "sta": pos.status,
@@ -204,8 +215,8 @@ class gps_positions(models.Model):
                     "cou": pos.course,
                     "bat": pos.batery,
                 }
-                if(not positions):
-                    positions = {}
+                #if(not positions):
+                #    positions = {}
                 if(vehicle.gps1_id.id not in positions and vehicle.gps1_id.id>0): 
                     positions[vehicle.gps1_id.id] = {}                
                 if(vehicle.gps1_id.id>0):

@@ -2,6 +2,7 @@
     'name' : 'GPSMap',
     'price' : '0.0',
     'currency' : 'EUR',
+    'license' : 'LGPL-3',
     'images': ['static/description/map_online.png'],
     'author': "SolesGPS :: Eduardo Vizcaino",
     'category': 'Human Resources/Fleet GPS',
