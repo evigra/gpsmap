@@ -250,7 +250,7 @@ odoo.define('gpsmap.action', function (require) {
 
             if(vehicle["sta"] == "alarm")                                icon_status = "alarm.png";
             if(vehicle["sta"] == "Online")                            icon_status = "car_signal1.png";
-            if(vehicle["sta"] == "Offline")
+            if(vehicle["sta"] == "Offline" || vehicle["sta"] == "GPS Offline")
             {
                 icon_status = "car_signal0.png";
                 if(vehicle["ho"]  ==  1)                                icon_status = "car_signal1.png";
@@ -364,26 +364,17 @@ odoo.define('gpsmap.action', function (require) {
  
             var tablero1 = "";
             var tablero2 = "";
- 
-            if(!(item["ge"]  ==  undefined || item["ge"]  ==  false || item["ge"]  ==  "false"))
-                tablero1 = tablero1 + " :: " + item["ge"];
- 
-            if(!(item["eve"]  ==  undefined || item["eve"]  ==  false || item["eve"]  ==  "false"))    //evento
-                tablero1 = " :: " + item["eve"];
- 
-            if(!(item["ad"]  ==  undefined || item["ad"]  ==  false || item["ad"]  ==  "false"))
-                tablero1 = "UBICACION :: " + item["ad"] + tablero1;
- 
+
+            if(item["sta"]  ==  "GPS Offline" || item["sta"]  ==  "Offline")    //status
+                tablero1+= item["sta"] + " :: ";
+            if(item["sta"]  ==  "GPS Offline")   //fixtime
+                tablero1="(" +item["tfi"] + ") " + tablero1;
+
+            if(!(item["eve"]  ==  undefined || item["eve"]  ==  false || item["eve"]  ==  "false"))    //event
+                tablero1+= " " + item["eve"];
+
             if(this.contentTemplate  ==  "gpsmaps_streetonline") this.execute_streetMap(item);
  
-            var tablero = "\
-                <table id = \"data_tablero\">\
-                    <tr><td width = \"40\"  style = \"color:#fff;\"></td>\
-                    <td style = \"color:#fff;\"><a href = \"tel:" + item["phone"] +"\"  style = \"color:#fff;\">" + tablero1 + "</a></td></tr>\
-                    <tr><td width = \"40\"  style = \"color:#fff;\"></td>\
-                    <td style = \"color:#fff;\">" +tablero2 + "</td></tr>\
-                </table>\
-            ";
             $("#tableros").html(tablero1);
          },
          ////////////////////////////////////////////////
