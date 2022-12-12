@@ -1,5 +1,5 @@
 from odoo import fields, models
-
+import datetime
 
 class vehicle(models.Model):
     _inherit = "fleet.vehicle"
@@ -34,6 +34,7 @@ class vehicle(models.Model):
             pos = vehicle["positionid"]
 
             totalDistance = int(pos.totalDistance/1000)
+            devicetime = pos.devicetime - datetime.timedelta(hours = 6)
 
             position = {
                 "idv": vehicle["id"],
@@ -48,9 +49,9 @@ class vehicle(models.Model):
                 "lon": pos.longitude,
                 "alt": pos.altitude,
                 "psp": pos.speed,
-                "tde": pos.devicetime,
-                "dat": pos.devicetime.strftime("%Y-%m-%d"),
-                "tim": pos.devicetime.strftime("%H:%M"),
+                "tde": devicetime,
+                "dat": devicetime.strftime("%Y-%m-%d"),
+                "tim": devicetime.strftime("%H:%M"),
                 "tse": pos.servertime,
                 "tfi": pos.fixtime,
                 "sta": pos.status,
