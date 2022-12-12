@@ -189,6 +189,7 @@ class gps_positions(models.Model):
                 totalDistance = int(pos.totalDistance / 1000)                
                 
                 devicetime = pos.devicetime - datetime.timedelta(hours = 6)
+                fixtime = pos.fixtime - datetime.timedelta(hours = 6)
                 
                 position = {
                     "idv": vehicle.id,
