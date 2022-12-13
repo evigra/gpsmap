@@ -1,0 +1,68 @@
+import datetime
+from odoo import api, fields, models
+import hashlib
+
+
+class gps_mirror(models.Model):
+    _name = "gps_mirror"
+    _description = 'GPS Mirror'
+    _order = "end DESC"
+
+    name = fields.Char(size = 32, default = '_get_hash')
+    key = fields.Char(size = 32, default = '_get_hash')
+    url = fields.Char(size = 150, default = '_get_hash')
+
+    vehicle_ids = fields.Many2many('fleet.vehicle')
+    start = fields.Datetime()
+    end = fields.Datetime()
+
+    @api.model
+    def create(self, vals):
+        if('key' not in vals):
+            url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+
+            str2hash = datetime.datetime.utcnow()
+            vals["key"]=hashlib.md5(str(str2hash).encode()).hexdigest()
+            vals["url"]= url + '/gpsmap/mirror/' + vals["key"]
+
+        return super().create(vals)
+
+
+    def get_positions_mirror(self, md5_mirror):        
+        data = self.sudo().search([('key', '=', md5_mirror["key"])])
+        positions = {}
+                    
+        for vehicle in data.vehicle_ids:
+            if(vehicle.positionid):
+                pos = vehicle.positionid
+
+                position = {
+                    "idv": vehicle.id,
+                    "nam": vehicle.name,
+                    "lic": vehicle.license_plate,
+                    "ima": vehicle.image_vehicle,
+                    "vsp": vehicle.speed,
+                    "oun": vehicle.odometer_unit,
+                    "idp": pos.id,
+                    "lat": pos.latitude,
+                    "lon": pos.longitude,
+                    "alt": pos.altitude,
+                    "psp": pos.speed,
+                    "tde": pos.devicetime,
+                    "dat": pos.devicetime.strftime("%Y-%m-%d"),
+                    "tim": pos.devicetime.strftime("%H:%M"),
+                    "tse": pos.servertime,
+                    "tfi": pos.fixtime,
+                    "sta": pos.status,
+                    "eve": pos.event,
+                    "gas": pos.gas,
+                    "dis": pos.distance,
+                    #"dto" :totalDistance,
+                    "cou": pos.course,
+                    "bat": pos.batery,
+
+                }
+                if(pos.deviceid.id>0):
+                    positions[pos.deviceid.id] = {0: position}
+                    
+        return positions

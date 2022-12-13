@@ -201,9 +201,7 @@ odoo.define('gpsmap.action', function (require) {
             {
                 for(idvehicle in localizaciones)
                 {
-                    // console.log("entra");
-                    //if(simulation_action  ==  "play")
-                        var positions_vehicle = localizaciones[idvehicle];
+                    var positions_vehicle = localizaciones[idvehicle];
                     if(positions_vehicle.length > 0)
                     {
                         for(iposiciones in positions_vehicle)
@@ -244,7 +242,7 @@ odoo.define('gpsmap.action', function (require) {
             if(vehicle["mo"]  ==  "map") vehicle["st"] = "1";
 
             var coordinates = {latitude: vehicle["lat"], longitude: vehicle["lon"]};
-            var posicion = this.LatLng(coordinates);
+            var posicion = LatLng(coordinates);
 
             var icon_status = "";
 
@@ -321,13 +319,8 @@ odoo.define('gpsmap.action', function (require) {
                 this.centerMap(posicion);
                 this.func_odometer(vehicle);
             }
-            var marcador = this.markerMap(posicion, icon);
+            var marcador = markerMap(this.obj_map, posicion, icon);
             this.fn_localizaciones(marcador, vehicle);
-        },
-        ////////////////////////////////////////////////
-        LatLng: function (co)
-        {
-            return new google.maps.LatLng(co.latitude,co.longitude);
         },  
         ////////////////////////////////////////////////
         centerMap: function(marcador)
@@ -337,7 +330,7 @@ odoo.define('gpsmap.action', function (require) {
         ////////////////////////////////////////////////           
         func_odometer_speed: function (data)
         {
-            var vel = data*16/10-110;  // 15
+            var vel = data*16/10-110;  // 15            
             $("path.speed").attr({"transform":"rotate("+ vel +" 250 250)"});
         },        
         func_odometer_gas: function (data)
@@ -378,19 +371,6 @@ odoo.define('gpsmap.action', function (require) {
             $("#tableros").html(tablero1);
          },
          ////////////////////////////////////////////////
-         markerMap: function(position, icon, markerOptions)
-         {
-             if(markerOptions  ==  undefined)    var markerOptions = new Object();
-  
-             markerOptions.position = position;
-             markerOptions.map = this.obj_map;
-             if(icon != undefined)
-                 markerOptions.icon = icon;
-  
-             var marker2 = new google.maps.Marker(markerOptions);
-              return marker2
-         },
-         ////////////////////////////////////////////////
          fn_localizaciones: function(position, vehiculo)
          {
              var ivehiculo = vehiculo["idv"];
@@ -417,7 +397,7 @@ odoo.define('gpsmap.action', function (require) {
                          "latitude": $(obj).attr("latitude"),
                          "longitude": $(obj).attr("longitude")
                      };
-                     var position = this.LatLng(coordinates);
+                     var position = LatLng(coordinates);
                      this.obj_map.panTo(position);
                  }
              }
@@ -464,7 +444,7 @@ odoo.define('gpsmap.action', function (require) {
              if(txt_active != txt_history)
              {
                  coordinate_active = coordinates;
-                 var posicion = this.LatLng(coordinates);
+                 var posicion = LatLng(coordinates);
  
                  this.centerMap(posicion);
                  var curso = vehicle["cou"];

@@ -23,6 +23,7 @@ Main features
 """,
     'depends': [
         'fleet',
+        'website'
     ],
     'data': [
         # DATA
@@ -44,10 +45,19 @@ Main features
         'views/gps_commands.xml',
         'views/gps_devices.xml',
         'views/gps_geofences.xml',
+        'views/gps_mirror.xml',
         'views/gps_positions.xml',
-        'views/gpsmaps_maponline.xml',
         'views/menuitem.xml',
         
+        'views/frontend_mirror_menu.xml',
+        'views/frontend_mirror_odometers.xml',
+        'views/frontend_mirror.xml',
+        
+        'views/frontend_odometer_batery.xml',
+        'views/frontend_odometer_gas.xml',
+        'views/frontend_odometer_speed.xml',
+        'views/template_odometer.xml',
+                
         'views/res_config_settings_views.xml',
     ],
     'assets': {
@@ -56,13 +66,18 @@ Main features
             '/gpsmap/static/js/maplabel.js',
             '/gpsmap/static/js/AbstractAction.js',
             '/gpsmap/static/js/index.js',
+            'gpsmap/static/xml/*.xml',
+        ],
+        'web.assets_frontend': [            
+            '/gpsmap/static/css/index.css',
+            '/gpsmap/static/js/google.js',
+            '/gpsmap/static/src/js/controller.js',
         ],
         'web.assets_qweb': [
             'gpsmap/static/xml/*.xml',
         ],        
     },    
     'demo': ['data/demo.xml'],
-    #'qweb': ['static/xml/*.xml'],
     'installable': True,
     'application': True,
 }

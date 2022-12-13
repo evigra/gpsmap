@@ -1,0 +1,22 @@
+<odoo>
+    <template id='frontend_mirror' name="Mirror Account">        
+        <t t-call="web.frontend_layout">
+            <t t-set="no_footer" t-value="true"/>
+            <t t-set="google_maps_api_key" t-value="request.env['ir.config_parameter'].sudo().get_param('base_geolocalize.google_map_api_key')"/>
+            <t t-if="google_maps_api_key">
+                <script t-attf-src="//maps.google.com/maps/api/js?key=#{google_maps_api_key}"></script>
+            </t>
+            <t t-else="1">
+                <script src="//maps.google.com/maps/api/js"></script>
+            </t>
+            
+            <div id="controller_gpsmap" style="position:relative; width:100%; height:100%;">                                                
+                <t t-call="gpsmap.frontend_mirror_menu"/>
+                <div id="maponline" style="top:0px; left:250px; width: calc(100% - 250px); height:100%;"/>  
+                <div id="tableros" class="o_main_navbar" style="z-index:100; font-size:25px; text-align:left; position:absolute; bottom:0px; left:0px; width:100%; height:70px; color:#ccc; padding:10px;"/>
+                <t t-call="gpsmap.frontend_mirror_odometers"/>
+            </div>
+        </t>
+    </template>
+
+</odoo>

@@ -80,6 +80,13 @@
     </record>
     
     <menuitem action="gps_alerts_action" parent="gpsmap_configuration" id="gps_alerts_menu"  groups="fleet.fleet_group_manager"/>
+
+    <record id='gps_mirror_action' model='ir.actions.act_window'>
+        <field name="name">Mirror</field>
+        <field name="res_model">gps_mirror</field>
+    </record>
+    <menuitem action="gps_mirror_action" parent="gpsmap_configuration" id="gps_mirror_menu"/>
+
     
 
 </odoo>

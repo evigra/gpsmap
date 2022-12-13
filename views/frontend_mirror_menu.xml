@@ -1,0 +1,49 @@
+<odoo>
+    <template id='frontend_mirror_menu'>        
+        <t>
+            <div id="menu_vehicles" t-att-mirror="mirror_account" style="width:250px; height: calc(100% - 70px); position:absolute; top:0px; left:0px; display: block;">
+                <div class="vehicle vehicle_active" device_id="0" vehicle="0" style="float:left; padding-top:8px; padding-left:8px; height:35px; width:250px: display: block;">
+                    <div class="filter_vehicle" style="float:left; height:35px; width:35px: display: block;">
+                        All vehicles
+                    </div>                
+                </div>                        
+                <div id="vehicles" style="width:100%; height: calc(100% - 35px); position:absolute; top:35px; left:0px; overflow-y: scroll; display: block;">
+                    <t t-if="vehicles">
+                        <t t-foreach="vehicles" t-as="vehicle">
+                            <t t-set="gps" t-value="vehicle.gps1_id"/>
+                            <t t-set="position" t-value="vehicle.positionid"/>
+                            
+                            <div
+                                class="vehicle"
+                                style="float:left; display: block; width:100%; height:35px;"                                 
+                                t-att-position="position.id" 
+                                t-att-latitude="position.latitude" 
+                                t-att-longitude="position.longitude" 
+                                t-att-speed="position.speed" 
+                                time="" 
+                                date="" 
+                                t-att-distance="position.totalDistance"
+                                t-att-device_id="gps.id"
+                                t-att-vehicle="vehicle.id"
+                            >
+                                <div style="padding-top:5px; padding-left:5px; float:left; width:40px; height:100%; display: block;">
+                                    <t t-set='image_path' t-value="'/gpsmap/static/img/vehicles/vehicle_' + vehicle.image_vehicle +  '/i135.png'"/>
+                                    <img height="18" t-att-src="image_path" />
+                                </div>
+                                <div style="float:left; position:relative; width:180px; height:100%; display: block;">
+                                    <div style="position:absolute; top:1px; left:0px; font-size:15px;">
+                                        <t t-esc="vehicle.economic_number"/>
+                                    </div>
+                                    <div style="position:absolute; top:16px; left:0px; font-size:9px;">
+                                        <b><t t-esc="vehicle.license_plate"/></b>
+                                    </div>
+                                </div>
+                                <div class="event_device" style="padding-top:6px; float:left; width:30px; height:100%; display: block;"/>
+                            </div>
+                        </t>
+                    </t>
+                </div>                        
+            </div>
+        </t>
+    </template>
+</odoo>
