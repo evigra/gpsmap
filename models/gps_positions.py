@@ -155,14 +155,7 @@ class gps_positions(models.Model):
                     fleet.write({"positionid": position, "geofence_ids":[[6, False, geofences]]})
 
     def js_positions_history(self,arg):
-        data_arg = arg["data"]["domain"]
-        positions_arg = [
-            '&','&',
-            ('devicetime', '>', data_arg[0]),
-            ('devicetime', '<', data_arg[1]),
-            ('status', 'in', ('Online','Offline','Alarm','GPS Offline'))
-        ]
-        
+        data_arg = arg["data"]["domain"]        
         positions_arg = [
             '&','&',
             ('devicetime', '>', datetime.datetime.strptime(data_arg[0], '%Y-%m-%d %H:%M') + datetime.timedelta(hours = 6)),

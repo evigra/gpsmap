@@ -2,7 +2,7 @@
     <t t-name="menu_vehicles">
 
         
-            <div class="vehicle vehicle_active" vehicle="0" style="float:left; padding-top:8px; padding-left:8px; height:35px; width:250px: display: block;">
+            <div class="vehicle vehicle_active" device_id="0" vehicle="0" style="float:left; padding-top:8px; padding-left:8px; height:35px; width:250px: display: block;">
                 <!--
                 <div class="filter_vehicle" style="float:left; height:35px; width:35px: display: block;">
                     <img height="20" src="/gpsmap/static/src/img/stop.png" />
