@@ -1,16 +1,15 @@
-import datetime
-from odoo import api, fields, models
-import hashlib
-
+from odoo import api, fields, models     
+import hashlib, datetime, pytz
 
 class gps_mirror(models.Model):
     _name = "gps_mirror"
     _description = 'GPS Mirror'
     _order = "end DESC"
 
-    name = fields.Char(size = 32, default = '_get_hash')
-    key = fields.Char(size = 32, default = '_get_hash')
-    url = fields.Char(size = 150, default = '_get_hash')
+    name = fields.Char(size = 32)
+    key = fields.Char(size = 32)
+    url = fields.Char(size = 150)
+    default_timezone = fields.Char(size = 150, string='Timezone', default=lambda self: self.env.user.tz or 'UTC')
 
     vehicle_ids = fields.Many2many('fleet.vehicle')
     start = fields.Datetime()

@@ -1,5 +1,5 @@
-import json, datetime
-from odoo import http, _
+import json, datetime, pytz
+from odoo import fields, models, http, _
 from odoo.http import request
 
 class controller_gpsmap(http.Controller):
@@ -35,7 +35,17 @@ class controller_gpsmap(http.Controller):
             if(vehicle.positionid):
                 pos = vehicle.positionid
                 totalDistance = int(pos.totalDistance/1000)
-                devicetime = pos.devicetime - datetime.timedelta(hours = 6)                
+                devicetime = pos.devicetime
+                if(pos.devicetime != False):          
+                    tz = pytz.timezone(data.default_timezone)                            
+                    tz_data=tz.localize(fields.Datetime.from_string(pos.devicetime)).strftime("%z")[-5:-2]
+                    signo=tz_data[0:1]
+                    horas=tz_data[1:3]
+                    if(signo=="-"):
+                        devicetime = pos.devicetime - datetime.timedelta(hours=int(horas))
+                    else:
+                        devicetime = pos.devicetime + datetime.timedelta(hours=int(horas))
+
                 position = {
                     "idv": vehicle.id,
                     "idg": pos.deviceid.id,
