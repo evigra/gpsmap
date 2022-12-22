@@ -1,5 +1,5 @@
 import xmlrpc.client
-import datetime, time, string
+import datetime, time, string, pytz
 import json
 from odoo import fields, models, _
 import re
@@ -155,13 +155,23 @@ class gps_positions(models.Model):
                     fleet.write({"positionid": position, "geofence_ids":[[6, False, geofences]]})
 
     def js_positions_history(self,arg):
+        tz_data = self.env.user.tz_offset
+        signo=tz_data[0:1]
+        horas=tz_data[1:3]
+
         data_arg = arg["data"]["domain"]        
-        positions_arg = [
-            '&','&',
-            ('devicetime', '>', datetime.datetime.strptime(data_arg[0], '%Y-%m-%d %H:%M') + datetime.timedelta(hours = 6)),
-            ('devicetime', '<', datetime.datetime.strptime(data_arg[1], '%Y-%m-%d %H:%M') + datetime.timedelta(hours = 6)),
-            ('status', 'in', ('Online','Offline','Alarm','GPS Offline'))
-        ]
+        positions_arg = ['&','&' ]
+        
+        if(signo=="+"):            
+            max = datetime.datetime.strptime(data_arg[0], '%Y-%m-%d %H:%M') - datetime.timedelta(hours = int(horas))
+            min = datetime.datetime.strptime(data_arg[1], '%Y-%m-%d %H:%M') - datetime.timedelta(hours = int(horas))
+        else:
+            max = datetime.datetime.strptime(data_arg[0], '%Y-%m-%d %H:%M') + datetime.timedelta(hours = int(horas))
+            min = datetime.datetime.strptime(data_arg[1], '%Y-%m-%d %H:%M') + datetime.timedelta(hours = int(horas))
+
+        positions_arg.append(('devicetime', '>', max))
+        positions_arg.append(('devicetime', '<', min))
+        positions_arg.append(('status', 'in', ('Online','Offline','Alarm','GPS Offline')))                
  
         if(data_arg[2] in ['Movement','Stopped']):
             positions_arg.insert(5,('event', '=', data_arg[2]))
@@ -180,15 +190,19 @@ class gps_positions(models.Model):
                 i+=1    
                 vehicle = pos.vehicleid
                 totalDistance = int(pos.totalDistance / 1000)                
-                
-                devicetime = pos.devicetime - datetime.timedelta(hours = 6)
-                fixtime = pos.fixtime - datetime.timedelta(hours = 6)
+                                
+                if(signo=="-"):            
+                    devicetime = pos.devicetime - datetime.timedelta(hours =  int(horas))
+                    fixtime = pos.fixtime - datetime.timedelta(hours =  int(horas))
+                else:
+                    devicetime = pos.devicetime + datetime.timedelta(hours =  int(horas))
+                    fixtime = pos.fixtime + datetime.timedelta(hours =  int(horas))                
                 
                 position = {
                     "idv": vehicle.id,
                     "idg": vehicle.gps1_id.id,
                     "nam": vehicle.name,
-                    "lic": vehicle.license_plate,
+                    "lic": vehicle.license_plate,not
                     "ima": vehicle.image_vehicle,
                     "vsp": vehicle.speed,
                     "oun": vehicle.odometer_unit,

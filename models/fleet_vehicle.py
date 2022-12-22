@@ -1,5 +1,5 @@
 from odoo import fields, models
-import datetime
+import datetime, pytz
 
 class vehicle(models.Model):
     _inherit = "fleet.vehicle"
@@ -34,8 +34,17 @@ class vehicle(models.Model):
             pos = vehicle["positionid"]
 
             totalDistance = int(pos.totalDistance/1000)
-            devicetime = pos.devicetime - datetime.timedelta(hours = 6)
-
+            devicetime=datetime.datetime.utcnow()
+            if(pos.devicetime != False):          
+                tz = pytz.timezone(self.env.user.tz) if self.env.user.tz else pytz.utc                            
+                tz_data=tz.localize(fields.Datetime.from_string(pos.devicetime)).strftime("%z")[-5:-2]
+                signo=tz_data[0:1]
+                horas=tz_data[1:3]
+                if(signo=="-"):
+                    devicetime = pos.devicetime - datetime.timedelta(hours=int(horas))
+                else:
+                    devicetime = pos.devicetime + datetime.timedelta(hours=int(horas))
+            
             position = {
                 "idv": vehicle["id"],
                 "idg": pos.deviceid.id,

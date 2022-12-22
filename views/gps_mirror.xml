@@ -6,6 +6,7 @@
             <form string="GPS">
                 <group col="4" string="GPS Configuration">
                     <field name="name"/>
+                    <field name="default_timezone"/>                    
                     <field name="start"/>
                     <field name="end"/>
                     <field name="vehicle_ids" cols="4"/>
