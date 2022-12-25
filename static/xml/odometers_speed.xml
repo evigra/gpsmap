@@ -18,7 +18,6 @@
 
 
                     <!-- LINEA SECCIONAL TACOMETRO -->                        
-                    <path opacity="0.65" stroke-linecap="round" stroke-width="1.6695652173913045" style="stroke-width: 1.66957; stroke-linecap: round; opacity: 0.65;" d="M169,279A85,85,10,1,1,330,280" stroke="#ffdd33" fill="none"></path>
 
                     <text font-size="10px" fill="#ffffff" stroke="none" font="10px &quot;Arial&quot;" style="text-anchor: middle; font: 12px &quot;Arial&quot;;" text-anchor="middle" y="279.3817855336773" x="178.87582098702137">
                         <tspan>0 </tspan>
@@ -54,8 +53,9 @@
                 </svg>                     
             </div>
 
-            <t t-call="gpsmaps_template_odometers"/>                    
-        
+            <t t-call="gpsmaps_template_odometers">            
+                <t t-set='style_odometer' t-value="'z-index:1; position:absolute; bottom:100px; right:0px; width:370px; height:250px;'"/>
+            </t>                 
 
     </t>
 </templates>

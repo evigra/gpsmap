@@ -1,5 +1,7 @@
 from odoo import fields, models
-import datetime, pytz
+import datetime, pytz, json, logging, warnings
+_logger = logging.getLogger(__name__)
+
 
 class vehicle(models.Model):
     _inherit = "fleet.vehicle"
@@ -21,7 +23,7 @@ class vehicle(models.Model):
     temporal_id = fields.Many2one('res.partner', 'temporal')
     economic_number = fields.Char('Economic Number', size = 50)
     speed = fields.Char(default = 100, size = 3)
-    motor = fields.Boolean('Motor', default = True, tracking = True)
+    engine = fields.Boolean('Motor', default = True, tracking = True)
     gps1_id = fields.Many2one('gps_devices', ondelete = 'set null', string = "GPS", index = True)
     positionid = fields.Many2one('gps_positions', ondelete = 'set null', string = "Position", index = True)
     geofence_ids = fields.Many2many('gps_geofences', 'fleet_geofences_rel', 'fleet_id', 'geofence', string = 'Geofences')
@@ -74,3 +76,44 @@ class vehicle(models.Model):
             if(pos.deviceid.id>0):
                 positions[pos.deviceid.id] = {0: position}
         return positions
+
+    def send_command(self, vals):
+        message=False
+        params = self.env['ir.config_parameter'].sudo()
+        sync_devices = params.get_param('gpsmap.sync_devices', default = False)
+        vehicle = self.search([["gps1_id","=", int(vals["data"])]])
+        device=vehicle.gps1_id
+
+        if(vehicle.engine==True):
+            command="engineStop"
+        else:
+            command="engineResume"
+
+        if(not sync_devices):
+            message = "It is not synchronized with the solesgps.com platform"            
+
+        if(not int(device.solesgps_id)):
+            message = "The vehicle does not have a GPS assigned"
+
+        if(message):
+            warnings.warn(message)
+            return {'status':'error', 'message':message}
+
+        solesgps_models, solesgps_db, solesgps_uid, solesgps_pass = device._get_session_information()
+        
+        if(not(solesgps_models or solesgps_uid)):
+            return {'status':'error', 'message':'we could not establish a connection with the platform solesgps.com'}
+                            
+        vals = solesgps_models.execute_kw(solesgps_db, solesgps_uid, solesgps_pass,'tc_devices', 'execute_commands', [{'engine':True},[{'device':device.solesgps_id, 'command':command}]])   
+        if("status" in vals[0]):
+            _logger.error(vals[0]["message"])
+            return vals[0] 
+            
+        vals = json.loads(vals[0])
+                                                
+        if("engineResume" in vals["type"]):
+            vehicle.engine=True
+        else:
+            vehicle.engine=False        
+                    
+        return vals    

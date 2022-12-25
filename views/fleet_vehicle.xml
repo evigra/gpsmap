@@ -6,10 +6,10 @@
         <field name="arch" type="xml">
             <xpath expr="//group" position="after">            
                 <group col="4" string="GPS Configuration">                    
-                    <field name="gps1_id"/>
+                    <field name="gps1_id" groups="fleet.fleet_group_manager"/>
                     <field name="economic_number"/>
                     <field name="image_vehicle"/>
-                    <field name="speed"/>
+                    <field name="speed" groups="fleet.fleet_group_manager"/>
                     <field name="temporal_id"/>
                 </group>                
             </xpath>
@@ -32,6 +32,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='tag_ids']" position="after">
                 <field name="geofence_ids" widget="many2many_tags"/>
+                <field name="engine"/>
             </xpath>
         </field>
     </record>
