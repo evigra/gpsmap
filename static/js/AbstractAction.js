@@ -1,8 +1,14 @@
+//import { useService } from "@web/core/utils/hooks";
+
 odoo.define('gpsmap.action', function (require) {
     "use strict";
     
+    const Dialog = require('web.Dialog');
+    
+
     var AbstractAction = require('web.AbstractAction');
     var core = require('web.core');
+    const _t = core._t;
     var session = require('web.session');
     var rpc = require('web.rpc');
     var QWeb = core.qweb;
@@ -17,7 +23,7 @@ odoo.define('gpsmap.action', function (require) {
     var vehicle_data = new Array();
     var localizaciones = new Array();
     var labels = new Array();
-
+    
     var class_gpsmap = AbstractAction.extend({
         ////////////////////////////////////////////////
         events: {
@@ -56,12 +62,45 @@ odoo.define('gpsmap.action', function (require) {
                 isimulacion = 1;
                 simulation_action = "stop";
             },
+            'click div#llaves': function (e) {
+
+                if( $("img#key").attr("src") == "/gpsmap/static/img/template/swich_off.png" )
+                    this.send_command()
+                else
+                    Dialog.confirm(this, _t("Do you want to stop the engine?"), {
+                        confirm_callback: () => this.send_command(),
+                    });
+
+            },
         },
         ////////////////////////////////////////////////
+        send_command: function(){
+            var model = {
+                model:  "fleet.vehicle",
+                method: "send_command",
+                args:[[],{"data": this.device_active}],
+            };
+
+            self=this;
+
+            rpc.query(model)
+            .then(function (result)
+            {        
+                if(result["type"]=="engineResume")
+                    $("img#key").attr("src", "/gpsmap/static/img/template/swich_on.png");
+                if(result["type"]=="engineStop")
+                    $("img#key").attr("src", "/gpsmap/static/img/template/swich_off.png");
+
+                if(result["status"]=="error")    
+                    Dialog.alert(self, _t(result["message"]));
+            });                
+
+        },
         start: function() {             
             var data=this._super.apply(this, arguments);     
             this.get_menu_vehicle();       
             this.get_geofences();
+            this.status_device();
             return data;
         },
         ////////////////////////////////////////////////
@@ -73,9 +112,10 @@ odoo.define('gpsmap.action', function (require) {
                 context: session.user_context,
                 model: 'fleet.vehicle'
             }).then(function (result) {
-                self.vehicles = result;                
+                self.vehicles = result;     
+                self.user=session;
                 self.$("div#menu_vehicles").html(QWeb.render("menu_vehicles", {'widget': self}));           
-            });            
+            });  
         },
         ////////////////////////////////////////////////
         get_geofences: function() { 
@@ -400,21 +440,9 @@ odoo.define('gpsmap.action', function (require) {
                      var position = LatLng(coordinates);
                      this.obj_map.panTo(position);
                  }
-             }
-             if(this.device_active  ==  0)
-             {
-                 if(this.$("div#odometer").length>0)
-                 {
-                     this.$("div#map_search").show();
-                     this.$("div#odometer").hide();
-                     this.$("#tablero").html("Estatus : Seleccionar un vehiculo");
-                     this.$("#tablero").animate({
-                         height: 25
-                     }, 1000 );
-                 }
-             }
-             else
-             {
+             }                    
+             if(this.device_active  >  0)
+             {                
                  this.obj_map.setZoom(16);
                  if(this.$("div#odometer").length>0)
                  {
@@ -429,6 +457,18 @@ odoo.define('gpsmap.action', function (require) {
                      this.$("#distance").html($(obj).attr("distance"));
                  }
              }
+             else
+             {
+                if(this.$("div#odometer").length>0)
+                {
+                    this.$("div#map_search").show();
+                    this.$("div#odometer").hide();
+                    this.$("#tablero").html("Estatus : Seleccionar un vehiculo");
+                    this.$("#tablero").animate({
+                        height: 25
+                    }, 1000 );
+                }
+            }            
          },   
          ////////////////////////////////////////////////
          execute_streetMap: function (vehicle)

@@ -17,6 +17,7 @@ class gps_devices(models.Model):
     model = fields.Char('Model', size = 128)
     lastupdate = fields.Datetime('Lastupdate')
     solesgps_id = fields.Integer()
+    engine = fields.Boolean('Motor', default=True)
 
     def write(self, vals):
         return super().write(self.save(vals))
@@ -26,16 +27,21 @@ class gps_devices(models.Model):
         return super().create(self.save(vals))
 
     def _get_session_information(self):
+        solesgps_models = False
+        solesgps_uid = False
         solesgps_host = self.env['ir.config_parameter'].get_param('solesgps_host')
         solesgps_user = self.env['ir.config_parameter'].get_param('solesgps_user')
         solesgps_pass = self.env['ir.config_parameter'].get_param('solesgps_pass')
         solesgps_db = self.env['ir.config_parameter'].get_param('solesgps_db')
+        
+        try:
+            common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(solesgps_host))
+            solesgps_uid = common.authenticate(solesgps_db, solesgps_user, solesgps_pass, {})
+            solesgps_models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(solesgps_host))
 
-        common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(solesgps_host))
-        solesgps_uid = common.authenticate(solesgps_db, solesgps_user, solesgps_pass, {})
-        solesgps_models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(solesgps_host))
-
-        return (solesgps_models, solesgps_db, solesgps_uid, solesgps_pass)
+            return (solesgps_models, solesgps_db, solesgps_uid, solesgps_pass)                        
+        except Exception:            
+            return (solesgps_models, solesgps_db, solesgps_uid, solesgps_pass)
 
     def save(self, vals):
         params = self.env['ir.config_parameter'].sudo()

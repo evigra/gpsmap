@@ -1,7 +1,6 @@
 <templates xml:space="preserve">
     <t t-name="gpsmaps_template_odometers">        
-            
-                <div style="z-index:1; position:absolute; bottom:100px; right:0px; width:370px; height:250px">                                        
+                <div t-att-style="style_odometer">
                     <svg style="width:380px; height:400px;">
                         <!-- FONDO -->
                         
