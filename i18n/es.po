@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0-20221005\n"
+"Project-Id-Version: Odoo Server 15.0-20220915\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-26 20:25+0000\n"
-"PO-Revision-Date: 2022-10-26 20:25+0000\n"
+"POT-Creation-Date: 2023-01-04 04:45+0000\n"
+"PO-Revision-Date: 2023-01-04 04:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,126 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_speed
+msgid "0000 / HR"
+msgstr ""
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_batery
+msgid "0000-00-00"
+msgstr ""
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_speed
+msgid "000000000"
+msgstr ""
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_gas
+msgid "00:00"
+msgstr ""
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_batery
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_gas
+msgid "100"
+msgstr ""
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_speed
+msgid "105"
+msgstr ""
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_speed
+msgid "120"
+msgstr ""
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_speed
+msgid "135"
+msgstr ""
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_speed
+msgid "15"
+msgstr ""
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_batery
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_gas
+msgid "20"
+msgstr ""
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_speed
+msgid "30"
+msgstr ""
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_batery
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_gas
+msgid "40"
+msgstr ""
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_speed
+msgid "45"
+msgstr ""
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_batery
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_gas
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_speed
+msgid "60"
+msgstr ""
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_speed
+msgid "75"
+msgstr ""
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_batery
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_gas
+msgid "80"
+msgstr ""
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_odometer_speed
+msgid "90"
+msgstr ""
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.res_config_settings_view_form_inherit
+msgid "<span class=\"o_form_label\">Sync GPS Devices</span>"
+msgstr "<span class=\"o_form_label\">Sincronizar dispositivos GPS</span>"
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.res_config_settings_view_form_inherit
+msgid "<span>with solesgps.com platform</span>"
+msgstr "<span>con la plataforma solesgps.com</span>"
+
+#. module: gpsmap
 #: model:ir.model.fields,field_description:gpsmap.field_fleet_vehicle_odometer__activeTime
 msgid "Active Time"
-msgstr ""
+msgstr "Tiempo activo"
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.gps_positions_view_search
+msgid "Alarm"
+msgstr "Alarma"
+
+#. module: gpsmap
+#: model:ir.actions.act_window,name:gpsmap.gps_alerts_action
+#: model:ir.ui.menu,name:gpsmap.gps_alerts_menu
+msgid "Alerts"
+msgstr "Alertas"
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.frontend_mirror_menu
+msgid "All vehicles"
+msgstr "Todos los vehiculos"
 
 #. module: gpsmap
 #: model:ir.model.fields,field_description:gpsmap.field_gps_positions__altitude
@@ -26,14 +143,29 @@ msgid "Altitude"
 msgstr "Altitud"
 
 #. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_geofences__attributes
+msgid "Attributes"
+msgstr "Atributos"
+
+#. module: gpsmap
 #: model:ir.model.fields,field_description:gpsmap.field_gps_positions__batery
 msgid "Batery"
 msgstr "Bateria"
 
 #. module: gpsmap
+#: model:ir.model.fields.selection,name:gpsmap.selection__gps_geofences__color__black
+msgid "Black"
+msgstr "Negro"
+
+#. module: gpsmap
 #: model:ir.model.fields.selection,name:gpsmap.selection__fleet_vehicle__image_vehicle__90
 msgid "Black Phone"
 msgstr "Telefono Negro"
+
+#. module: gpsmap
+#: model:ir.model.fields.selection,name:gpsmap.selection__gps_geofences__color__blue
+msgid "Blue"
+msgstr "Azul"
 
 #. module: gpsmap
 #: model:ir.model.fields.selection,name:gpsmap.selection__fleet_vehicle__image_vehicle__91
@@ -51,6 +183,16 @@ msgid "Brand of the vehicle"
 msgstr "Marca del vehículo"
 
 #. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_geofences__color
+msgid "Color"
+msgstr ""
+
+#. module: gpsmap
+#: model:ir.model.fields,help:gpsmap.field_gps_geofences__color
+msgid "Color of geofence"
+msgstr "Color de la geocerca"
+
+#. module: gpsmap
 #: model:ir.model.fields,field_description:gpsmap.field_gps_commands__command
 msgid "Command"
 msgstr "Comando"
@@ -65,9 +207,19 @@ msgid "Commands"
 msgstr "Comandos"
 
 #. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_geofences__company_ids
+msgid "Companies"
+msgstr "Compañias"
+
+#. module: gpsmap
 #: model:ir.model.fields,field_description:gpsmap.field_gps_devices__company_id
 msgid "Company"
 msgstr "Compañia"
+
+#. module: gpsmap
+#: model:ir.model,name:gpsmap.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de configuración"
 
 #. module: gpsmap
 #: model:ir.ui.menu,name:gpsmap.gpsmap_configuration
@@ -75,26 +227,27 @@ msgid "Configuration"
 msgstr "Configuracion"
 
 #. module: gpsmap
-#: model:ir.model,name:gpsmap.model_fleet_vehicle_log_contract
-msgid "Contract information on a vehicle"
-msgstr "Información del contrato en el vehículo"
-
-#. module: gpsmap
 #: model:ir.model.fields,field_description:gpsmap.field_gps_positions__course
 msgid "Course"
 msgstr "Curso"
 
 #. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_alerts__create_uid
 #: model:ir.model.fields,field_description:gpsmap.field_gps_commands__create_uid
 #: model:ir.model.fields,field_description:gpsmap.field_gps_devices__create_uid
+#: model:ir.model.fields,field_description:gpsmap.field_gps_geofences__create_uid
+#: model:ir.model.fields,field_description:gpsmap.field_gps_mirror__create_uid
 #: model:ir.model.fields,field_description:gpsmap.field_gps_positions__create_uid
 #: model:ir.model.fields,field_description:gpsmap.field_gps_protocol__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_alerts__create_date
 #: model:ir.model.fields,field_description:gpsmap.field_gps_commands__create_date
 #: model:ir.model.fields,field_description:gpsmap.field_gps_devices__create_date
+#: model:ir.model.fields,field_description:gpsmap.field_gps_geofences__create_date
+#: model:ir.model.fields,field_description:gpsmap.field_gps_mirror__create_date
 #: model:ir.model.fields,field_description:gpsmap.field_gps_positions__create_date
 #: model:ir.model.fields,field_description:gpsmap.field_gps_protocol__create_date
 msgid "Created on"
@@ -106,20 +259,37 @@ msgid "Day"
 msgstr "Dia"
 
 #. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_alerts__description
+#: model:ir.model.fields,field_description:gpsmap.field_gps_geofences__description
+msgid "Description"
+msgstr "Descripcion"
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.gps_positions_view_search
+msgid "Device GPS"
+msgstr "Dispositivo GPS"
+
+#. module: gpsmap
 #: model:ir.model.fields,field_description:gpsmap.field_gps_positions__devicetime
+#: model_terms:ir.ui.view,arch_db:gpsmap.gps_positions_view_search
 msgid "Device Time"
 msgstr "Hora del Dispositivo"
 
 #. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_alerts__display_name
 #: model:ir.model.fields,field_description:gpsmap.field_gps_commands__display_name
 #: model:ir.model.fields,field_description:gpsmap.field_gps_devices__display_name
+#: model:ir.model.fields,field_description:gpsmap.field_gps_geofences__display_name
+#: model:ir.model.fields,field_description:gpsmap.field_gps_mirror__display_name
 #: model:ir.model.fields,field_description:gpsmap.field_gps_positions__display_name
 #: model:ir.model.fields,field_description:gpsmap.field_gps_protocol__display_name
 msgid "Display Name"
 msgstr "Nombre para mostrar"
 
 #. module: gpsmap
+#: model:ir.actions.act_window,name:gpsmap.fleet_gps_positions_distance_action
 #: model:ir.model.fields,field_description:gpsmap.field_gps_positions__distance
+#: model:ir.ui.menu,name:gpsmap.gps_positions_distancemenu
 msgid "Distance"
 msgstr "Distancia"
 
@@ -127,6 +297,16 @@ msgstr "Distancia"
 #: model:ir.model.fields,field_description:gpsmap.field_fleet_vehicle__economic_number
 msgid "Economic Number"
 msgstr "Numero Economico"
+
+#. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_mirror__end
+msgid "End"
+msgstr "Fin"
+
+#. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_fleet_vehicle__engine
+msgid "Engine"
+msgstr "Motor"
 
 #. module: gpsmap
 #: model:ir.model.fields,field_description:gpsmap.field_gps_positions__fixtime
@@ -154,10 +334,18 @@ msgstr "Flota: Odometro"
 #. module: gpsmap
 #: model:ir.model.fields,field_description:gpsmap.field_fleet_vehicle__gps1_id
 #: model:ir.ui.menu,name:gpsmap.menu_root
+#: model_terms:ir.ui.view,arch_db:gpsmap.gps_alerts_view_form
 #: model_terms:ir.ui.view,arch_db:gpsmap.gps_devices_view_form
+#: model_terms:ir.ui.view,arch_db:gpsmap.gps_geofences_view_form
+#: model_terms:ir.ui.view,arch_db:gpsmap.gps_mirror_view_form
 #: model_terms:ir.ui.view,arch_db:gpsmap.gps_positions_view_form
 msgid "GPS"
 msgstr ""
+
+#. module: gpsmap
+#: model:ir.model,name:gpsmap.model_gps_alerts
+msgid "GPS Alerts"
+msgstr "Alertas del GPS"
 
 #. module: gpsmap
 #: model:ir.model,name:gpsmap.model_gps_commands
@@ -168,6 +356,7 @@ msgstr "Comandos del GPS"
 #: model_terms:ir.ui.view,arch_db:gpsmap.fleet_vehicle_view_form
 #: model_terms:ir.ui.view,arch_db:gpsmap.gps_commands_view_form
 #: model_terms:ir.ui.view,arch_db:gpsmap.gps_devices_view_form
+#: model_terms:ir.ui.view,arch_db:gpsmap.gps_mirror_view_form
 #: model_terms:ir.ui.view,arch_db:gpsmap.gps_positions_view_form
 msgid "GPS Configuration"
 msgstr "Configuracion del GPS"
@@ -177,6 +366,7 @@ msgstr "Configuracion del GPS"
 #: model:ir.model.fields,field_description:gpsmap.field_gps_positions__deviceid
 #: model:ir.ui.menu,name:gpsmap.fleet_gps_devices_menu
 #: model:ir.ui.menu,name:gpsmap.gps_devices_menu
+#: model_terms:ir.ui.view,arch_db:gpsmap.res_config_settings_view_form_inherit
 msgid "GPS Device"
 msgstr "Dispositivo GPS"
 
@@ -184,6 +374,16 @@ msgstr "Dispositivo GPS"
 #: model:ir.model,name:gpsmap.model_gps_devices
 msgid "GPS Devices"
 msgstr "Dispositivos GPS"
+
+#. module: gpsmap
+#: model:ir.model,name:gpsmap.model_gps_geofences
+msgid "GPS Geofence"
+msgstr "Geocercas del GPS"
+
+#. module: gpsmap
+#: model:ir.model,name:gpsmap.model_gps_mirror
+msgid "GPS Mirror"
+msgstr "GPS Espejo"
 
 #. module: gpsmap
 #: model:ir.model,name:gpsmap.model_gps_protocol
@@ -215,6 +415,15 @@ msgid "Gas"
 msgstr "Combustible"
 
 #. module: gpsmap
+#: model:ir.actions.act_window,name:gpsmap.fleet_geofences_action
+#: model:ir.model.fields,field_description:gpsmap.field_fleet_vehicle__geofence_ids
+#: model:ir.model.fields,field_description:gpsmap.field_gps_alerts__geofence_ids
+#: model:ir.model.fields,field_description:gpsmap.field_gps_positions__geofence_ids
+#: model:ir.ui.menu,name:gpsmap.gps_geofences_menu
+msgid "Geofences"
+msgstr "Geocercas"
+
+#. module: gpsmap
 #: model:ir.ui.menu,name:gpsmap.gpsmap_geolocation
 msgid "Geolocation"
 msgstr "Geolocalizacion"
@@ -231,9 +440,29 @@ msgid "Gray van"
 msgstr "Camioneta gris"
 
 #. module: gpsmap
+#: model:ir.model.fields.selection,name:gpsmap.selection__gps_geofences__color__green
+msgid "Green"
+msgstr "Verde"
+
+#. module: gpsmap
 #: model:ir.model.fields.selection,name:gpsmap.selection__fleet_vehicle__image_vehicle__92
 msgid "Green Phone"
 msgstr "Telefono verde"
+
+#. module: gpsmap
+#: model:ir.model.fields.selection,name:gpsmap.selection__gps_geofences__color__grey
+msgid "Grey"
+msgstr "Gris"
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.gps_positions_view_search
+msgid "Group By"
+msgstr "Agrupado por"
+
+#. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_geofences__hidden
+msgid "Hidden"
+msgstr "Oculto"
 
 #. module: gpsmap
 #: model:ir.actions.client,name:gpsmap.action_gpsmap_maphistory
@@ -247,8 +476,11 @@ msgid "ICC"
 msgstr ""
 
 #. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_alerts__id
 #: model:ir.model.fields,field_description:gpsmap.field_gps_commands__id
 #: model:ir.model.fields,field_description:gpsmap.field_gps_devices__id
+#: model:ir.model.fields,field_description:gpsmap.field_gps_geofences__id
+#: model:ir.model.fields,field_description:gpsmap.field_gps_mirror__id
 #: model:ir.model.fields,field_description:gpsmap.field_gps_positions__id
 #: model:ir.model.fields,field_description:gpsmap.field_gps_protocol__id
 msgid "ID"
@@ -258,6 +490,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:gpsmap.field_gps_devices__uniqueid
 msgid "IMEI"
 msgstr ""
+
+#. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_fleet_vehicle__ignition
+#: model:ir.model.fields,field_description:gpsmap.field_gps_positions__ignition
+msgid "Ignition"
+msgstr "Ignicion"
 
 #. module: gpsmap
 #: model:ir.model.fields,help:gpsmap.field_fleet_vehicle__image_vehicle
@@ -270,24 +508,38 @@ msgid "Img GPS"
 msgstr ""
 
 #. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_mirror__key
+msgid "Key"
+msgstr "Llave"
+
+#. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_alerts____last_update
 #: model:ir.model.fields,field_description:gpsmap.field_gps_commands____last_update
 #: model:ir.model.fields,field_description:gpsmap.field_gps_devices____last_update
+#: model:ir.model.fields,field_description:gpsmap.field_gps_geofences____last_update
+#: model:ir.model.fields,field_description:gpsmap.field_gps_mirror____last_update
 #: model:ir.model.fields,field_description:gpsmap.field_gps_positions____last_update
 #: model:ir.model.fields,field_description:gpsmap.field_gps_protocol____last_update
 msgid "Last Modified on"
 msgstr "Ultima modificacion en"
 
 #. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_alerts__write_uid
 #: model:ir.model.fields,field_description:gpsmap.field_gps_commands__write_uid
 #: model:ir.model.fields,field_description:gpsmap.field_gps_devices__write_uid
+#: model:ir.model.fields,field_description:gpsmap.field_gps_geofences__write_uid
+#: model:ir.model.fields,field_description:gpsmap.field_gps_mirror__write_uid
 #: model:ir.model.fields,field_description:gpsmap.field_gps_positions__write_uid
 #: model:ir.model.fields,field_description:gpsmap.field_gps_protocol__write_uid
 msgid "Last Updated by"
 msgstr "Ultima actualizacion por"
 
 #. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_alerts__write_date
 #: model:ir.model.fields,field_description:gpsmap.field_gps_commands__write_date
 #: model:ir.model.fields,field_description:gpsmap.field_gps_devices__write_date
+#: model:ir.model.fields,field_description:gpsmap.field_gps_geofences__write_date
+#: model:ir.model.fields,field_description:gpsmap.field_gps_mirror__write_date
 #: model:ir.model.fields,field_description:gpsmap.field_gps_positions__write_date
 #: model:ir.model.fields,field_description:gpsmap.field_gps_protocol__write_date
 msgid "Last Updated on"
@@ -309,9 +561,20 @@ msgid "Longitude"
 msgstr "Longitud"
 
 #. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_geofences__map
+msgid "Map"
+msgstr "Mapa"
+
+#. module: gpsmap
 #: model:ir.actions.client,name:gpsmap.action_gpsmap_maponline
 msgid "Map Online"
 msgstr "Mapa en linea"
+
+#. module: gpsmap
+#: model:ir.actions.act_window,name:gpsmap.gps_mirror_action
+#: model:ir.ui.menu,name:gpsmap.gps_mirror_menu
+msgid "Mirror"
+msgstr "Cuenta espejo"
 
 #. module: gpsmap
 #: model:ir.model.fields,field_description:gpsmap.field_gps_devices__model
@@ -324,8 +587,10 @@ msgid "Model of a vehicle"
 msgstr "Modelo de un vehículo"
 
 #. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.gps_alerts_view_tree
 #: model_terms:ir.ui.view,arch_db:gpsmap.gps_devices_view_tree
-#: model_terms:ir.ui.view,arch_db:gpsmap.gps_positions_view_tree
+#: model_terms:ir.ui.view,arch_db:gpsmap.gps_geofences_view_tree
+#: model_terms:ir.ui.view,arch_db:gpsmap.gps_mirror_view_tree
 msgid "Models"
 msgstr "Modelos"
 
@@ -339,14 +604,18 @@ msgstr "Mes"
 msgid "Moto"
 msgstr ""
 
-#. module: gpsmap
-#: model:ir.model.fields,field_description:gpsmap.field_fleet_vehicle__motor
-msgid "Motor"
-msgstr ""
 
 #. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.gps_positions_view_search
+msgid "Moving"
+msgstr "En movimiento"
+
+#. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_alerts__name
 #: model:ir.model.fields,field_description:gpsmap.field_gps_commands__name
 #: model:ir.model.fields,field_description:gpsmap.field_gps_devices__name
+#: model:ir.model.fields,field_description:gpsmap.field_gps_geofences__name
+#: model:ir.model.fields,field_description:gpsmap.field_gps_mirror__name
 #: model:ir.model.fields,field_description:gpsmap.field_gps_protocol__name
 msgid "Name"
 msgstr "Nombre"
@@ -408,6 +677,11 @@ msgid "Protocol"
 msgstr "Protocolo"
 
 #. module: gpsmap
+#: model:ir.model.fields.selection,name:gpsmap.selection__gps_geofences__color__red
+msgid "Red"
+msgstr "Rojo"
+
+#. module: gpsmap
 #: model:ir.model.fields.selection,name:gpsmap.selection__fleet_vehicle__image_vehicle__93
 msgid "Red  Phone"
 msgstr "Telefono rojo"
@@ -430,7 +704,7 @@ msgstr "Ejemplo"
 #. module: gpsmap
 #: model:ir.model.fields,field_description:gpsmap.field_gps_positions__servertime
 msgid "Server Time"
-msgstr ""
+msgstr "Hora del Servidor"
 
 #. module: gpsmap
 #: model:ir.model,name:gpsmap.model_fleet_vehicle_log_services
@@ -449,9 +723,34 @@ msgid "Speed"
 msgstr "Velocidad"
 
 #. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_mirror__start
+msgid "Start"
+msgstr "Inicio"
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.gps_positions_view_search
+msgid "Stopped"
+msgstr "Parado"
+
+#. module: gpsmap
 #: model:ir.actions.client,name:gpsmap.action_gpsmap_street
 msgid "Street Online"
 msgstr "Calle en linea"
+
+#. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_res_config_settings__sync_devices
+msgid "Sync Devices"
+msgstr "Sincronizar dispositivos"
+
+#. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_mirror__default_timezone
+msgid "Timezone"
+msgstr "Zona horaria"
+
+#. module: gpsmap
+#: model_terms:ir.ui.view,arch_db:gpsmap.gps_positions_view_search
+msgid "Today"
+msgstr "Hoy"
 
 #. module: gpsmap
 #: model:ir.model.fields,field_description:gpsmap.field_gps_positions__totalDistance
@@ -464,10 +763,27 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_mirror__url
+msgid "Url"
+msgstr ""
+
+#. module: gpsmap
 #: model:ir.model,name:gpsmap.model_fleet_vehicle
+#: model:ir.model.fields,field_description:gpsmap.field_gps_mirror__vehicle_ids
 #: model:ir.model.fields,field_description:gpsmap.field_gps_positions__vehicleid
+#: model_terms:ir.ui.view,arch_db:gpsmap.gps_positions_view_search
 msgid "Vehicle"
 msgstr "Vehículo"
+
+#. module: gpsmap
+#: model:ir.model,name:gpsmap.model_fleet_vehicle_log_contract
+msgid "Vehicle Contract"
+msgstr "Contrato Vehicular"
+
+#. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_alerts__vehicle_ids
+msgid "Vehicles"
+msgstr "Vehiculos"
 
 #. module: gpsmap
 #: model_terms:ir.ui.view,arch_db:gpsmap.fleet_vehicle_odometer_view_search
@@ -485,6 +801,16 @@ msgid "White van"
 msgstr "Camioneta blanca"
 
 #. module: gpsmap
+#: model:ir.model.fields.selection,name:gpsmap.selection__gps_geofences__color__yellow
+msgid "Yellow"
+msgstr "Amarillo"
+
+#. module: gpsmap
+#: model:ir.model.fields,field_description:gpsmap.field_gps_geofences__area
+msgid "area"
+msgstr "Area"
+
+#. module: gpsmap
 #: model_terms:ir.ui.view,arch_db:gpsmap.gps_commands_view_search
 msgid "protocol"
 msgstr "Protocolo"
@@ -493,3 +819,38 @@ msgstr "Protocolo"
 #: model:ir.model.fields,field_description:gpsmap.field_fleet_vehicle__temporal_id
 msgid "temporal"
 msgstr ""
+
+#. module: gpsmap
+#. openerp-web
+#: code:addons/gpsmap/static/js/AbstractAction.js:70
+#, python-format
+msgid "Do you want to stop the engine?"
+msgstr "Quieres realizar paro de motor?"
+
+#. module: gpsmap
+#. openerp-web
+#: code:addons/gpsmap/static/js/AbstractAction.js:95
+#, python-format
+msgid "Developer user does not have permissions, needs a paid account"
+msgstr "El usuario desarrollador no tiene permisos, necesita una cuenta paga"
+
+#. module: gpsmap
+#. openerp-web
+#: code:addons/gpsmap/static/js/AbstractAction.js:95
+#, python-format
+msgid "It is not synchronized with the solesgps.com platform"
+msgstr "No está sincronizado con la plataforma solesgps.com"
+
+#. module: gpsmap
+#. openerp-web
+#: code:addons/gpsmap/static/js/AbstractAction.js:95
+#, python-format
+msgid "The vehicle does not have a GPS assigned"
+msgstr "El vehículo no tiene asignado un GPS"
+
+#. module: gpsmap
+#. openerp-web
+#: code:addons/gpsmap/static/js/AbstractAction.js:95
+#, python-format
+msgid "we could not establish a connection with the platform solesgps.com"
+msgstr "No pudimos establecer conexión con la plataforma solesgps.com"
