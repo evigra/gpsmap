@@ -27,6 +27,7 @@ class gps_positions(models.Model):
     distance = fields.Float(digits = (7, 3))
     totalDistance = fields.Float(digits = (10, 3))
     gas = fields.Float('Gas', digits = (5, 2))
+    ignition = fields.Boolean(default = False)
     status = fields.Char('Type', size = 50)
     event = fields.Char(size = 70)
 
@@ -68,6 +69,14 @@ class gps_positions(models.Model):
             data = json_vals["fuel1"]
         elif("fuel" in json_vals and json_vals["fuel"]):
             data = json_vals["fuel"]
+        return data
+
+    def get_ignition(self, json_vals, vals, fleet):
+        data = False
+                
+        if("ignition" in json_vals and json_vals["ignition"]):
+            data = json_vals["ignition"]
+
         return data
 
     def get_event(self, json_vals, vals, fleet):
@@ -137,14 +146,13 @@ class gps_positions(models.Model):
                     data["batery"] = self.get_batery(json_vals)
                     data["event"] = self.get_event(json_vals, data, fleet)
                     data["status"] = self.get_status(json_vals, data, fleet)
+                    data["ignition"] = self.get_ignition(json_vals, data, fleet)
 
                     data["vehicleid"] = fleet.id
                     data["deviceid"] = device.id
                     geofences = self.get_geofence(data, fleet)
                     if(len(geofences)>0):
                         data["geofence_ids"] =[[6, False, geofences]]
-                    position = self.create(data)
-                    device.write({"positionid": position})
                     for geofence in geofences:
                         if(geofence not in fleet.geofence_ids.mapped("id") and data["status"]!='Alert'):
                             data["event"] ="Enter geofence"
@@ -152,7 +160,10 @@ class gps_positions(models.Model):
                         if(geofence not in geofences):
                             data["event"] ="Exit geofence"
 
-                    fleet.write({"positionid": position, "geofence_ids":[[6, False, geofences]]})
+                    position = self.create(data)
+                    device.write({"positionid": position})
+
+                    fleet.write({"ignition":data["ignition"],"positionid": position, "geofence_ids":[[6, False, geofences]]})
 
     def js_positions_history(self,arg):
         tz_data = self.env.user.tz_offset

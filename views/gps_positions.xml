@@ -43,6 +43,7 @@
                 <field name="gas"/>
                 <field name="batery"/>
                 <field name="geofence_ids" widget="many2many_tags"/>
+                <field name="ignition"/>
                 <field name="event"/>
                 <field name="status"/>
             </tree>
