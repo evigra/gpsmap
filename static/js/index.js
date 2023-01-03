@@ -68,13 +68,14 @@ odoo.define('gpsmap.FieldMap', function (require) {
         _onPolygonCommit: function () {
             var paths = this.selectedShape.getPath();            
             var puntos="";
+            var inicio="";
             paths.forEach(function (item) {                
+                if(inicio=="")  inicio=", "+item.lng()+" "+item.lat();
+
                 if(puntos=="")  puntos=item.lng()+" "+item.lat();
                 else            puntos+=", "+item.lng()+" "+item.lat();			
             });
-
-            var item=paths.cd[0];
-            puntos+=", "+item.lng()+" "+item.lat();
+            puntos+=inicio;
             $("textarea[name='area']")
             .val(puntos)
             .focus()
