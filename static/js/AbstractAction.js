@@ -462,7 +462,7 @@ odoo.define('gpsmap.action', function (require) {
                 if(this.$("div#odometer").length>0)
                 {
                     this.$("div#map_search").show();
-                    this.$("div#odometer").hide();
+                    //this.$("div#odometer").hide();
                     this.$("#tablero").html("Estatus : Seleccionar un vehiculo");
                     this.$("#tablero").animate({
                         height: 25

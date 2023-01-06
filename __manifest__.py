@@ -67,6 +67,7 @@ Main features
             '/gpsmap/static/js/AbstractAction.js',
             '/gpsmap/static/js/index.js',
             'gpsmap/static/xml/*.xml',
+            '/gpsmap/static/css/index.css',
         ],
         'web.assets_frontend': [            
             '/gpsmap/static/css/index.css',
@@ -74,6 +75,7 @@ Main features
             '/gpsmap/static/src/js/controller.js',
         ],
         'web.assets_qweb': [
+            '/gpsmap/static/css/index.css',
             'gpsmap/static/xml/*.xml',
         ],        
     },    

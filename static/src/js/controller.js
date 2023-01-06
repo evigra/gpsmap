@@ -149,37 +149,17 @@ publicWidget.registry.gpsmapMirror = publicWidget.Widget.extend({
     status_device: function(obj)
     {
         if(this.device_active  ==  undefined)    this.device_active = 0;
-        /*
-        if(obj != undefined)
-        {
-            if(this.$(obj).attr("latitude") != undefined)
+
+            this.obj_map.setZoom(16);
+            if(this.$("div#odometer").length>0)
             {
                 var coordinates = {
                     "latitude": $(obj).attr("latitude"),
                     "longitude": $(obj).attr("longitude")
                 };
                 var position = LatLng(coordinates);
-                this.obj_map.panTo(position);
-            }
-        }
-        if(this.device_active  ==  0)
-        {
-            if(this.$("div#odometer").length>0)
-            {
-                this.$("div#map_search").show();
-                this.$("div#odometer").hide();
-                this.$("#tablero").html("Estatus : Seleccionar un vehiculo");
-                this.$("#tablero").animate({
-                    height: 25
-                }, 1000 );
-            }
-        }
-        else
-        {
-            */
-            this.obj_map.setZoom(16);
-            if(this.$("div#odometer").length>0)
-            {
+                this.obj_map.panTo(position);                        
+                
                 this.$("#tablero").animate({
                     height: 58
                 }, 1000 );
@@ -190,7 +170,6 @@ publicWidget.registry.gpsmapMirror = publicWidget.Widget.extend({
                 this.$("#date").html($(obj).attr("date"));
                 this.$("#distance").html($(obj).attr("distance"));
             }
-        //}
     },   
     func_odometer_speed: function (data)
     {
