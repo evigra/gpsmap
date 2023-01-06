@@ -6,7 +6,52 @@
         height: -moz-calc(100% - 65px); /* firefox */    
     }      
 /* #################### */
-
+div#odometer div#speed {
+    overflow:hidden; 
+    position:absolute; 
+    bottom:0px; 
+    right:150px; 
+    width:250px; 
+    height:225px;
+}
+div#llaves {    
+    position:absolute; 
+    bottom:0px; 
+    right:535px; 
+    color:#ccc;
+}
+div#date {    
+    color:          #fff;
+    position:       absolute; 
+    bottom:            10px; 
+    right:           380px;  
+    font-size:  20px;
+    text-align: center;
+}
+div#time {        
+    color:          #fff;
+    position:       absolute; 
+    bottom:            10px; 
+    right:           80px;  
+    font-size:  20px;
+    width: 80px;  
+    text-align: center;
+}
+div#distance {    
+    color:          #fff;
+    position:       absolute; 
+    bottom:            55px; 
+    right:           220px;  
+    font-size:  20px;
+    width:100px;  
+    text-align: center;
+}
+div#buttons_history {    
+    position:absolute; 
+    bottom:30px; 
+    right:220px; 
+    width:100px;
+}
 .fields1 {
     float:left;
 	height: 60px;
@@ -99,16 +144,51 @@ div#maponline{
 /* ####################################### */
 /* ######         TABLETS           ###### */
 /* ####################################### */
-@media (max-width:991px) and (min-width:768px)
+@media (max-width:991px) 
 {
     div#odometro  div#centro {
         bottom:         0px; 
         right:          -160px; 
         width:          190px; 
     }
-    div#odometro  div#gsm {
+    div#odometer div#batery,  div#odometer div#gas, div#odometer div#distance {
         display:        none;
     }
+    div#odometer div#speed {
+        overflow:hidden; 
+        position:absolute; 
+        bottom:-50px; 
+        right:0px; 
+        width:250px; 
+        height:225px;
+    }
+    
+
+    div#date {    
+        color:          #fff;
+        position:       absolute; 
+        bottom:            0px; 
+        right:           85px;  
+        font-size:  15px;
+    }
+    div#time {    
+        bottom:            15px; 
+        right:           125x;  
+        font-size:  15px;
+    }
+    div#distance {    
+        color:          #fff;
+        position:       absolute; 
+        bottom:            75px; 
+        right:           100px;  
+        font-size:  20px;
+    }
+    div#odometer div#llaves {    
+        bottom:0px; 
+        right:230px; 
+    }
+    
+
     a.o_sub_menu_logo {
         display:        none;
     }
@@ -120,39 +200,10 @@ div#maponline{
         width: -webkit-calc(100% - 350px); /* google, safari */
         width: -moz-calc(100% - 350px); /* firefox */    
     }
+    div#buttons_history {    
+        bottom:20px; 
+        right:250px; 
+    }
+    
 
 }
-
-/* ####################################### */
-/* ######         MOVILES           ###### */
-/* ####################################### */
-@media (max-width:767px)
-{
-    div#odometro  div#centro {
-        bottom:         0px; 
-        right:          -160px; 
-        width:          190px; 
-    }
-    div#odometro  div#gsm {
-        display:        none;
-    }
-    a.o_sub_menu_logo {
-        display:        none;
-    }
-    .filtro{            
-        width:          80px;     
-    }      
-    div#filtro{    
-        width: -o-calc(100% - 350px); /* opera */
-        width: -webkit-calc(100% - 350px); /* google, safari */
-        width: -moz-calc(100% - 350px); /* firefox */    
-    }
-
-}
-
-
-
-
-
-
-
