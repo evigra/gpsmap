@@ -28,6 +28,7 @@ class gps_positions(models.Model):
     totalDistance = fields.Float(digits = (10, 3))
     gas = fields.Float('Gas', digits = (5, 2))
     ignition = fields.Boolean(default = False)
+    speeding = fields.Boolean(default = False)
     status = fields.Char('Type', size = 50)
     event = fields.Char(size = 70)
 
@@ -88,12 +89,59 @@ class gps_positions(models.Model):
             data = "Moving"
         return data
 
-    def get_other_information(self, json_vals,vals, fleet):
+    def get_event_geofence(self, vals, fleet):
+        vals["geofence_ids"] = []        
+        data_message = self.get_data_message()
+        
+        geofences = self.get_geofence(vals, fleet)
+        if(len(geofences)>0):
+            vals["geofence_ids"] =[[6, False, geofences]]
+        for geofence in geofences:
+            if(geofence not in fleet.geofence_ids.mapped("id") and vals["status"]!='Alert'):
+                vals["event"] ="Enter geofence"
+                data_message["body"] ='The vehicle: %s, entering the geofence' %(fleet.name)
+        for geofence in fleet.geofence_ids.mapped("id"):
+            if(geofence not in geofences):
+                vals["event"] ="Exit geofence"
+                data_message["body"] ='The vehicle: %s, got out of geofence' %(fleet.name)
+
+        if('body' in data_message):
+            self.env['mail.message'].create([data_message])        
+
+        return vals
+
+
+    def get_event_speeding(self, vals, fleet):
+        vals["speeding"] = False
+        data_message = self.get_data_message()
+                
         if(fleet.odometer_unit=='miles'):
             vals["speed"] = 1.15 * float(vals["speed"])
         else:
             vals["speed"] = 1.852 * float(vals["speed"])
+        
+        #if(int(vals["speed"]) > int(fleet.speed)):
+        if(int(vals["speed"]) > 75):
+            vals["event"] ="Speeding"
+            vals["speeding"] = True
+        else:
+            vals["speeding"] = False
+            
+        if(fleet.speeding == False and vals["speeding"] == True):
+            data_message["body"] ='The car %s, it is speeding' %(fleet.name)
+            self.env['mail.message'].create([data_message])        
+
         return vals
+    
+    def get_data_message(self):
+        return {
+            'author_id': self.env.ref('base.partner_root').id,
+            'model': 'mail.channel',
+            'res_id': self.env.ref('gpsmap.mail_channel_gps').id,
+            'message_type': 'email',
+            'subtype_id': self.env.ref('mail.mt_comment').id,
+            'subject': 'Alarm',
+        }            
 
 
     def get_status(self, json_vals,vals, fleet):
@@ -138,8 +186,7 @@ class gps_positions(models.Model):
                 if(fleet.id>0):
                     json_vals = json.loads(data["attributes"])
                     data.pop("attributes")
-
-                    data = self.get_other_information(json_vals,data, fleet)
+                    
                     data["distance"] = self.get_distance(json_vals)
                     data["gas"] = self.get_gas(json_vals)
                     data["totalDistance"] = self.get_totalDistance(json_vals)
@@ -150,20 +197,18 @@ class gps_positions(models.Model):
 
                     data["vehicleid"] = fleet.id
                     data["deviceid"] = device.id
-                    geofences = self.get_geofence(data, fleet)
-                    if(len(geofences)>0):
-                        data["geofence_ids"] =[[6, False, geofences]]
-                    for geofence in geofences:
-                        if(geofence not in fleet.geofence_ids.mapped("id") and data["status"]!='Alert'):
-                            data["event"] ="Enter geofence"
-                    for geofence in fleet.geofence_ids.mapped("id"):
-                        if(geofence not in geofences):
-                            data["event"] ="Exit geofence"
+                    data = self.get_event_geofence(data, fleet)
+                    data = self.get_event_speeding(data, fleet)
 
                     position = self.create(data)
                     device.write({"positionid": position})
 
-                    fleet.write({"ignition":data["ignition"],"positionid": position, "geofence_ids":[[6, False, geofences]]})
+                    fleet.write({
+                        "ignition":data["ignition"],
+                        "positionid": position, 
+                        "speeding": data["speeding"], 
+                        "geofence_ids":data["geofence_ids"]                        
+                    })
 
     def js_positions_history(self,arg):
         tz_data = self.env.user.tz_offset
