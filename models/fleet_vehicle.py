@@ -23,6 +23,7 @@ class vehicle(models.Model):
     temporal_id = fields.Many2one('res.partner', 'temporal')
     economic_number = fields.Char('Economic Number', size = 50)
     speed = fields.Char(default = 100, size = 3)
+    speeding = fields.Boolean(default = False)
     engine = fields.Boolean(default = True, tracking = True)
     ignition = fields.Boolean(default = False)
     gps1_id = fields.Many2one('gps_devices', ondelete = 'set null', string = "GPS", index = True)

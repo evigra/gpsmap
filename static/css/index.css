@@ -151,7 +151,7 @@ div#maponline{
         right:          -160px; 
         width:          190px; 
     }
-    div#odometer div#batery,  div#odometer div#gas, div#odometer div#distance {
+    div#odometer div#batery,  div#odometer div#gas, div#odometer div#distance, header#top {
         display:        none;
     }
     div#odometer div#speed {
@@ -163,7 +163,6 @@ div#maponline{
         height:225px;
     }
     
-
     div#date {    
         color:          #fff;
         position:       absolute; 
