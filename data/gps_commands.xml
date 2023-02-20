@@ -63,31 +63,108 @@
     </record>
     <record id="command_gt06_apn" model="gps_commands">
         <field name="name">APN setting</field>
-        <field name="command">apn123456 {INTERNET}</field>
-        <field name="sample">apn123456 m2mglobal.telefonica.mx</field>
+        <field name="command">#apn#123456 {INTERNET}</field>
+        <field name="sample">#apn#123456#m2mglobal.telefonica.mx#</field>
         <field name="priority">1</field>
         <field name="protocol_id" ref="protocol_gt06"/>
     </record>
     <record id="command_gt06_server" model="gps_commands">
         <field name="name">SERVER setting</field>
-        <field name="command">adminip123456 {SERVER} {PORT}</field>
-        <field name="sample">adminip 51.79.79.134 5023</field>
+        <field name="command">#admini#p123456#{SERVER}#{PORT}#</field>
+        <field name="sample">#adminip#123456#51.79.79.134#5023#</field>
         <field name="priority">3</field>
         <field name="protocol_id" ref="protocol_gt06"/>
     </record>
     <record id="command_gt06_timer" model="gps_commands">
         <field name="name">TIMER setting</field>
-        <field name="command">fix{SECONDS}s***n123456</field>
+        <field name="command">fix{SECONDS}s***n123456</field>+
         <field name="sample">fix060s***n123456</field>
         <field name="priority">4</field>
         <field name="protocol_id" ref="protocol_gt06"/>
     </record>
     <record id="command_gt06_gprs" model="gps_commands">
         <field name="name">GPRS setting</field>
+        <field name="command">#gprs#123456#</field>
+        <field name="sample">#gprs#123456#</field>
+        <field name="priority">5</field>
+        <field name="protocol_id" ref="protocol_gt06"/>
+    </record>
+
+
+    <record id="command_gps103_factory" model="gps_commands">
+        <field name="name">Factory</field>
+        <field name="command">begin123456</field>
+        <field name="sample">begin123456</field>
+        <field name="priority">0</field>
+        <field name="optional" eval="True"/>
+        <field name="protocol_id" ref="protocol_gps103"/>
+    </record>
+    <record id="command_gps103_apn" model="gps_commands">
+        <field name="name">APN setting</field>
+        <field name="command">apn123456 {INTERNET}</field>
+        <field name="sample">apn123456 m2mglobal.telefonica.mx</field>
+        <field name="priority">1</field>
+        <field name="protocol_id" ref="protocol_gps103"/>
+    </record>
+    <record id="command_ggps103_server" model="gps_commands">
+        <field name="name">SERVER setting</field>
+        <field name="command">adminip123456 {SERVER} {PORT}</field>
+        <field name="sample">adminip123456 51.79.79.134 5001</field>
+        <field name="priority">3</field>
+        <field name="protocol_id" ref="protocol_gps103"/>
+    </record>
+    <record id="command_gps103_timer" model="gps_commands">
+        <field name="name">TIMER setting</field>
+        <field name="command">fix{SECONDS}s***n123456</field>+
+        <field name="sample">fix060s***n123456</field>
+        <field name="priority">4</field>
+        <field name="protocol_id" ref="protocol_gps103"/>
+    </record>
+    <record id="command_gps103_gprs" model="gps_commands">
+        <field name="name">GPRS setting</field>
         <field name="command">gprs123456</field>
         <field name="sample">gprs123456</field>
         <field name="priority">5</field>
-        <field name="protocol_id" ref="protocol_gt06"/>
+        <field name="protocol_id" ref="protocol_gps103"/>
+    </record>
+
+
+    <record id="command_calamp_factory" model="gps_commands">
+        <field name="name">Factory</field>
+        <field name="command">!R3,70,0</field>
+        <field name="sample">!R3,70,0</field>
+        <field name="priority">0</field>
+        <field name="optional" eval="True"/>
+        <field name="protocol_id" ref="protocol_calamp"/>
+    </record>
+    <record id="command_calamp_apn" model="gps_commands">
+        <field name="name">APN setting</field>
+        <field name="command">!RP,2306,0,{INTERNET}</field>
+        <field name="sample">!RP,2306,0,m2mglobal.telefonica.mx</field>
+        <field name="priority">1</field>
+        <field name="protocol_id" ref="protocol_calamp"/>
+    </record>
+    <record id="command_calamp_server" model="gps_commands">
+        <field name="name">SERVER setting</field>
+        <field name="command">!RP,2319,0,{SERVER}}</field>
+        <field name="sample">!RP,2319,0,51.79.79.134</field>    
+        <field name="priority">3</field>
+        <field name="protocol_id" ref="protocol_calamp"/>
+    </record>
+    <record id="command_calamp_port" model="gps_commands">
+        <field name="name">PORT setting</field>
+        <field name="command">!RP,769,0,{PORT}</field>
+        <field name="sample">!RP,769,0,5082</field>
+        <field name="priority">3</field>
+        <field name="protocol_id" ref="protocol_calamp"/>
+    </record>
+
+    <record id="command_calamp_timer" model="gps_commands">
+        <field name="name">TIMER setting</field>
+        <field name="command">!RP,262,0,{SECONDS}</field>+
+        <field name="sample">!RP,262,0,60</field>
+        <field name="priority">4</field>
+        <field name="protocol_id" ref="protocol_calamp"/>
     </record>
 
 </odoo>
