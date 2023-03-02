@@ -35,6 +35,11 @@
           <field name="solesgps_id">53</field>
           <field name="name">UHCAM 65 - 743EW3</field>
       </record>
+      <record id="gps_6" model="gps_devices"> 
+          <field name="id">6</field>
+          <field name="solesgps_id">51</field>
+          <field name="name">GPS GT003 - Eduardo Martinez</field>
+      </record>
 
       <record id="fleet.vehicle_1" model="fleet.vehicle">
           <field name="image_vehicle">02</field>
