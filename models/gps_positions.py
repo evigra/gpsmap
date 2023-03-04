@@ -103,6 +103,7 @@ class gps_positions(models.Model):
         for geofence in fleet.geofence_ids.mapped("id"):
             if(geofence not in geofences):
                 vals["event"] ="Exit geofence"
+                vals["geofence_ids"] = []
                 data_message["body"] ='The vehicle: %s, got out of geofence' %(fleet.name)
 
         if('body' in data_message):
