@@ -94,12 +94,12 @@ class gps_positions(models.Model):
         data_message = self.get_data_message()
         
         geofences = self.get_geofence(vals, fleet)
-        if(len(geofences)>0):
-            vals["geofence_ids"] =[[6, False, geofences]]
         for geofence in geofences:
             if(geofence not in fleet.geofence_ids.mapped("id") and vals["status"]!='Alert'):
                 vals["event"] ="Enter geofence"
                 data_message["body"] ='The vehicle: %s, entering the geofence' %(fleet.name)
+                vals["geofence_ids"] =[[6, False, geofences]]
+
         for geofence in fleet.geofence_ids.mapped("id"):
             if(geofence not in geofences):
                 vals["event"] ="Exit geofence"
@@ -120,8 +120,7 @@ class gps_positions(models.Model):
         else:
             vals["speed"] = 1.852 * float(vals["speed"])
         
-        #if(int(vals["speed"]) > int(fleet.speed)):
-        if(int(vals["speed"]) > 75):
+        if(int(vals["speed"]) > int(fleet.speed)):
             vals["event"] ="Speeding"
             vals["speeding"] = True
         else:
