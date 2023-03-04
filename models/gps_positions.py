@@ -103,6 +103,7 @@ class gps_positions(models.Model):
         for geofence in fleet.geofence_ids.mapped("id"):
             if(geofence not in geofences):
                 vals["event"] ="Exit geofence"
+                vals["geofence_ids"] =[[6, False, []]]
                 data_message["body"] ='The vehicle: %s, got out of geofence' %(fleet.name)
 
         if('body' in data_message):
@@ -203,12 +204,17 @@ class gps_positions(models.Model):
                     position = self.create(data)
                     device.write({"positionid": position})
 
-                    fleet.write({
+                    data_fleet={
                         "ignition":data["ignition"],
                         "positionid": position, 
-                        "speeding": data["speeding"], 
-                        "geofence_ids":data["geofence_ids"]                        
-                    })
+                        "speeding": data["speeding"],
+                        "geofence_ids": data["geofence_ids"],
+                    }
+
+                    if data["speeding"]>5:
+                        data_fleet["active_time_today"] = int(fleet["active_time_today"]) + 1
+
+                    fleet.write(data_fleet)
 
     def js_positions_history(self,arg):
         tz_data = self.env.user.tz_offset
