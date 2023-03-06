@@ -23,6 +23,7 @@ class vehicle(models.Model):
     temporal_id = fields.Many2one('res.partner', 'temporal')
     economic_number = fields.Char('Economic Number', size = 50)
     speed = fields.Char(default = 100, size = 3)
+    active_time_today = fields.Integer()
     speeding = fields.Boolean(default = False)
     engine = fields.Boolean(default = True, tracking = True)
     ignition = fields.Boolean(default = False)
@@ -118,4 +119,4 @@ class vehicle(models.Model):
         else:
             vehicle.engine=False        
                     
-        return vals    
+        return vals

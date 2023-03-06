@@ -206,7 +206,7 @@ class gps_positions(models.Model):
 
                     data_fleet={
                         "ignition":data["ignition"],
-                        "positionid": position, 
+                        "positionid": position,
                         "speeding": data["speeding"],
                         "geofence_ids": data["geofence_ids"],
                     }
