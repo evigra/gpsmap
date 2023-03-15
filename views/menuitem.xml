@@ -76,6 +76,16 @@
     </record>
     <menuitem action="fleet_gps_positions_distance_hour_action" parent="gpsmap_report" id="gps_positions_distance_hour_menu"  groups="fleet.fleet_group_manager"/>
 
+    <record id='fleet_gps_positions_geofence_action' model='ir.actions.act_window'>
+        <field name="name">Geofence </field>
+        <field name="res_model">gps_positions</field>
+        <field name='view_id' ref='gps_positions_geofence_view_tree'/>
+        <field name="view_mode">pivot,tree,graph</field>
+        <field name="context">{"search_default_groupby_vehicleid" : True, "search_default_today" : True}</field>
+        <field name="domain">[('event', 'like', 'geofence')]</field>
+    </record>
+    <menuitem action="fleet_gps_positions_geofence_action" parent="gpsmap_report" id="gps_positions_geofence_menu"  groups="fleet.fleet_group_manager"/>
+
 
     <record id='fleet_geofences_action' model='ir.actions.act_window'>
         <field name="name">Geofences</field>
