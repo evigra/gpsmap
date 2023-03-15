@@ -22,6 +22,7 @@ Main features
 * Generates reports with speed, fuel, mileage.
 """,
     'depends': [
+        'base_geolocalize',
         'fleet',
         'website'
     ],
