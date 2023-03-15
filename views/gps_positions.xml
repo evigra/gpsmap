@@ -106,6 +106,7 @@
 
                 <filter string="Stopped" name="Stopped" domain="[('event', '=', 'Stopped')]"/>
                 <filter string="Moving" name="Moving" domain="[('event', '=', 'Moving')]"/>
+                <filter string="Geofence" name="Geofence" domain="[('event', 'like', 'geofence')]"/>
                 <filter string="Alarm" name="Alarm" domain="[('status', '=', 'Alarm')]"/>
                 <filter string="Today" name="today" domain="[('devicetime', '&gt;', context_today().strftime('%%Y-%%m-%%d 00:00:00'))]"/>
 
