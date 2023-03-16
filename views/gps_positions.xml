@@ -108,9 +108,7 @@
                 <filter string="Moving" name="Moving" domain="[('event', '=', 'Moving')]"/>
                 <filter string="Geofence" name="Geofence" domain="[('event', 'like', 'geofence')]"/>
                 <filter string="Alarm" name="Alarm" domain="[('status', '=', 'Alarm')]"/>
-                <filter string="Today" name="today" domain="[('devicetime', '&gt;', context_today().strftime('%%Y-%%m-%%d 00:00:00'))]"/>
-
-                <filter string="Device Time" name="date" date="devicetime"/>
+                <filter string="Today" name="today" domain="[('devicetime', '&gt;', (datetime.datetime.combine(context_today(), datetime.time(0,0,0)).to_utc()).strftime('%Y-%m-%d %H:%M:%S'))]"/>
 
                 <group expand="0" string="Group By">
                     <filter string="Vehicle" name="groupby_vehicleid" domain="[]" context="{'group_by': 'vehicleid'}"/>
