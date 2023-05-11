@@ -2,11 +2,11 @@
     <record id="mail_channel_gps" model="mail.channel">
         <field name="name">gps</field>
         <field name="description">Discussion about best sales practices and deals.</field>
-        <field name="public">groups</field>
+        <field name="group_ids" eval="[Command.link(ref('fleet.fleet_group_manager'))]"/>
         <field name="group_public_id" ref="fleet.fleet_group_manager"/>        
-        <field name="group_ids" eval="[(6,0,[ref('fleet.fleet_group_manager')])]"/>
+        <field name="active">True</field>
+        <field name="__last_update">False</field>        
     </record>
-
 
     <record model="mail.message" id="module_install_notification_gps">
         <field name="model">mail.channel</field>
