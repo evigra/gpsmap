@@ -5,7 +5,7 @@ import pytz
 class gps_commands(models.Model):
     _name = "gps_commands"
     _description = 'GPS Commands'
-    _order = "name DESC"
+    _order = "protocol_id,priority"
 
     name = fields.Char('Name', size = 50)
     protocol_id = fields.Many2one('gps_protocol', ondelete = 'set null')
