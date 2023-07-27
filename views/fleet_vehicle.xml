@@ -4,14 +4,15 @@
         <field name="model">fleet.vehicle</field>
         <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//group" position="after">            
-                <group col="4" string="GPS Configuration">                    
-                    <field name="gps1_id" groups="fleet.fleet_group_manager"/>
-                    <field name="economic_number"/>
-                    <field name="image_vehicle"/>
-                    <field name="speed" groups="fleet.fleet_group_manager"/>
-                    <field name="temporal_id"/>
-                </group>                
+            <xpath expr="//page[last()]" position="after">            
+                <page string="GPS" name="gps">
+                    <group col="4" string="GPS Configuration">                    
+                        <field name="gps1_id" groups="fleet.fleet_group_manager"/>
+                        <field name="economic_number"/>
+                        <field name="image_vehicle"/>
+                        <field name="speed" groups="fleet.fleet_group_manager"/>                    
+                    </group>                
+                </page>
             </xpath>
         </field>
     </record>
