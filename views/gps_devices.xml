@@ -4,15 +4,17 @@
         <field name="model">gps_devices</field>
         <field name="arch" type="xml">
             <form string="GPS">
-                <group col="4" string="GPS Configuration">                   
-                    <field name="name" />
-                    <field name="positionid" />
-                    
-                    <field name="lastupdate"/>
-                    <field name="uniqueid"/>
-                    <field name="icc"/>                
-                    <field name="phone"/>
-                </group>                
+                <sheet>
+                    <group col="4" string="GPS Configuration">
+                        <field name="name" />
+                        <field name="positionid" />
+                        <field name="lastupdate"/>
+                        <field name="uniqueid"/>
+                        <field name="icc"/>
+                        <field name="phone"/>
+                        <field name="protocolid" />
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>
@@ -23,6 +25,7 @@
             <tree string="Models">
                 <field name="solesgps_id"/>
                 <field name="name" />
+                <field name="protocolid" />
                 <field name="positionid" />
                 <field name="company_id" />
                 <field name="uniqueid"/>                

@@ -4,14 +4,16 @@
         <field name="model">gps_commands</field>
         <field name="arch" type="xml">
             <form string="Commands">
-                <group col="4" string="GPS Configuration">                   
-                    <field name="protocol_id"/>
-                    <field name="priority"/>    
-                    <field name="name"/>                    
-                    <field name="command"/>                    
-                    <field name="sample"/>
-                    <field name="optional"/>
-                </group>                
+                <sheet>
+                    <group col="4" string="GPS Configuration">
+                        <field name="protocol_id"/>
+                        <field name="priority"/>
+                        <field name="name"/>
+                        <field name="command"/>
+                        <field name="sample"/>
+                        <field name="optional"/>
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>
