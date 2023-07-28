@@ -49,6 +49,7 @@ Main features
         'views/gps_geofences.xml',
         'views/gps_mirror.xml',
         'views/gps_positions.xml',
+        'views/gps_protocol.xml',
         'views/menuitem.xml',
         
         'views/frontend_mirror_menu.xml',

@@ -8,3 +8,5 @@ class gps_protocol(models.Model):
 
     name = fields.Char(size = 15)
     port = fields.Char(size = 5)
+    
+    commands_ids = fields.One2many('gps_commands', 'protocol_id', string='Commands')

@@ -11,6 +11,7 @@ class gps_devices(models.Model):
     name = fields.Char('Name', size=128)
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.user.company_id, required=True)   
     positionid = fields.Many2one('gps_positions', ondelete = 'set null', string = "Position", index = True)
+    protocolid = fields.Many2one('gps_protocol', ondelete = 'set null', string = "Protocol", index = True)
     uniqueid = fields.Char('IMEI', size = 128)
     icc = fields.Char('ICC', size = 30)
     phone = fields.Char('Phone', size = 128)
@@ -53,4 +54,8 @@ class gps_devices(models.Model):
                 solesgps_models.execute_kw(solesgps_db, solesgps_uid, solesgps_pass,'tc_devices', 'write', [[self.solesgps_id],vals])
             else:
                 vals["solesgps_id"] = solesgps_models.execute_kw(solesgps_db, solesgps_uid, solesgps_pass, 'tc_devices', 'create', [vals])
+        else:
+            if(not self.protocolid):
+                protocol = self.env['gps_protocol'].search([["name","=",self.positionid.protocol]])
+                vals["protocolid"]=protocol.id
         return vals

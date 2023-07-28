@@ -1,0 +1,27 @@
+<odoo>
+    <record id='gps_protocol_view_form' model='ir.ui.view'>
+        <field name="name">gps_protocol.form</field>
+        <field name="model">gps_protocol</field>
+        <field name="arch" type="xml">
+            <form string="protocol">
+                <sheet>
+                    <group col="4" string="GPS Configuration">
+                        <field name="name"/>
+                        <field name="port"/>
+                        <field name="commands_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id='gps_protocol_view_tree' model='ir.ui.view'>
+        <field name="name">gps_protocol.tree</field>
+        <field name="model">gps_protocol</field>
+        <field name="arch" type="xml">
+            <tree string="protocol">
+                        <field name="name"/>
+                        <field name="port"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
