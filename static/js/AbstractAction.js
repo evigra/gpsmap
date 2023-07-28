@@ -344,7 +344,7 @@ odoo.define('gpsmap.action', function (require) {
             if(labels[vehicle["idg"]]  ==  undefined)
             {
                 labels[vehicle["idg"]] = new MapLabel({
-                    text:             vehicle["nam"],
+                    text:             vehicle["eco"],
                     position:         posicion,
                     map:             this.obj_map,
                     fontSize:         14,

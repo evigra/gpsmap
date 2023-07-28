@@ -264,6 +264,7 @@ class gps_positions(models.Model):
                     "idv": vehicle.id,
                     "idg": vehicle.gps1_id.id,
                     "nam": vehicle.name,
+                    "eco": vehicle.economic_number,
                     "lic": vehicle.license_plate,not
                     "ima": vehicle.image_vehicle,
                     "vsp": vehicle.speed,
