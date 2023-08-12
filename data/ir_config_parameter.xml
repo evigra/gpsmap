@@ -1,34 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <data noupdate="1">
+        <record id="solesgps_key" model="ir.config_parameter"> 
+            <field name="key">solesgps_key</field>
+            <field name="value">AIzaSyCTDTeSJ3Uu3hHCy73RzGoJbx6vmKcmmUI</field>
+        </record>
+        <record id="geo_provider" model="ir.config_parameter"> 
+            <field name="key">base_geolocalize.geo_provider</field>
+            <field name="value">2</field>
+        </record>
+        <record id="google_map_api_key" model="ir.config_parameter"> 
+            <field name="key">base_geolocalize.google_map_api_key</field>
+            <field name="value">AIzaSyCTDTeSJ3Uu3hHCy73RzGoJbx6vmKcmmUI</field>
+        </record>
 
-    <record id="solesgps_key" model="ir.config_parameter"> 
-        <field name="key">solesgps_key</field>
-        <field name="value">AIzaSyCTDTeSJ3Uu3hHCy73RzGoJbx6vmKcmmUI</field>
-    </record>
-    <record id="geo_provider" model="ir.config_parameter"> 
-        <field name="key">base_geolocalize.geo_provider</field>
-        <field name="value">2</field>
-    </record>
-    <record id="google_map_api_key" model="ir.config_parameter"> 
-        <field name="key">base_geolocalize.google_map_api_key</field>
-        <field name="value">AIzaSyCTDTeSJ3Uu3hHCy73RzGoJbx6vmKcmmUI</field>
-    </record>
-
-    
-    <record id="solesgps_host" model="ir.config_parameter"> 
-        <field name="key">solesgps_host</field>
-        <field name="value">http://odoo.solesgps.com:8069</field>
-    </record>
-    <record id="solesgps_user" model="ir.config_parameter"> 
-        <field name="key">solesgps_user</field>
-        <field name="value">developer</field>
-    </record>
-    <record id="solesgps_pass" model="ir.config_parameter"> 
-        <field name="key">solesgps_pass</field>
-        <field name="value">developer</field>
-    </record>
-    <record id="solesgps_db" model="ir.config_parameter"> 
-        <field name="key">solesgps_db</field>
-        <field name="value">produccion</field>
-    </record>
+        
+        <record id="solesgps_host" model="ir.config_parameter"> 
+            <field name="key">solesgps_host</field>
+            <field name="value">http://odoo.solesgps.com:8069</field>
+        </record>
+        <record id="solesgps_user" model="ir.config_parameter"> 
+            <field name="key">solesgps_user</field>
+            <field name="value">developer</field>
+        </record>
+        <record id="solesgps_pass" model="ir.config_parameter"> 
+            <field name="key">solesgps_pass</field>
+            <field name="value">developer</field>
+        </record>
+        <record id="solesgps_db" model="ir.config_parameter"> 
+            <field name="key">solesgps_db</field>
+            <field name="value">produccion</field>
+        </record>
+    </data>
 </odoo>
