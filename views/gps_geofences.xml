@@ -5,17 +5,26 @@
         <field name="arch" type="xml">
             <form string="GPS">
                 <sheet>
-                    <group col="4">
-                        <field name="name"/>
-                        <field name="description"/>      
-                        <field name="area"/>                    
-                        <field name="color"/>
-                        <field name="hidden"/>
-                        <field name="company_ids" widget="many2many_tags"/>                        
-                    </group>
-                    <div style="position:relative; width:100%; height:400px; display:block;">
-                        <field name="map" widget="map_drawing_shape"/>    
-                    </div>                    
+                    <notebook>
+                        <page string="Geofence">
+                            <group col="4">
+                                <field name="name"/>
+                                <field name="description"/>      
+                                                    
+                                <field name="color"/>
+                                <field name="hidden"/>
+                                <field name="company_ids" widget="many2many_tags"/>                        
+
+                            </group>
+                            <div style="position:relative; width:100%; height:400px; display:block;">
+                                <field name="map" widget="map_drawing_shape"/>    
+                            </div>                    
+                            
+                        </page>
+                        <page string="Coordinates">
+                            <field name="area"/>
+                        </page>
+                    </notebook>
                 </sheet>                                                    
             </form>
         </field>
