@@ -57,7 +57,7 @@
             <field name="name">The manager has all the rights to the geofences</field>
             <field name="model_id" ref="model_gps_geofences"/>
             <field name="groups" eval="[(4, ref('fleet.fleet_group_manager'))]"/>
-            <field name="domain_force"></field>
+            <field name="domain_force">['|',('company_ids','=',False),('company_ids', 'in', company_ids)]</field>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
             <field name="perm_create" eval="True"/>
