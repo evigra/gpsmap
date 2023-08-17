@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <menuitem name="GPS" id="menu_root" groups="fleet.fleet_group_user" web_icon="fleet,static/description/icon.png"/>    
-    <menuitem name="Geolocation" parent="menu_root" id="gpsmap_geolocation" sequence="2" groups="fleet.fleet_group_user"/>
-    <menuitem name="Configuration" parent="menu_root" id="gpsmap_configuration" sequence="2" groups="fleet.fleet_group_user"/>
-    <menuitem name="Report" parent="menu_root" id="gpsmap_report" sequence="2" groups="fleet.fleet_group_user"/>
+    <menuitem name="GPS" parent="fleet.menu_root" id="gpsmap_geolocation" groups="fleet.fleet_group_user" />
+    <menuitem name="GPS" parent="fleet.fleet_configuration" id="gpsmap_configuration" sequence="2" groups="fleet.fleet_group_user"/>
+    <menuitem name="GPS" parent="fleet.menu_fleet_reporting" id="gpsmap_report" sequence="2" groups="fleet.fleet_group_user"/>
     
     <menuitem name="Configuration" parent="fleet.menu_root" id="fleet.fleet_configuration" sequence="100" groups="fleet.fleet_group_manager"/>
     <menuitem action="fleet.fleet_vehicle_model_action" parent="fleet.fleet_configuration" id="fleet.fleet_vehicle_model_menu" groups="fleet.fleet_group_manager" sequence="1"/>
@@ -29,11 +27,10 @@
     <menuitem id="menu_gpsmap_maphistory" sequence="3" name="History Map"  parent="gpsmap_geolocation" action="action_gpsmap_maphistory" groups="fleet.fleet_group_manager"/>    
 
     <record id='fleet_gps_devices_action' model='ir.actions.act_window'>
-        <field name="name">GPS Device</field>
+        <field name="name">Devices</field>
         <field name="res_model">gps_devices</field>
     </record>
-    <menuitem action="fleet_gps_devices_action" parent="fleet.fleet_configuration" id="fleet_gps_devices_menu" groups="fleet.fleet_group_manager"/>
-    <menuitem action="fleet_gps_devices_action" parent="gpsmap_configuration" id="gps_devices_menu" groups="fleet.fleet_group_manager"/>
+    <menuitem action="fleet_gps_devices_action" parent="gpsmap_configuration" id="fleet_gps_devices_menu" groups="fleet.fleet_group_manager"/>
 
 
     <record id='gps_commands_action' model='ir.actions.act_window'>
@@ -55,7 +52,6 @@
         <field name="view_mode">tree,pivot,graph</field>
         <field name="context">{"search_default_groupby_vehicleid" : True, "search_default_today" : True}</field>
     </record>
-    <menuitem action="fleet_gps_positions_action" parent="fleet.menu_fleet_reporting" id="fleet_gps_positions_menu"  groups="fleet.fleet_group_manager"/>
     <menuitem action="fleet_gps_positions_action" parent="gpsmap_report" id="gps_positions_menu"  groups="fleet.fleet_group_manager"/>
 
     <record id='fleet_gps_positions_distance_action' model='ir.actions.act_window'>
