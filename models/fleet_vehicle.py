@@ -5,7 +5,7 @@ _logger = logging.getLogger(__name__)
 
 class vehicle(models.Model):
     _inherit = "fleet.vehicle"
-    
+    _order = "economic_number ASC"
     image_vehicle = fields.Selection([
         ('01', 'Gray Vehicle'),
         ('02', 'Red Vehicle'),
