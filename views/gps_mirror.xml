@@ -7,11 +7,12 @@
                 <sheet>
                     <group col="4" string="GPS Configuration">
                         <field name="name"/>
-                        <field name="default_timezone"/>-
+                        <field name="default_timezone"/>
                         <field name="start"/>
                         <field name="end"/>
-                        <field name="vehicle_ids" cols="4"/>
                     </group>
+                    <field name="url"  widget="url" cols="3"/>
+                    <field name="vehicle_ids" cols="3"/>                    
                 </sheet>
            </form>
         </field>
