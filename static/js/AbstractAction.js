@@ -219,6 +219,7 @@ odoo.define('gpsmap.action', function (require) {
             {
                 model = {
                     model: "fleet.vehicle",
+                    context: session.user_context,
                     method: "get_last_vehicle_position",
                     args:[[]],
                 };
