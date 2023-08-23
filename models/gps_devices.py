@@ -9,7 +9,7 @@ class gps_devices(models.Model):
     _order = "name DESC"
 
     name = fields.Char('Name', size=128)
-    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.user.company_id, required=True)   
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company, required=True)
     positionid = fields.Many2one('gps_positions', ondelete = 'set null', string = "Position", index = True)
     protocolid = fields.Many2one('gps_protocol', ondelete = 'set null', string = "Protocol", index = True)
     uniqueid = fields.Char('IMEI', size = 128)

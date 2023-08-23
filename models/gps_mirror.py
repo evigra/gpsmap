@@ -10,7 +10,7 @@ class gps_mirror(models.Model):
     key = fields.Char(size = 32)
     url = fields.Char(size = 150)
     default_timezone = fields.Char(size = 150, string='Timezone', default=lambda self: self.env.user.tz or 'UTC')
-    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.user.company_id, required=True)   
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company, required=True)   
 
     vehicle_ids = fields.Many2many('fleet.vehicle')
     start = fields.Datetime()
