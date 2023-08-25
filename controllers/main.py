@@ -50,6 +50,7 @@ class controller_gpsmap(http.Controller):
                     "idv": vehicle.id,
                     "idg": pos.deviceid.id,
                     "nam": vehicle.name,
+                    "eco": vehicle.economic_number,
                     "lic": vehicle.license_plate,
                     "ima": vehicle.image_vehicle,
                     "vsp": vehicle.speed,

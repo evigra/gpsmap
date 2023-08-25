@@ -74,6 +74,7 @@ Main features
         ],
         'web.assets_frontend': [            
             '/gpsmap/static/css/index.css',
+            '/gpsmap/static/js/maplabel.js',
             '/gpsmap/static/js/google.js',
             '/gpsmap/static/src/js/controller.js',
         ],
