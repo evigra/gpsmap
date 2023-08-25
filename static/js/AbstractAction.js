@@ -101,6 +101,7 @@ odoo.define('gpsmap.action', function (require) {
             this.get_menu_vehicle();       
             this.get_geofences();
             this.status_device();
+            this.$("div#odometer").hide();
             return data;
         },
         ////////////////////////////////////////////////
@@ -463,7 +464,7 @@ odoo.define('gpsmap.action', function (require) {
                 if(this.$("div#odometer").length>0)
                 {
                     this.$("div#map_search").show();
-                    //this.$("div#odometer").hide();
+                    this.$("div#odometer").hide();
                     this.$("#tablero").html("Estatus : Seleccionar un vehiculo");
                     this.$("#tablero").animate({
                         height: 25
