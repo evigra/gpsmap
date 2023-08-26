@@ -99,11 +99,13 @@ class gps_positions(models.Model):
         for geofence in geofences:
             if(geofence not in fleet.geofence_ids.mapped("id") and vals["status"]!='Alert'):
                 vals["event"] ="Enter geofence"
+                data_message["subject"] = 'Geofence Alarm : %s' %(fleet.economic_number)
                 data_message["body"] ='The vehicle: %s, entering the geofence' %(fleet.name)
         for geofence in fleet.geofence_ids.mapped("id"):
             if(geofence not in geofences):
                 vals["event"] ="Exit geofence"
                 vals["geofence_ids"] =[[6, False, []]]
+                data_message["subject"] = 'Geofence Alarm : %s' %(fleet.economic_number)
                 data_message["body"] ='The vehicle: %s, got out of geofence' %(fleet.name)
 
         if('body' in data_message):
@@ -121,15 +123,15 @@ class gps_positions(models.Model):
         else:
             vals["speed"] = 1.852 * float(vals["speed"])
         
-        #if(int(vals["speed"]) > int(fleet.speed)):
-        if(int(vals["speed"]) > 75):
+        if(int(vals["speed"]) > int(fleet.speed)):        
             vals["event"] ="Speeding"
             vals["speeding"] = True
         else:
             vals["speeding"] = False
             
         if(fleet.speeding == False and vals["speeding"] == True):
-            data_message["body"] ='The car %s, it is speeding' %(fleet.name)
+            data_message["subject"] = 'Speeding Alarm  %s' %(fleet.economic_number)
+            data_message["body"] ='The car %s, it is speeding\nYour current speed is: %d' %(fleet.name,vals["speed"])
             self.env['mail.message'].create([data_message])        
 
         return vals
