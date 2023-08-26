@@ -22,7 +22,10 @@
         <field name="inherit_id" ref="fleet.fleet_vehicle_view_kanban"/>
         <field name="arch" type="xml">
             <xpath expr="//kanban/field[@name='activity_ids']" position="after">
-                <field name="geofence_ids"/>
+                <field name="economic_number"/>
+            </xpath>
+            <xpath expr="//strong[hasclass('o_kanban_record_title')]" position="after">
+                <p><field name="economic_number"/></p>
             </xpath>
         </field>
     </record>
@@ -31,6 +34,9 @@
         <field name="model">fleet.vehicle</field>
         <field name="inherit_id" ref="fleet.fleet_vehicle_view_tree"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='license_plate']" position="after">
+                <field name="economic_number"/>
+            </xpath>
             <xpath expr="//field[@name='tag_ids']" position="after">
                 <field name="geofence_ids" widget="many2many_tags"/>
                 <field name="engine"/>
