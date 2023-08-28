@@ -1,26 +1,30 @@
 <templates xml:space="preserve">
     <t t-name="gpsmaps_odometers">        
         
-        <div id="odometer" style="z-index:101; position:absolute; bottom:0px; height:50px; width:300px; right:0px;  ">
+        
+        <div id="odometer">
             <div id="distance" style="z-index:112;">000000000</div>
             <div id="date" style="z-index:112;">0000-00-00</div>
             <div id="time" style="z-index:112;">00:00</div>
 
-            <div id="speed" style="z-index:110;">
+            <div id="speed">
                 <t t-call="gpsmaps_odometers_speed"/>                    
             </div>
-            <div id="batery" style="z-index:100; overflow:hidden; position:absolute; bottom:0px; right:300px; width:250px; height:180px;">
+
+            <div id="batery">
                 <t t-call="gpsmaps_template_batery"/>                    
             </div>
 
-            <div id="gas" style="z-index:100; overflow:hidden; position:absolute; bottom:0px; right:0px; width:250px; height:180px;">
+            <div id="gas">
                 <t t-call="gpsmaps_odometers_gas"/>                    
             </div>                   
-            <div t-if="template_history==0" id="llaves" t-groups="fleet.fleet_group_manager" style="z-index:102;">
+
+            <div t-if="template_history==0" id="llaves" t-groups="fleet.fleet_group_manager" style="z-index:110;">
                 <img id="key" src="/gpsmap/static/img/template/swich_on.png"/>
             </div>      
             <t t-if="template_history==1" t-call="gpsmaps_buttons"/>                   
-            
-        </div>                
+                           
+        </div> 
+        
     </t>
 </templates>

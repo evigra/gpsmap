@@ -6,18 +6,126 @@
         height: -moz-calc(100% - 65px); /* firefox */    
     }      
 /* #################### */
-div#odometer div#speed {
-    overflow:hidden; 
+div#odometer{
+    z-index:101; 
+    position:absolute; 
+    bottom:0px; 
+    height:50px; 
+    width:300px; 
+    right:0px; 
+}
+/* #################### */
+div#speed {
+    z-index:100;
     position:absolute; 
     bottom:0px; 
     right:150px; 
     width:250px; 
-    height:225px;
+    height:10px;    
 }
+div#speed div, div#speed div svg, div#speed div.template{
+    position:absolute; 
+    bottom:0px; 
+    right:0px; 
+}
+div#speed div{
+    z-index:100; 
+    width:370px; 
+    height:10px
+}
+div#speed div svg{
+    height:350px;
+    width:380px; 
+}
+div#speed div.template{
+    z-index:1; 
+    width:370px; 
+    height:250px;
+    bottom:0px; 
+}
+
+
+/* #################### */
+
+div#batery {
+    z-index:90; 
+    position:absolute; 
+    bottom:0px; 
+    right:290px; 
+    width:250px; 
+    height:10px;    
+}
+div#batery div, div#batery div svg, div#batery div.template{
+    position:absolute; 
+    bottom:0px; 
+    right:0px; 
+}
+div#batery div{
+    z-index:100; 
+    width:370px; 
+    height:10px
+}
+div#batery div svg{
+    height:300px;
+    width:380px; 
+}
+div#batery div.template{
+    z-index:1; 
+    width:370px; 
+    height:250px;
+    bottom:0px; 
+}
+
+/* #################### */
+
+div#gas {
+    z-index:90; 
+    position:absolute; 
+    bottom:0px; 
+    right:0px; 
+    width:250px; 
+    height:10px;    
+}
+div#gas div, div#gas div svg, div#gas div.template{
+    position:absolute; 
+    bottom:0px; 
+    right:0px; 
+}
+div#gas div{
+    z-index:100; 
+    width:370px; 
+    height:10px
+}
+div#gas div svg{
+    height:300px;
+    width:380px; 
+}
+div#gas div.template{
+    z-index:1; 
+    width:370px; 
+    height:250px;
+    bottom:0px; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 div#llaves {    
     position:absolute; 
     bottom:0px; 
-    right:535px; 
+    right:530px; 
     color:#ccc;
 }
 div#date {    
@@ -154,15 +262,35 @@ div#maponline{
     div#odometer div#batery,  div#odometer div#gas, div#odometer div#distance, header#top {
         display:        none;
     }
-    div#odometer div#speed {
-        overflow:hidden; 
+    div#speed {
+        z-index:90; 
         position:absolute; 
-        bottom:-50px; 
+        bottom:0px; 
         right:0px; 
         width:250px; 
-        height:225px;
+        height:10px;    
     }
-    
+    div#speed div, div#speed div svg, div#speed div.template{
+        position:absolute; 
+        bottom:0px; 
+        right:0px; 
+    }
+    div#speed div{
+        z-index:100; 
+        width:370px; 
+        height:10px
+    }
+    div#speed div svg{
+        height:300px;
+        width:380px; 
+    }
+    div#speed div.template{
+        z-index:1; 
+        width:370px; 
+        height:250px;
+        bottom:0px; 
+    }
+       
     div#date {    
         color:          #fff;
         position:       absolute; 
@@ -185,6 +313,7 @@ div#maponline{
     div#odometer div#llaves {    
         bottom:0px; 
         right:230px; 
+        z-index:1; 
     }
     
 

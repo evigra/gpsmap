@@ -101,7 +101,6 @@ odoo.define('gpsmap.action', function (require) {
             this.get_menu_vehicle();       
             this.get_geofences();
             this.status_device();
-            this.$("div#odometer").hide();
             return data;
         },
         ////////////////////////////////////////////////
