@@ -10,8 +10,8 @@
                         <field name="description"/>      
                     </group>
                     <group col="2">
-                        <field name="vehicle_ids" widget="many2many_tags"/>
-                        <field name="geofence_ids" widget="many2many_tags"/>
+                        <field name="vehicle_ids"/>
+                        <field name="geofence_ids"/>
                     </group>
                 </sheet>                                                    
             </form>
@@ -24,8 +24,8 @@
             <tree string="Models">          
                 <field name="name"/>
                 <field name="description"/>      
-                <field name="vehicle_ids"/>
-                <field name="geofence_ids"/>
+                <field name="vehicle_ids" widget="many2many_tags"/>
+                <field name="geofence_ids" widget="many2many_tags"/>
             </tree>
         </field>
     </record>

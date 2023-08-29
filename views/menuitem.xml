@@ -24,7 +24,7 @@
         <field name="name">History Map</field>
         <field name="tag">gpsmap.maphistory</field>
     </record>
-    <menuitem id="menu_gpsmap_maphistory" sequence="3" name="History Map"  parent="gpsmap_geolocation" action="action_gpsmap_maphistory" groups="fleet.fleet_group_manager"/>    
+    <menuitem id="menu_gpsmap_maphistory" sequence="3" name="History Map"  parent="gpsmap_geolocation" action="action_gpsmap_maphistory" groups="fleet.fleet_group_user"/>    
 
     <record id='fleet_gps_devices_action' model='ir.actions.act_window'>
         <field name="name">Devices</field>
@@ -52,7 +52,7 @@
         <field name="view_mode">tree,pivot,graph</field>
         <field name="context">{"search_default_groupby_vehicleid" : True, "search_default_today" : True}</field>
     </record>
-    <menuitem action="fleet_gps_positions_action" parent="gpsmap_report" id="gps_positions_menu"  groups="fleet.fleet_group_manager"/>
+    <menuitem action="fleet_gps_positions_action" parent="gpsmap_report" id="gps_positions_menu"  groups="fleet.fleet_group_user"/>
 
     <record id='fleet_gps_positions_distance_action' model='ir.actions.act_window'>
         <field name="name">Distance</field>
