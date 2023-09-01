@@ -15,18 +15,23 @@ class gps_mirror(models.Model):
     vehicle_ids = fields.Many2many('fleet.vehicle')
     start = fields.Datetime()
     end = fields.Datetime()
+    
+    def write(self, vals):
+        return super().write(self.save(vals))
 
     @api.model
     def create(self, vals):
-        if('key' not in vals):
-            url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        return super().create(self.save(vals))
 
-            str2hash = datetime.datetime.utcnow()
-            vals["key"]=hashlib.md5(str(str2hash).encode()).hexdigest()
-            vals["url"]= url + '/gpsmap/mirror/' + vals["key"]
+    def save(self, vals):
+        url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
 
-        return super().create(vals)
+        str2hash = datetime.datetime.utcnow()
+        vals["key"]=hashlib.md5(str(str2hash).encode()).hexdigest()
+        vals["url"]= url + '/gpsmap/mirror/' + vals["key"]
 
+        return vals
+        
 
     def get_positions_mirror(self, md5_mirror):        
         data = self.sudo().search([('key', '=', md5_mirror["key"])])
