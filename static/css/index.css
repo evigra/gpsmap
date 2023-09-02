@@ -321,7 +321,7 @@ div#maponline{
         display:        none;
     }
     .filtro{            
-        width:          80px;     
+        width:          120px;     
     }      
     div#filtro{    
         width: -o-calc(100% - 350px); /* opera */
