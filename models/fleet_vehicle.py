@@ -22,7 +22,7 @@ class vehicle(models.Model):
         ], 'Img GPS', default = '01', help = 'Image of GPS Vehicle', required = True)
     temporal_id = fields.Many2one('res.partner', 'temporal')
     economic_number = fields.Char('Economic Number', size = 50)
-    speed = fields.Char(default = 100, size = 3)
+    speed = fields.Char(default = 0, size = 3)
     active_time_today = fields.Integer()
     speeding = fields.Boolean(default = False)
     engine = fields.Boolean(default = True, tracking = True)

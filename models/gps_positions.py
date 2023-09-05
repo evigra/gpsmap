@@ -123,7 +123,7 @@ class gps_positions(models.Model):
         else:
             vals["speed"] = 1.852 * float(vals["speed"])
         
-        if(int(vals["speed"]) > int(fleet.speed)):        
+        if(int(fleet.speed)>0 & int(vals["speed"]) > int(fleet.speed)):        
             vals["event"] ="Speeding"
             vals["speeding"] = True
         else:
