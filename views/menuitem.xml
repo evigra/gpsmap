@@ -3,7 +3,7 @@
     <menuitem name="GPS" parent="fleet.fleet_configuration" id="gpsmap_configuration" sequence="2" groups="fleet.fleet_group_user"/>
     <menuitem name="GPS" parent="fleet.menu_fleet_reporting" id="gpsmap_report" sequence="2" groups="fleet.fleet_group_user"/>
     
-    <menuitem name="Configuration" parent="fleet.menu_root" id="fleet.fleet_configuration" sequence="100" groups="fleet.fleet_group_manager"/>
+    <menuitem name="Configuration" parent="fleet.menu_root" id="fleet.fleet_configuration" sequence="100" groups="fleet.fleet_group_user"/>
     <menuitem action="fleet.fleet_vehicle_model_action" parent="fleet.fleet_configuration" id="fleet.fleet_vehicle_model_menu" groups="fleet.fleet_group_manager" sequence="1"/>
     <menuitem action="fleet.fleet_vehicle_model_brand_action" parent="fleet.fleet_configuration" id="fleet.fleet_vehicle_model_brand_menu"  groups="fleet.fleet_group_manager" sequence="2"/>
     <menuitem action="fleet.fleet_vehicle_service_types_action" parent="fleet.fleet_configuration" id="fleet.fleet_vehicle_service_types_menu" groups="fleet.fleet_group_manager" sequence="3"/>
@@ -101,8 +101,6 @@
         <field name="name">Mirror</field>
         <field name="res_model">gps_mirror</field>
     </record>
-    <menuitem action="gps_mirror_action" parent="gpsmap_configuration" id="gps_mirror_menu"/>
-
-    
+    <menuitem action="gps_mirror_action" parent="gpsmap_configuration" id="gps_mirror_menu" groups="fleet.fleet_group_user"/>
 
 </odoo>

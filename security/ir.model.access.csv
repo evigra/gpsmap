@@ -18,3 +18,4 @@ access_gpsmap_geofences_manager,access_gpsmap_geofences_manager,model_gps_geofen
 access_gpsmap_alerts_user,access_gpsmap_alerts_user,model_gps_alerts,fleet.fleet_group_user,1,0,0,0
 access_gpsmap_alerts_manager,access_gpsmap_galerts_manager,model_gps_alerts,fleet.fleet_group_manager,1,1,1,1
 access_gpsmap_gps_mirror_manager,access_gpsmap_gps_mirror_manager,model_gps_mirror,fleet.fleet_group_manager,1,1,1,1
+access_gpsmap_gps_mirror_user,access_gpsmap_gps_mirror_user,model_gps_mirror,fleet.fleet_group_user,1,1,1,0

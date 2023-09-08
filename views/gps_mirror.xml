@@ -10,8 +10,10 @@
                         <field name="default_timezone"/>
                         <field name="start"/>
                         <field name="end"/>
+                        <field name="manager_id"  />
                     </group>
                     <field name="url"  widget="url" cols="3"/>
+                    
                     <field name="vehicle_ids" cols="3"/>                    
                 </sheet>
            </form>

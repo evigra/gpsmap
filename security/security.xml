@@ -63,6 +63,17 @@
             <field name="perm_write" eval="True"/>
             <field name="perm_create" eval="True"/>
             <field name="perm_unlink" eval="True"/>            
+        </record>   
+
+        <record id="rule_gps_mirror_user" model="ir.rule">
+            <field name="name">The user has all the rights to the mirror</field>
+            <field name="model_id" ref="model_gps_mirror"/>
+            <field name="groups" eval="[(4, ref('fleet.fleet_group_user'))]"/>
+            <field name="domain_force">[('manager_id','=',user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>            
         </record>        
         <record id="rule_gps_mirror_manager" model="ir.rule">
             <field name="name">The manager has all the rights to the mirror</field>
@@ -74,6 +85,8 @@
             <field name="perm_create" eval="True"/>
             <field name="perm_unlink" eval="True"/>            
         </record>        
+
+
 
         <record id="rule_gps_alerts_manager" model="ir.rule">
             <field name="name">The manager has all the rights to the mirror</field>
