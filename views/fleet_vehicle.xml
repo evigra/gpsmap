@@ -4,6 +4,14 @@
         <field name="model">fleet.vehicle</field>
         <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
         <field name="arch" type="xml">
+            <!--
+                <xpath expr="//header" position="inside">
+                    <button string="Send Password Reset Instructions"
+                        type="object" name="action_reset_password"
+                        attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                </xpath>
+            -->
+
             <xpath expr="//page[last()]" position="after">            
                 <page string="GPS" name="gps">
                     <group col="4" string="GPS Configuration">                    
@@ -36,6 +44,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='license_plate']" position="after">
                 <field name="economic_number"/>
+                <field name="manager_id"/>
             </xpath>
             <xpath expr="//field[@name='tag_ids']" position="after">
                 <field name="geofence_ids" widget="many2many_tags"/>

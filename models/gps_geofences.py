@@ -20,6 +20,7 @@ class gps_geofences(models.Model):
         ], 'Color', default = 'green', help = 'Color of geofence')
     hidden = fields.Boolean('Hidden')
     company_ids = fields.Many2many('res.company', 'gps_geofences_res_company_rel', 'user_id', 'cid', string = 'Companies', default = lambda self: self.env.company)
+    manager_id = fields.Many2one('res.users', string='Manager', default=lambda self: self.env.user.id, required=True)    
 
     @api.model
     def create(self, vals):
