@@ -13,7 +13,9 @@
                                                     
                                 <field name="color"/>
                                 <field name="hidden"/>
+                                <!--
                                 <field name="manager_id"/>                                 
+                                -->
                                 <field name="company_ids" widget="many2many_tags"/>                        
 
                             </group>
