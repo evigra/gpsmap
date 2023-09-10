@@ -1,8 +1,5 @@
 <templates xml:space="preserve">
     <t t-name="gpsmaps_template_odometers">        
-                <div class="template" >
-                    <svg>
-                        <!-- FONDO -->
                         
                         <circle stroke-width="0" style="opacity: 1; fill-opacity: 1; stroke-width: 0;" fill-opacity="1" opacity="1" stroke="#333333" fill="url(#r-1ad5cc38271d43ad873613284f569139)" r="105.73913043478262" cy="250" cx="250"/>
                         
@@ -54,8 +51,6 @@
 
                         <path opacity="0.65" stroke-linecap="butt" stroke-width="2.782608695652174" style="stroke-width: 2.78261; stroke-linecap: butt; opacity: 0.65;" d="M332.3995345141392,273.57014951475867L344.17089658758766,276.9373137311528" stroke="#ffdd33" fill="none"/>
                         <path opacity="0.65" stroke-linecap="round" stroke-width="1.6695652173913045" style="stroke-width: 1.66957; stroke-linecap: round; opacity: 0.65;" d="M169.66944936510254,279.87035103558503A85.70434782608697,85.70434782608697,10,1,1,330.2584096516356,280.0636477574687" stroke="#ffdd33" fill="none"/>
-                    </svg>                     
-                </div>                        
         
     </t>
 </templates>

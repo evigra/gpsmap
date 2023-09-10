@@ -30,8 +30,9 @@ div#speed div, div#speed div svg, div#speed div.template{
 }
 div#speed div{
     z-index:100; 
-    width:370px; 
-    height:10px
+    width:260px;
+    height:220px;
+    overflow: hidden;
 }
 div#speed div svg{
     height:350px;
@@ -43,7 +44,6 @@ div#speed div.template{
     height:250px;
     bottom:0px; 
 }
-
 
 /* #################### */
 
@@ -62,8 +62,9 @@ div#batery div, div#batery div svg, div#batery div.template{
 }
 div#batery div{
     z-index:100; 
-    width:370px; 
-    height:10px
+    width:260px;
+    height:175px;
+    overflow: hidden;
 }
 div#batery div svg{
     height:300px;
@@ -93,8 +94,9 @@ div#gas div, div#gas div svg, div#gas div.template{
 }
 div#gas div{
     z-index:100; 
-    width:370px; 
-    height:10px
+    width:260px;
+    height:175px;
+    overflow: hidden;
 }
 div#gas div svg{
     height:300px;
@@ -277,8 +279,9 @@ div#maponline{
     }
     div#speed div{
         z-index:100; 
-        width:370px; 
-        height:10px
+        width:260px;
+        height:170px;
+        overflow: hidden;
     }
     div#speed div svg{
         height:300px;
