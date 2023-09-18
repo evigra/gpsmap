@@ -183,13 +183,20 @@ class gps_positions(models.Model):
             'fleet.vehicle', 'cron_positions',[])
 
         for data in json.loads(datas):
+            position_last =self.search([
+                ["deviceid","=",data["deviceid"]],
+                ["devicetime","=",data["devicetime"]],
+            ])
+            if(position_last):                
+                continue
+            
             device = self.env['gps_devices'].search([["solesgps_id","=",data["deviceid"]]])
             if(device.name):
                 fleet = self.env['fleet.vehicle'].search([["gps1_id","=",device.id]])
                 if(fleet.id>0):
                     json_vals = json.loads(data["attributes"])
                     data.pop("attributes")
-                    
+
                     data["distance"] = self.get_distance(json_vals)
                     data["gas"] = self.get_gas(json_vals)
                     data["totalDistance"] = self.get_totalDistance(json_vals)
