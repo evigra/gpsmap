@@ -1,7 +1,10 @@
 import xmlrpc.client
 import datetime, time, string, pytz
-import json
+from pytz import timezone, UTC
+import json, random
 from odoo import fields, models, _
+from odoo.tools import format_datetime
+from odoo.tools.misc import formatLang, format_date, get_lang
 import re
 
 
@@ -12,9 +15,11 @@ class gps_positions(models.Model):
     _pointOnVertex = ""
 
     protocol = fields.Char(size = 15)
+    attributes = fields.Char(size = 1000)
     deviceid = fields.Many2one('gps_devices', ondelete = 'set null', string = "GPS Device", index = True)
     vehicleid = fields.Many2one('fleet.vehicle', ondelete = 'set null', string = "Vehicle", index = True)
     geofence_ids = fields.Many2many('gps_geofences', 'gps_positions_geofences_rel', 'positions_id', 'geofence', string = 'Geofences')
+    geofence_ids_exit = fields.Many2many('gps_geofences', 'gps_positions_geofences_exit_rel', 'positions_id', 'geofence_exit', string = 'Geofences exit')
     servertime = fields.Datetime('Server Time')
     devicetime = fields.Datetime('Device Time')
     fixtime = fields.Datetime('Error Time')
@@ -29,18 +34,22 @@ class gps_positions(models.Model):
     gas = fields.Float('Gas', digits = (5, 2))
     ignition = fields.Boolean(default = False)
     speeding = fields.Boolean(default = False)
+    gpsoffline = fields.Boolean(default = False)
+    alarm = fields.Boolean(default = False)
     status = fields.Char('Type', size = 50)
     event = fields.Char(size = 70)
 
     def get_geofence(self, data, fleet):
-        data_return = []
+        geofences = []
+        geofences_ids = []
         for alert in self.env['gps_alerts'].search([]):
             if(data["vehicleid"] in alert.vehicle_ids.mapped("id")):
                 point = '%s %s' % (data["longitude"],data["latitude"])
                 for geofence in alert.geofence_ids:
                     if("IN" == self.pointInPolygon(point, geofence.area.split(', '))):
-                        data_return.append(geofence.id)
-        return data_return
+                        geofences_ids.append(geofence.id)
+                        geofences.append(geofence)
+        return (geofences_ids, geofences)
 
     def get_distance(self, json_vals):
         data = 0
@@ -91,61 +100,75 @@ class gps_positions(models.Model):
 
     def get_event_geofence(self, vals, fleet):
         vals["geofence_ids"] = []        
-        data_message = self.get_data_message()
+        data_message = self.get_data_message(fleet)
         
-        geofences = self.get_geofence(vals, fleet)
-        if(len(geofences)>0):
-            vals["geofence_ids"] =[[6, False, geofences]]
+        geofences_ids, geofences= self.get_geofence(vals, fleet)
+        if(len(geofences_ids)>0):
+            vals["geofence_ids"] =[[6, False, geofences_ids]]
         for geofence in geofences:
-            if(geofence not in fleet.geofence_ids.mapped("id") and vals["status"]!='Alert'):
+            if(geofence.id not in fleet.geofence_ids.mapped("id") and vals["status"]!='Alert'):
                 vals["event"] ="Enter geofence"
-                data_message["subject"] = 'Geofence Alarm : %s' %(fleet.economic_number)
-                data_message["body"] ='The vehicle: %s, entering the geofence' %(fleet.name)
-        for geofence in fleet.geofence_ids.mapped("id"):
-            if(geofence not in geofences):
+                data_message["body_html"] =self.mail_template(vals, fleet)
+        for geofence in fleet.geofence_ids:
+            geofence_data = geofence
+            if(geofence.id not in geofences_ids):
                 vals["event"] ="Exit geofence"
                 vals["geofence_ids"] =[[6, False, []]]
-                data_message["subject"] = 'Geofence Alarm : %s' %(fleet.economic_number)
-                data_message["body"] ='The vehicle: %s, got out of geofence' %(fleet.name)
+                data_message["body_html"] =self.mail_template(vals, fleet)
 
-        if('body' in data_message):
-            self.env['mail.message'].create([data_message])        
-
+        if('body_html' in data_message):
+            
+            self.env['mail.mail'].create([data_message]).send()
         return vals
 
+    def local_timezone(self, time, tz):
+        time_utf =  datetime.datetime.strptime(time, "%Y-%m-%d %H:%M:%S")
+        time_zone = time_utf.replace(tzinfo=pytz.utc)
+        return time_zone.astimezone(pytz.timezone(tz)).strftime("%Y-%m-%d %H:%M:%S")
+
+    def mail_template(self, vals, fleet):
+        template_id = self.env.ref("gpsmap.gpsmap_template_position")
+        return template_id.with_context(lang=fleet.manager_id.partner_id.lang or get_lang(self.env).code)._render({
+            'fleet': fleet,
+            'position': vals,
+            'datatime': self.local_timezone(vals["devicetime"], "America/Mexico_City"),
+        }, engine='ir.qweb')
 
     def get_event_speeding(self, vals, fleet):
         vals["speeding"] = False
-        data_message = self.get_data_message()
-                
+        data_message = self.get_data_message(fleet)
         if(fleet.odometer_unit=='miles'):
             vals["speed"] = 1.15 * float(vals["speed"])
         else:
             vals["speed"] = 1.852 * float(vals["speed"])
         
-        if(int(fleet.speed)>0 & int(vals["speed"]) > int(fleet.speed)):        
+        if(int(fleet.speed)>0 and int(vals["speed"]) > int(fleet.speed)):        
             vals["event"] ="Speeding"
             vals["speeding"] = True
         else:
             vals["speeding"] = False
             
         if(fleet.speeding == False and vals["speeding"] == True):
-            data_message["subject"] = 'Speeding Alarm  %s' %(fleet.economic_number)
-            data_message["body"] ='The car %s, it is speeding\nYour current speed is: %d' %(fleet.name,vals["speed"])
-            self.env['mail.message'].create([data_message])        
+            if(fleet.manager_id and fleet.manager_id.partner_id):
+                data_message["recipient_ids"] =[[6, False, [self.env.ref('base.partner_admin').id]]]
+                #data_message["recipient_ids"] =[[6, False, [fleet.manager_id.partner_id.id]]]
+            data_message["body_html"] =self.mail_template(vals, fleet)
+            self.env['mail.mail'].create([data_message]).send()
 
         return vals
     
-    def get_data_message(self):
+    def get_data_message(self, fleet):
         return {
-            'author_id': self.env.ref('base.partner_root').id,
-            'model': 'mail.channel',
-            'res_id': self.env.ref('gpsmap.mail_channel_gps').id,
             'message_type': 'email',
-            'subtype_id': self.env.ref('mail.mt_comment').id,
-            'subject': 'Alarm',
+            'subject': '%s :: %s' %(fleet.company_id.name, fleet.economic_number),
+            'email_cc': False,
+            'author_id': self.env.ref('base.partner_root').id,
+            'email_to': 'evigra@gmail.com',            
+            'mail_server_id': self.env.ref('gpsmap.mail_server').id,
+            'scheduled_date': False,
+            'state': 'outgoing',
+            'auto_delete': True,
         }            
-
 
     def get_status(self, json_vals,vals, fleet):
         time_now = datetime.datetime.utcnow()
@@ -154,17 +177,45 @@ class gps_positions(models.Model):
 
         devicetime = datetime.datetime.strptime(vals["devicetime"], '%Y-%m-%d %H:%M:%S')
         fixtime = datetime.datetime.strptime(vals["fixtime"], '%Y-%m-%d %H:%M:%S')
-
-        data="Offline"
+        data_message = self.get_data_message(fleet)                
+        if(fleet.manager_id and fleet.manager_id.partner_id):
+            data_message["recipient_ids"] =[[6, False, [self.env.ref('base.partner_admin').id]]]
+            #data_message["recipient_ids"] =[[6, False, [fleet.manager_id.partner_id.id]]]
+        
+        
+        vals["status"]="Offline"
+        vals["gpsoffline"] = False
+        vals["alarm"] = False
+        
         if("alarm" in json_vals and json_vals["alarm"]):
-            data = "Alarm"
+            vals["status"] = "Alarm"                        
+            vals["alarm"] = True     
+            
+            if(fleet.alarm == False):
+                data_message["body_html"] =self.mail_template(vals, fleet)
+                self.env['mail.mail'].create([data_message]).send()
+                
         elif(devicetime < time_before):
-            data = "Offline"
+            vals["status"] = "Offline"
         elif(time_before < devicetime and devicetime < time_after and fixtime<time_before):
-            data = "GPS Offline"
+            vals["status"] = "GPS Offline"            
+            vals["gpsoffline"] = True     
+                       
+            if(fleet.gpsoffline == False):
+                data_message["body_html"] =self.mail_template(vals, fleet)
+                self.env['mail.mail'].create([data_message]).send()
+                        
         elif(time_before < devicetime and devicetime < time_after):
-            data = "Online"
-        return data
+            vals["status"] = "Online"
+
+        #if(data in ["Alarm"]):
+        #    vals["status"] = data
+
+        #    data_message = self.get_data_message(fleet)            
+        #    data_message["body_html"] = self.mail_template(vals, fleet)
+        #    self.env['mail.mail'].create([data_message]).send()
+
+        return vals
 
     def _get_session_information(self):
         solesgps_host = self.env['ir.config_parameter'].sudo().get_param('solesgps_host')
@@ -195,18 +246,20 @@ class gps_positions(models.Model):
                 fleet = self.env['fleet.vehicle'].search([["gps1_id","=",device.id]])
                 if(fleet.id>0):
                     json_vals = json.loads(data["attributes"])
-                    data.pop("attributes")
+                    #data.pop("attributes")
 
                     data["distance"] = self.get_distance(json_vals)
                     data["gas"] = self.get_gas(json_vals)
                     data["totalDistance"] = self.get_totalDistance(json_vals)
                     data["batery"] = self.get_batery(json_vals)
                     data["event"] = self.get_event(json_vals, data, fleet)
-                    data["status"] = self.get_status(json_vals, data, fleet)
+                    
                     data["ignition"] = self.get_ignition(json_vals, data, fleet)
 
                     data["vehicleid"] = fleet.id
                     data["deviceid"] = device.id
+                    
+                    data = self.get_status(json_vals, data, fleet)
                     data = self.get_event_geofence(data, fleet)
                     data = self.get_event_speeding(data, fleet)
 
@@ -217,6 +270,7 @@ class gps_positions(models.Model):
                         "ignition":data["ignition"],
                         "positionid": position,
                         "speeding": data["speeding"],
+                        "gpsoffline": data["gpsoffline"],
                         "geofence_ids": data["geofence_ids"],
                     }
 

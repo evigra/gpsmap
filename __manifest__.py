@@ -34,7 +34,9 @@ Main features
         'data/gps_commands.xml',
         'data/ir_config_parameter.xml',
         'data/ir_cron.xml',
+        'data/ir_mail_server.xml',
         'data/mail_channel.xml',
+        'data/mail_template.xml',
 
         'security/security.xml',
         'security/ir.model.access.csv',

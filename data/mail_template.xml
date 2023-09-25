@@ -1,0 +1,144 @@
+<odoo>
+
+            <template id="gpsmap_template_position">    
+
+                <t t-if="fleet" ><t t-if="position" >
+
+                <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                <tbody>
+                    <!-- HEADER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle">
+                                    <span style="font-size: 20px; font-weight: bold;">
+                                        <t t-out="fleet.economic_number or ''" />  
+                                    </span><br/>
+                                    <span style="font-size: 12px;">    
+                                        <t t-out="fleet.name or ''">Vehicle Demo</t>
+                                    </span>
+                                </td><td valign="middle" align="right">
+                                    <img t-attf-src="/logo.png?company={{ fleet.company_id.id }}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" t-att-alt="fleet.company_id.name"/>
+                                </td></tr>
+                                <tr><td colspan="2" style="text-align:center;">
+                                <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- CONTENT -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="top" style="font-size: 13px;">
+                                    <div>
+                                        <span style="font-size: 14px;">
+                                        Dear <t t-out="fleet.manager_id.name or ''">Eduardo Vizcaino</t><br/><br/>
+                                        </span>
+                                        <span style="font-size: 14px;">
+                                        I hope that during this message you are feeling well. We are contacting you to notify you of a recent event.<br/><br/>
+                                        </span>
+                                        <table style="font-size: 14px;">
+                                            <tr>                                            
+                                                <td colspan="2" style="font-size: 20px;">
+                                                    <t t-if="position['event']=='Enter geofence'">
+                                                        The vehicle entered the geofence.                                            
+                                                    </t>
+                                                    <t t-if="position['event']=='Exit geofence'">
+                                                        The vehicle left the geofence.
+                                                    </t>
+                                                    <t t-if="position['event']=='Speeding'">
+                                                        The vehicle is speeding.
+                                                    </t>                                            
+                                                    <t t-if="position['status']=='Alarm'">
+                                                        Alarm for: 
+                                                        <t t-if="position['event']=='powerCut'">Battery cut</t>
+                                                        <t t-if="position['event']=='lowBattery'">Low battery</t>
+                                                    </t>                                            
+                                                    <t t-if="position['status']=='Offline'">OffLine</t>
+                                                    <t t-if="position['status']=='GPS Offline'">GPS OffLine</t>                                                    
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Date and Time of the event:</td>
+                                                <td><t t-out="datatime"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Speed:</td>
+                                                <td><t t-out="int(position['speed'])"/></td>
+                                            </tr>
+                                        <t t-if="position['latitude']>0">
+                                            <tr>
+                                                <td>Location:</td>
+                                                <td>
+                                                    <a t-att-href="'https://www.google.com/maps/dir//%s,%s/@%s,%s,15z?entry=ttu' %(position['latitude'], position['longitude'],position['latitude'], position['longitude'])">
+                                                        (<t t-out="round(position['latitude'], 4)"/>,<t t-out="round(position['longitude'], 4)"/>)
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" align="center">
+                                                    <img t-att-src="'https://maps.googleapis.com/maps/api/staticmap?center=%s,%s&amp;zoom=15&amp;size=500x300&amp;key=AIzaSyCTDTeSJ3Uu3hHCy73RzGoJbx6vmKcmmUI&amp;markers=size:mid|color:red|%s,%s' %(position['latitude'], position['longitude'], position['latitude'], position['longitude'])"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        </table>                                            
+                                        <span style="font-size: 14px;"><br/>
+                                        If you have any questions or need more information about this notice, 
+                                        please feel free to contact us at the email address or 
+                                        phone number provided at the bottom of this message.
+                                        </span>
+                                        <span style="font-size: 14px;"><br/><br/>                                        
+                                        Thank you for your attention and cooperation.
+                                        </span>
+                                    </div>
+                                </td></tr>
+                                <tr><td style="text-align:center;">
+                                <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- FOOTER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle" align="left">
+                                    <t t-out="fleet.company_id.name or ''">SolesGPS</t>
+                                </td></tr>
+                                <tr><td valign="middle" align="left" style="opacity: 0.7;">
+                                    <t t-out="fleet.company_id.phone or ''">+52 (312) 454 - 9998</t>
+
+                                    <t t-if="fleet.company_id.email">
+                                        | <a t-att-href="'mailto:%s' % fleet.company_id.email" style="text-decoration:none; color: #454748;" t-out="fleet.company_id.email or ''">contacto@solesgps.com</a>
+                                    </t>
+                                    <t t-if="fleet.company_id.website">
+                                        | <a t-att-href="'%s' % fleet.company_id.website" style="text-decoration:none; color: #454748;" t-out="fleet.company_id.website or ''">http://solesgps.com</a>
+                                    </t>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                </td></tr>
+                <!-- POWERED BY -->
+                <tr><td align="center" style="min-width: 590px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                    <tr><td style="text-align: center; font-size: 13px;">
+                        Powered by <a target="_blank" href="http://solesgps.com" style="color: #875A7B;">SolesGPS</a>
+                    </td></tr>
+                    </table>
+                </td></tr>
+                </table>
+                </t></t>
+            </template>
+
+
+
+
+            
+
+
+</odoo>
