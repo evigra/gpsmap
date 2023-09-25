@@ -25,6 +25,8 @@ class vehicle(models.Model):
     speed = fields.Char(default = 0, size = 3)
     active_time_today = fields.Integer()
     speeding = fields.Boolean(default = False)
+    gpsoffline = fields.Boolean(default = False)
+    alarm = fields.Boolean(default = False)
     engine = fields.Boolean(default = True, tracking = True)
     ignition = fields.Boolean(default = False)
     gps1_id = fields.Many2one('gps_devices', ondelete = 'set null', string = "GPS", index = True)
