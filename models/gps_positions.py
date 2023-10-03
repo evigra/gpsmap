@@ -172,8 +172,8 @@ class gps_positions(models.Model):
 
     def get_status(self, json_vals,vals, fleet):
         time_now = datetime.datetime.utcnow()
-        time_before = time_now - datetime.timedelta(minutes = 15)
-        time_after = time_now + datetime.timedelta(minutes = 15)
+        time_before = time_now - datetime.timedelta(minutes = 30)
+        time_after = time_now + datetime.timedelta(minutes = 30)
 
         devicetime = datetime.datetime.strptime(vals["devicetime"], '%Y-%m-%d %H:%M:%S')
         fixtime = datetime.datetime.strptime(vals["fixtime"], '%Y-%m-%d %H:%M:%S')
@@ -201,7 +201,7 @@ class gps_positions(models.Model):
             vals["status"] = "GPS Offline"            
             vals["gpsoffline"] = True     
                        
-            if(fleet.gpsoffline == False):
+            if(fleet.gpsoffline == False and vals["latitude"]>0):
                 data_message["body_html"] =self.mail_template(vals, fleet)
                 self.env['mail.mail'].create([data_message]).send()
                         
