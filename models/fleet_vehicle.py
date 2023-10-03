@@ -33,25 +33,32 @@ class vehicle(models.Model):
     positionid = fields.Many2one('gps_positions', ondelete = 'set null', string = "Position", index = True)
     geofence_ids = fields.Many2many('gps_geofences', 'fleet_geofences_rel', 'fleet_id', 'geofence', string = 'Geofences')
 
+    def local_timezone(self, time, tz):
+        time_zone = time.replace(tzinfo=pytz.utc)
+        return time_zone.astimezone(pytz.timezone(tz)).strftime("%Y-%m-%d %H:%M:%S")
+
     def get_last_vehicle_position(self):
         positions_arg = [('positionid', '!=', False)]
         vehicles = self.search(positions_arg)
         positions = {}
+        tz = pytz.timezone(self.env.user.tz) if self.env.user.tz else pytz.utc
         for vehicle in vehicles:
             pos = vehicle["positionid"]
 
             totalDistance = int(pos.totalDistance/1000)
             devicetime=datetime.datetime.utcnow()
-            if(pos.devicetime != False):          
-                tz = pytz.timezone(self.env.user.tz) if self.env.user.tz else pytz.utc                            
-                tz_data=tz.localize(fields.Datetime.from_string(pos.devicetime)).strftime("%z")[-5:-2]
-                signo=tz_data[0:1]
-                horas=tz_data[1:3]
-                if(signo=="-"):
-                    devicetime = pos.devicetime - datetime.timedelta(hours=int(horas))
-                else:
-                    devicetime = pos.devicetime + datetime.timedelta(hours=int(horas))
+
+            devicetime= self.local_timezone(pos.devicetime, "America/Mexico_City"),
+            devicetime=devicetime[0]
             
+            status=pos.status
+            if(status in ("Online","Alarm")):
+                time_now = datetime.datetime.utcnow()
+                time_before = time_now - datetime.timedelta(minutes = 15)
+
+                if(pos.devicetime < time_before):
+                    status = "Offline"
+
             position = {
                 "idv": vehicle["id"],
                 "idg": pos.deviceid.id,
@@ -67,11 +74,11 @@ class vehicle(models.Model):
                 "alt": pos.altitude,
                 "psp": pos.speed,
                 "tde": devicetime,
-                "dat": devicetime.strftime("%Y-%m-%d"),
-                "tim": devicetime.strftime("%H:%M"),
+                "dat": devicetime[0:10],
+                "tim": devicetime[10:16],
                 "tse": pos.servertime,
                 "tfi": pos.fixtime,
-                "sta": pos.status,
+                "sta": status,
                 "eve": pos.event,
                 "gas": pos.gas,
                 "dis": pos.distance,
