@@ -48,7 +48,8 @@ class gps_devices(models.Model):
         params = self.env['ir.config_parameter'].sudo()
         sync_devices = params.get_param('gpsmap.sync_devices', default = False)
 
-        if(("positionid" not in vals or vals["positionid"]==False) and sync_devices):            
+        lalo=0
+        if(("positionid" not in vals or vals["positionid"]==False) and sync_devices and lalo==1):            
             solesgps_models, solesgps_db, solesgps_uid, solesgps_pass = self._get_session_information()
             if self.solesgps_id>0:
                 solesgps_models.execute_kw(solesgps_db, solesgps_uid, solesgps_pass,'tc_devices', 'write', [[self.solesgps_id],vals])

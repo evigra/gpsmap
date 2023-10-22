@@ -42,14 +42,17 @@ class gps_positions(models.Model):
     def get_geofence(self, data, fleet):
         geofences = []
         geofences_ids = []
+        alerts = []
         for alert in self.env['gps_alerts'].search([]):
             if(data["vehicleid"] in alert.vehicle_ids.mapped("id")):
                 point = '%s %s' % (data["longitude"],data["latitude"])
                 for geofence in alert.geofence_ids:
                     if("IN" == self.pointInPolygon(point, geofence.area.split(', '))):
                         geofences_ids.append(geofence.id)
-                        geofences.append(geofence)
-        return (geofences_ids, geofences)
+                        geofences.append(geofence)                        
+                        alerts.append(alert.send_mail)
+                            
+        return (geofences_ids, geofences, alerts)
 
     def get_distance(self, json_vals):
         data = 0
@@ -102,21 +105,21 @@ class gps_positions(models.Model):
         vals["geofence_ids"] = []        
         data_message = self.get_data_message(fleet)
         
-        geofences_ids, geofences= self.get_geofence(vals, fleet)
+        geofences_ids, geofences, alerts= self.get_geofence(vals, fleet)
         if(len(geofences_ids)>0):
             vals["geofence_ids"] =[[6, False, geofences_ids]]
         for geofence in geofences:
-            if(geofence.id not in fleet.geofence_ids.mapped("id") and vals["status"]!='Alert'):
+            if(geofence.id not in fleet.geofence_ids.mapped("id") and vals["status"]!='Alert' and alerts[geofences.index(geofence)]==True):
                 vals["event"] ="Enter geofence"
                 data_message["body_html"] =self.mail_template(vals, fleet)
         for geofence in fleet.geofence_ids:
             geofence_data = geofence
-            if(geofence.id not in geofences_ids):
+            if(geofence.id not in geofences_ids and alerts[fleet.geofence_ids.index(geofence)]==True):
                 vals["event"] ="Exit geofence"
                 vals["geofence_ids"] =[[6, False, []]]
                 data_message["body_html"] =self.mail_template(vals, fleet)
 
-        if('body_html' in data_message):
+        if('body_html' in data_message ):
             
             self.env['mail.mail'].create([data_message]).send()
         return vals
