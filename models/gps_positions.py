@@ -109,12 +109,12 @@ class gps_positions(models.Model):
         if(len(geofences_ids)>0):
             vals["geofence_ids"] =[[6, False, geofences_ids]]
         for geofence in geofences:
-            if(geofence.id not in fleet.geofence_ids.mapped("id") and vals["status"]!='Alert' and alerts[geofences.index(geofence)]==True):
+            if(geofence.id not in fleet.geofence_ids.mapped("id") and vals["status"]!='Alert'):
                 vals["event"] ="Enter geofence"
                 data_message["body_html"] =self.mail_template(vals, fleet)
         for geofence in fleet.geofence_ids:
             geofence_data = geofence
-            if(geofence.id not in geofences_ids and alerts[fleet.geofence_ids.index(geofence)]==True):
+            if(geofence.id not in geofences_ids ):
                 vals["event"] ="Exit geofence"
                 vals["geofence_ids"] =[[6, False, []]]
                 data_message["body_html"] =self.mail_template(vals, fleet)
