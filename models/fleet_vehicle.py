@@ -51,6 +51,15 @@ class vehicle(models.Model):
             devicetime= self.local_timezone(pos.devicetime, "America/Mexico_City"),
             devicetime=devicetime[0]
             
+
+            fixtime=datetime.datetime.utcnow()
+
+            fixtime= self.local_timezone(pos.fixtime, "America/Mexico_City"),
+            fixtime=fixtime[0]
+
+
+
+
             status=pos.status
             if(status in ("Online","Alarm")):
                 time_now = datetime.datetime.utcnow()
@@ -78,6 +87,7 @@ class vehicle(models.Model):
                 "tim": devicetime[10:16],
                 "tse": pos.servertime,
                 "tfi": pos.fixtime,
+                "tfi": fixtime,
                 "sta": status,
                 "eve": pos.event,
                 "gas": pos.gas,
