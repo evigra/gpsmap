@@ -154,7 +154,8 @@ class gps_positions(models.Model):
         if(fleet.speeding == False and vals["speeding"] == True):
             if(fleet.manager_id and fleet.manager_id.partner_id):
                 data_message["recipient_ids"] =[[6, False, [self.env.ref('base.partner_admin').id]]]
-                #data_message["recipient_ids"] =[[6, False, [fleet.manager_id.partner_id.id]]]
+                if(fleet.manager_id.partner_id.id):
+                    data_message["recipient_ids"] =[[6, False, [fleet.manager_id.partner_id.id, self.env.ref('base.partner_admin').id]]]
             data_message["body_html"] =self.mail_template(vals, fleet)
             self.env['mail.mail'].create([data_message]).send()
 
@@ -183,7 +184,8 @@ class gps_positions(models.Model):
         data_message = self.get_data_message(fleet)                
         if(fleet.manager_id and fleet.manager_id.partner_id):
             data_message["recipient_ids"] =[[6, False, [self.env.ref('base.partner_admin').id]]]
-            #data_message["recipient_ids"] =[[6, False, [fleet.manager_id.partner_id.id]]]
+            if(fleet.manager_id.partner_id.id):
+                data_message["recipient_ids"] =[[6, False, [fleet.manager_id.partner_id.id, self.env.ref('base.partner_admin').id]]]
         
         
         vals["status"]="Offline"
@@ -325,6 +327,7 @@ class gps_positions(models.Model):
                 else:
                     devicetime = pos.devicetime + datetime.timedelta(hours =  int(horas))
                     fixtime = pos.fixtime + datetime.timedelta(hours =  int(horas))                
+
                 
                 position = {
                     "idv": vehicle.id,
