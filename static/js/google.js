@@ -7,7 +7,7 @@ function create_map(self)
     var mapOptions = new Object();
     var data_return = new Object();
 
-    mapOptions.zoom = 5;
+    mapOptions.zoom = 17;
     mapOptions.center = {
         lat: 19.057522756727606,
         lng: -104.29785901920393

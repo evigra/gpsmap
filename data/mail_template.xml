@@ -79,7 +79,7 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="2" align="center">
-                                                    <img t-att-src="'https://maps.googleapis.com/maps/api/staticmap?center=%s,%s&amp;zoom=15&amp;size=500x300&amp;key=AIzaSyCTDTeSJ3Uu3hHCy73RzGoJbx6vmKcmmUI&amp;markers=size:mid|color:red|%s,%s' %(position['latitude'], position['longitude'], position['latitude'], position['longitude'])"/>
+                                                    <img t-att-src="'https://maps.googleapis.com/maps/api/staticmap?center=%s,%s&amp;zoom=15&amp;size=550x300&amp;key=AIzaSyCTDTeSJ3Uu3hHCy73RzGoJbx6vmKcmmUI&amp;markers=size:mid|color:red|%s,%s' %(position['latitude'], position['longitude'], position['latitude'], position['longitude'])"/>
                                                 </td>
                                             </tr>
                                         </t>

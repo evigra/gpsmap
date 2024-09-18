@@ -164,7 +164,7 @@ class gps_positions(models.Model):
     def get_data_message(self, fleet):
         return {
             'message_type': 'email',
-            'subject': '%s :: %s' %(fleet.company_id.name, fleet.economic_number),
+            'subject': '%s :: %s :: %s' %(fleet.company_id.name, fleet.economic_number, fleet.manager_id.login),
             'email_cc': False,
             'author_id': self.env.ref('base.partner_root').id,
             'email_to': 'evigra@gmail.com',            
