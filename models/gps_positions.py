@@ -269,7 +269,6 @@ class gps_positions(models.Model):
                     data = self.get_event_speeding(data, fleet)
 
                     position = self.create(data)
-                    device.write({"positionid": position})
 
                     data_fleet={
                         "ignition":data["ignition"],
@@ -279,6 +278,9 @@ class gps_positions(models.Model):
                         "geofence_ids": data["geofence_ids"],
                     }
 
+                    if(fleet.positionid.devicetime < datetime.datetime.strptime(data["devicetime"], '%Y-%m-%d %H:%M:%S')):
+                        device.write({"positionid": position})
+                        data_fleet["positionid"]=position
                     if data["speeding"]>5:
                         data_fleet["active_time_today"] = int(fleet["active_time_today"]) + 1
 
