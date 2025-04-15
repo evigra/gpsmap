@@ -1,7 +1,32 @@
+"""
+
+import xmlrpc.client
+
+root = 'http://%s:%d/xmlrpc/' % (HOST, PORT)
+
+uid = xmlrpc.client.ServerProxy(root + 'common').login(DB, USER, PASS)
+print("Logged in as %s (uid: %d)" % (USER, uid))
+
+# Create a new note
+sock = xmlrpc.client.ServerProxy(root + 'object')
+args = {
+    'color' : 8,
+    'memo' : 'This is a note',
+    'create_uid': uid,
+}
+note_id = sock.execute(DB, uid, PASS, 'note.note', 'create', args)
+
+
+"""
+
+
+
 import xmlrpc.client
 import datetime, time
 from odoo import api, fields, models
 
+#from odoo.tools.misc import formatLang, format_date, get_lang
+import re
 
 class gps_devices(models.Model):
     _name = "gps_devices"
@@ -23,9 +48,10 @@ class gps_devices(models.Model):
     def write(self, vals):
         return super().write(self.save(vals))
 
-    @api.model
-    def create(self, vals):
-        return super().create(self.save(vals))
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            return super().create(self.save(vals))
 
     def _get_session_information(self):
         solesgps_models = False
@@ -34,14 +60,24 @@ class gps_devices(models.Model):
         solesgps_user = self.env['ir.config_parameter'].get_param('solesgps_user')
         solesgps_pass = self.env['ir.config_parameter'].get_param('solesgps_pass')
         solesgps_db = self.env['ir.config_parameter'].get_param('solesgps_db')
-        
-        try:
-            common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(solesgps_host))
-            solesgps_uid = common.authenticate(solesgps_db, solesgps_user, solesgps_pass, {})
-            solesgps_models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(solesgps_host))
 
-            return (solesgps_models, solesgps_db, solesgps_uid, solesgps_pass)                        
-        except Exception:            
+        
+        solesgps_host = 'http://server16.solesgps.com:7916/xmlrpc/'
+        solesgps_db = "server16"
+        solesgps_user="admin"
+        solesgps_pass="admin"
+        
+
+        common = xmlrpc.client.ServerProxy(solesgps_host + "common")
+        try:
+            solesgps_uid = common.login(solesgps_db, solesgps_user, solesgps_pass)                
+            solesgps_models = xmlrpc.client.ServerProxy(solesgps_host + '2/object')
+            return (solesgps_models, solesgps_db, solesgps_uid, solesgps_pass)
+        #except Exception:
+        except re.error:
+            if(solesgps_uid is False):
+                raise UserError(_('Fallo el logueo'))
+                print("Fallo el logueo #################")              
             return (solesgps_models, solesgps_db, solesgps_uid, solesgps_pass)
 
     def save(self, vals):

@@ -20,9 +20,10 @@ class gps_mirror(models.Model):
     def write(self, vals):
         return super().write(self.save(vals))
 
-    @api.model
-    def create(self, vals):
-        return super().create(self.save(vals))
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            return super().create(self.save(vals))
 
     def save(self, vals):
         url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
