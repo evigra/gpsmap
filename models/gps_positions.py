@@ -223,15 +223,24 @@ class gps_positions(models.Model):
         return vals
 
     def _get_session_information(self):
-        solesgps_host = self.env['ir.config_parameter'].sudo().get_param('solesgps_host')
-        solesgps_user = self.env['ir.config_parameter'].sudo().get_param('solesgps_user')
-        solesgps_pass = self.env['ir.config_parameter'].sudo().get_param('solesgps_pass')
-        solesgps_db = self.env['ir.config_parameter'].sudo().get_param('solesgps_db')
-        common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(solesgps_host))
-        solesgps_uid = common.authenticate(solesgps_db, solesgps_user, solesgps_pass, {})
-        solesgps_models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(solesgps_host))
+        solesgps_models = False
+        solesgps_uid = False
+        solesgps_host = self.env['ir.config_parameter'].get_param('solesgps_host')
+        solesgps_pass = self.env['ir.config_parameter'].get_param('solesgps_pass')
+        solesgps_db = self.env['ir.config_parameter'].get_param('solesgps_db')
 
-        return (solesgps_models, solesgps_db, solesgps_uid, solesgps_pass)
+        solesgps_host = 'http://server16.solesgps.com:7916/xmlrpc/'
+        solesgps_db = "server16"
+        solesgps_user="admin"
+        solesgps_pass="admin"
+            
+        common = xmlrpc.client.ServerProxy(solesgps_host + "common")
+        try:
+            solesgps_uid = common.login(solesgps_db, solesgps_user, solesgps_pass)
+            solesgps_models = xmlrpc.client.ServerProxy(solesgps_host + '2/object')
+            return (solesgps_models, solesgps_db, solesgps_uid, solesgps_pass)
+        except Exception:
+            return (solesgps_models, solesgps_db, solesgps_uid, solesgps_pass)
 
     def run_scheduler_get_position(self):
         solesgps_models, solesgps_db, solesgps_uid, solesgps_pass = self._get_session_information()
@@ -251,7 +260,6 @@ class gps_positions(models.Model):
                 fleet = self.env['fleet.vehicle'].search([["gps1_id","=",device.id]])
                 if(fleet.id>0):
                     json_vals = json.loads(data["attributes"])
-                    #data.pop("attributes")
 
                     data["distance"] = self.get_distance(json_vals)
                     data["gas"] = self.get_gas(json_vals)
@@ -277,8 +285,7 @@ class gps_positions(models.Model):
                         "gpsoffline": data["gpsoffline"],
                         "geofence_ids": data["geofence_ids"],
                     }
-
-                    if(fleet.positionid.devicetime < datetime.datetime.strptime(data["devicetime"], '%Y-%m-%d %H:%M:%S')):
+                    if(fleet.positionid.devicetime is False or fleet.positionid.devicetime < datetime.datetime.strptime(data["devicetime"], '%Y-%m-%d %H:%M:%S')):
                         device.write({"positionid": position})
                         data_fleet["positionid"]=position
                     if data["speeding"]>5:

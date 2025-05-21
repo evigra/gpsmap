@@ -119,7 +119,7 @@ class vehicle(models.Model):
             message = "The vehicle does not have a GPS assigned"
 
         if(message):
-            warnings.warn(message)
+            #warnings.warn(message)
             return {'status':'error', 'message':message}
 
         solesgps_models, solesgps_db, solesgps_uid, solesgps_pass = device._get_session_information()
