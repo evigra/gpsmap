@@ -6,6 +6,7 @@ odoo.define('gpsmap.FieldMap', function (require) {
     var _t = core._t;
     var qweb = core.qweb;
     var self;
+
     
 
     var FieldMap = BasicFields.InputField.extend({
