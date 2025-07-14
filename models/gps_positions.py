@@ -5,6 +5,7 @@ import json, random
 from odoo import fields, models, _
 from odoo.tools import format_datetime
 from odoo.tools.misc import formatLang, format_date, get_lang
+from odoo.exceptions import ValidationError
 import re
 
 
@@ -249,7 +250,7 @@ class gps_positions(models.Model):
             device = self.env['gps_devices'].search([["solesgps_id","=",data["deviceid"]]])
             if(device.name):
                 fleet = self.env['fleet.vehicle'].search([["gps1_id","=",device.id]])
-                if(fleet.id>0):
+                if(len(fleet)==1 and fleet.id>0 ):
                     json_vals = json.loads(data["attributes"])
                     #data.pop("attributes")
 
@@ -278,13 +279,19 @@ class gps_positions(models.Model):
                         "geofence_ids": data["geofence_ids"],
                     }
 
-                    if(fleet.positionid.devicetime < datetime.datetime.strptime(data["devicetime"], '%Y-%m-%d %H:%M:%S')):
+                    if(fleet.positionid.devicetime is False or fleet.positionid.devicetime < datetime.datetime.strptime(data["devicetime"], '%Y-%m-%d %H:%M:%S')):
                         device.write({"positionid": position})
                         data_fleet["positionid"]=position
                     if data["speeding"]>5:
                         data_fleet["active_time_today"] = int(fleet["active_time_today"]) + 1
 
                     fleet.write(data_fleet)
+                else :
+                    merror="DETECTADOS DISPOSITIVOS:\n"
+                    for f in fleet:
+                        merror=merror + "\n" + f.economic_number + "\t" + f.name
+                    print(merror)
+                    #raise ValidationError(merror)
 
     def js_positions_history(self,arg):
         tz_data = self.env.user.tz_offset
