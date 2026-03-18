@@ -1,0 +1,61 @@
+<odoo>
+    <record id='gpsmap_route_view_form' model='ir.ui.view'>
+        <field name="name">gpsmap.route.form</field>
+        <field name="model">gpsmap.route</field>
+        <field name="arch" type="xml">
+            <form string="route">
+                <header>
+                    <button string="ADD POINT" id ="action_addpoint" custom="click"/>
+                    <button string="END POINT" id ="action_endpoint_route" custom="click"/>
+                    <button string="CLEAR POINT" id ="action_clearpoint" custom="click"/>                    
+                    <field name="name"/>
+                </header>
+                <div id="map_tree" style="width:100%; height:350px;"> MAPA</div>
+                <script>
+                    local.vehicles      =Array();
+                    local.positions     =undefined;    
+                    gpsmaps_obj.map("map_tree");
+                    setTimeout(function()
+                    {                
+                        limpiar_virtual();
+                        limpiar_real();	        
+                        if($("textarea[name='area']").length>0)
+                        {
+                            google.maps.event.addListener(map, 'click', function(event) 
+                            { 		                   
+                                elocation   = event.latLng;
+	                            latitud     = new String(event.latLng.lng());
+	                            longitud    = new String(event.latLng.lat());	                            
+	                            coordinate  ={latitude:latitud,longitude:longitud};
+	                            limpiar_virtual();
+                                marker          =markerMap(elocation);
+	                            locationsMarker.push(marker);						
+                            });        
+                        }
+                        else
+                        {
+                            array_route($("span[name='area']").html());                        
+                        }    
+
+                        limpiar_virtual();
+                        limpiar_real();	                 
+                        
+                    },1000);
+                    
+                </script>
+            </form>
+        </field>
+    </record>
+
+    <record id='gpsmap_route_view_tree' model='ir.ui.view'>
+        <field name="name">gpsmap.route.tree</field>
+        <field name="model">gpsmap.route</field>
+        <field name="arch" type="xml">
+            <tree string="Models">
+                <field name="name" />
+                <field name="points"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

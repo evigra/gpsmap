@@ -1,0 +1,31 @@
+<odoo>
+    <!-- SMTP -->
+    <record id="gpsmap_mail_alert" model="ir.mail_server"> 
+        <field name="name">gpsmap SMTP Alert</field>
+        <field name="smtp_host">solesgps.com</field>
+        <field name="smtp_port">465</field>
+        <field name="sequence">465</field>
+        <field name="smtp_encryption">ssl</field>
+        <field name="smtp_user">odoo_alerts@solesgps.com</field>
+        <field name="smtp_pass">Odoo_alerts1</field>          
+    </record>
+    
+    
+    <!-- SPEED -->
+
+    <record id='gpsmap_speed_view_tree' model='ir.ui.view'>
+        <field name="name">gpsmap.speed.tree</field>
+        <field name="model">gpsmap.speed</field>
+        <field name="arch" type="xml">
+            <tree string="Models">
+                <field name="deviceid" />
+                <field name="speed" />
+                <field name="starttime" />
+                <field name="endtime" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- ############################### -->    
+
+</odoo>

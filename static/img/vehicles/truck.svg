@@ -1,0 +1,38 @@
+<svg width="64" height="64" viewBox="0 0 400 400"
+     xmlns="http://www.w3.org/2000/svg">
+
+  <g id="truck"
+     transform="translate(200 200) scale(1.1) rotate(0) translate(-80 -220)">
+
+    <!-- CABINA (ARRIBA / NORTE) -->
+    <rect x="40" y="60" width="80" height="70" rx="12"
+          fill="#4da6ff" stroke="#1f4f80" stroke-width="12"/>
+
+    <!-- Ruedas cabina -->
+    <rect x="30" y="70" width="10" height="26" fill="#111"/>
+    <rect x="120" y="70" width="10" height="26" fill="#111"/>
+
+    <rect x="30" y="140" width="10" height="26" fill="#111"/>
+    <rect x="120" y="140" width="10" height="26" fill="#111"/>
+
+    <!-- Conexión -->
+    <rect x="50" y="130" fill="#4da6ff" stroke="#1f4f80" stroke-width="12" width="60" height="30"/>
+
+    <!-- REMOLQUE -->
+    <rect x="40" y="160" width="80" height="260" rx="8"
+          fill="#d9d9d9" stroke="#444" stroke-width="12"/>
+
+    <!-- Líneas -->
+    
+    <!-- Ejes -->
+    <rect x="30" y="180" width="10" height="28" fill="#222"/>
+    <rect x="120" y="180" width="10" height="28" fill="#222"/>
+
+    <rect x="30" y="340" width="10" height="28" fill="#222"/>
+    <rect x="120" y="340" width="10" height="28" fill="#222"/>
+    <rect x="30" y="380" width="10" height="28" fill="#222"/>
+    <rect x="120" y="380" width="10" height="28" fill="#222"/>
+
+  </g>
+
+</svg>

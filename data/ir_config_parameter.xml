@@ -1,0 +1,37 @@
+<odoo>
+    <!--
+    <data noupdate="0">
+    -->
+    <data>
+        <record id="geo_provider" model="ir.config_parameter"> 
+            <field name="key">base_geolocalize.geo_provider</field>
+            <field name="value">2</field>
+        </record>
+        <record id="google_map_api_key" model="ir.config_parameter"> 
+            <field name="key">base_geolocalize.google_map_api_key</field>
+            <field name="value">YOUR API KEY</field>
+        </record>
+        <record id="google_map_mapid" model="ir.config_parameter"> 
+            <field name="key">gps_mapid</field>
+            <field name="value">YOUR MAP ID</field>
+        </record>
+
+        <record id="gpsmap_host" model="ir.config_parameter"> 
+            <field name="key">gpsmap.host</field>
+            <field name="value">YOUR HOST</field>
+        </record>
+        <record id="gpsmap_user" model="ir.config_parameter"> 
+            <field name="key">gpsmap.user</field>
+            <field name="value">YOUR USER</field>
+        </record>
+        <record id="gpsmap_pass" model="ir.config_parameter"> 
+            <field name="key">gpsmap.pass</field>
+            <field name="value">YOUR PASS</field>
+        </record>
+                
+        <record id="sync_devices" model="ir.config_parameter">
+            <field name="key">gpsmap.sync_devices</field>
+            <field name="value" eval="True"/>
+        </record>
+    </data>
+</odoo>

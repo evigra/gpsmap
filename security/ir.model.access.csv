@@ -1,0 +1,8 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_gpsmap_vehicle_user,access_gpsmap_vehicle_user,model_fleet_vehicle,fleet.fleet_group_user,1,0,1,0
+access_gpsmap_vehicle_manager,access_gpsmap_vehicle_manager,model_fleet_vehicle,fleet.fleet_group_manager,1,1,1,1
+access_gps_positions_user,access_gps_positions_user,model_gps_positions,fleet.fleet_group_user,1,0,1,0
+access_gps_positions_manager,access_gps_positions_manager,model_gps_positions,fleet.fleet_group_manager,1,1,1,1
+access_gpsmap_gps_devices_user,access_gpsmap_gps_devices_user,model_gps_devices,fleet.fleet_group_user,1,0,1,0
+access_gpsmap_gps_devices_manager,access_gpsmap_gps_devices_manager,model_gps_devices,fleet.fleet_group_manager,1,1,1,1
+access_gpsmap_gpsmap_manager,access_gpsmap_gpsmap_manager,model_gpsmap,fleet.fleet_group_manager,1,1,1,

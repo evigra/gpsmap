@@ -1,0 +1,102 @@
+<odoo>
+    <menuitem name="Geolocation" parent="fleet.menu_root" id="gpsmap_geolocation" groups="fleet.fleet_group_user" />
+    <menuitem name="Geolocation" parent="fleet.fleet_configuration" id="gpsmap_configuration" sequence="2" groups="fleet.fleet_group_user"/>
+    <menuitem name="GPS" parent="fleet.menu_fleet_reporting" id="gpsmap_report" sequence="2" groups="fleet.fleet_group_user"/>
+    
+    <menuitem name="Configuration" parent="fleet.menu_root" id="fleet.fleet_configuration" sequence="100" groups="fleet.fleet_group_user"/>
+    <menuitem action="fleet.fleet_vehicle_model_action" parent="fleet.fleet_configuration" id="fleet.fleet_vehicle_model_menu" groups="fleet.fleet_group_manager" sequence="1"/>
+    <menuitem action="fleet.fleet_vehicle_model_brand_action" parent="fleet.fleet_configuration" id="fleet.fleet_vehicle_model_brand_menu"  groups="fleet.fleet_group_manager" sequence="2"/>
+    <menuitem action="fleet.fleet_vehicle_service_types_action" parent="fleet.fleet_configuration" id="fleet.fleet_vehicle_service_types_menu" groups="fleet.fleet_group_manager" sequence="3"/>
+        
+    <record id="action_gpsmap_maponline" model="ir.actions.client">
+        <field name="name">Map Online</field>
+        <field name="tag">gpsmap.maponline</field>
+    </record>
+    <menuitem id="menu_gpsmap_maponline" name="Online Map" sequence="1" parent="gpsmap_geolocation" action="action_gpsmap_maponline" groups="fleet.fleet_group_user"/>
+
+    <record id='fleet_gps_devices_action' model='ir.actions.act_window'>
+        <field name="name">GPS Devices</field>
+        <field name="res_model">gps_devices</field>
+    </record>
+    <menuitem action="fleet_gps_devices_action" parent="gpsmap_configuration" id="fleet_gps_devices_menu" groups="fleet.fleet_group_manager"/>
+
+<!--
+
+    <record id='gps_commands_action' model='ir.actions.act_window'>
+        <field name="name">Commands</field>
+        <field name="res_model">gps_commands</field>
+        <field name="context">{"search_default_groupby_protocol" : True}</field>
+    </record>
+    <menuitem action="gps_commands_action" parent="gpsmap_configuration" id="gps_commands_menu"  groups="fleet.fleet_group_manager"/>
+
+    <record id='gps_protocol_action' model='ir.actions.act_window'>
+        <field name="name">Protocol</field>
+        <field name="res_model">gps_protocol</field>
+    </record>
+    <menuitem action="gps_protocol_action" parent="gpsmap_configuration" id="gps_protocol_menu"  groups="fleet.fleet_group_manager"/>
+-->
+    <record id='fleet_gps_positions_action' model='ir.actions.act_window'>
+        <field name="name">Positions</field>
+        <field name="res_model">gps_positions</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="context">{"search_default_groupby_vehicleid" : True, "search_default_today" : True}</field>
+    </record>
+    <menuitem action="fleet_gps_positions_action" parent="gpsmap_report" id="gps_positions_menu"  groups="fleet.fleet_group_user"/>
+
+    <record id='fleet_gps_positions_distance_action' model='ir.actions.act_window'>
+        <field name="name">Distance</field>
+        <field name="res_model">gps_positions</field>
+        <field name='view_id' ref='gps_positions_distance_view_tree'/>
+        <field name="view_mode">tree,graph</field>
+        <field name="context">{"search_default_groupby_vehicleid" : True, "search_default_today" : True}</field>
+    </record>
+    <menuitem action="fleet_gps_positions_distance_action" parent="gpsmap_report" id="gps_positions_distancemenu"  groups="fleet.fleet_group_manager"/>
+
+
+    <record id='fleet_gps_positions_time_action' model='ir.actions.act_window'>
+        <field name="name">Time</field>
+        <field name="res_model">gps_positions</field>
+        <field name='view_id' ref='gps_positions_time_view_tree'/>
+        <field name="view_mode">tree,graph,pivot</field>
+        <field name="context">{"search_default_groupby_vehicleid" : True, "search_default_week" : True}</field>
+    </record>
+    <menuitem action="fleet_gps_positions_time_action" parent="gpsmap_report" id="gps_positions_timemenu"  groups="fleet.fleet_group_manager"/>
+
+<!--
+    <record id='fleet_gps_positions_distance_hour_action' model='ir.actions.act_window'>
+        <field name="name">Distance / Hour </field>
+        <field name="res_model">gps_positions</field>
+        <field name='view_id' ref='gps_positions_distance_hour_view_pivot'/>
+        <field name="view_mode">pivot,tree,graph</field>
+        <field name="context">{"search_default_groupby_vehicleid" : True, "search_default_today" : True}</field>
+    </record>
+    <menuitem action="fleet_gps_positions_distance_hour_action" parent="gpsmap_report" id="gps_positions_distance_hour_menu"  groups="fleet.fleet_group_manager"/>
+
+    <record id='fleet_gps_positions_geofence_action' model='ir.actions.act_window'>
+        <field name="name">Geofence </field>
+        <field name="res_model">gps_positions</field>
+        <field name='view_id' ref='gps_positions_geofence_view_tree'/>
+        <field name="view_mode">pivot,tree,graph</field>
+        <field name="context">{"search_default_groupby_vehicleid" : True, "search_default_today" : True}</field>
+        <field name="domain">[('event', 'like', 'geofence')]</field>
+    </record>
+    <menuitem action="fleet_gps_positions_geofence_action" parent="gpsmap_report" id="gps_positions_geofence_menu"  groups="fleet.fleet_group_manager"/>
+    
+
+    <record id='fleet_geofences_action' model='ir.actions.act_window'>
+        <field name="name">Geofences</field>
+        <field name="res_model">gps_geofences</field>
+    </record>
+    <menuitem action="fleet_geofences_action" parent="gpsmap_configuration" id="gps_geofences_menu"  groups="fleet.fleet_group_manager"/>
+
+    
+    <record id='gps_alerts_action' model='ir.actions.act_window'>
+        <field name="name">Alerts</field>
+        <field name="res_model">gps_alerts</field>
+    </record>
+    
+    <menuitem action="gps_alerts_action" parent="gpsmap_configuration" id="gps_alerts_menu"  groups="fleet.fleet_group_manager"/>
+    
+
+-->
+</odoo>
