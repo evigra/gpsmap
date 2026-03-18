@@ -1,0 +1,21 @@
+<odoo>
+    <template id="assets_backend" name="gpsmap_assets" inherit_id="web.webclient_bootstrap">
+        <xpath expr="//t[@t-call-assets='web.assets_common']" position="before">
+            <link rel="stylesheet" href="/gpsmap/static/css/index.css"/>
+            <t t-set="google_maps_gps_mapid" t-value="request.env['ir.config_parameter'].sudo().get_param('gps_mapid')"/>            
+            <t t-if="google_maps_gps_mapid">
+                <script> window.GOOGLE_MAP_ID = "<t t-esc='google_maps_gps_mapid'/>";</script>                
+            </t>
+
+            
+            <t t-set="google_maps_api_key" t-value="request.env['ir.config_parameter'].sudo().get_param('base_geolocalize.google_map_api_key')"/>
+            <t t-if="google_maps_api_key">
+                <script t-attf-src="https://maps.googleapis.com/maps/api/js?key=#{google_maps_api_key}&amp;libraries=marker"></script>
+                
+            </t>
+            <t t-if="not google_maps_api_key">
+                <script t-attf-src="https://maps.googleapis.com/maps/api/js?v=quarterly&amp;key=#{google_maps_api_key}&amp;libraries=#{google_maps_libraries}#{'&amp;language=' + google_maps_lang_localization if google_maps_lang_localization else ''}#{'&amp;region=' + google_maps_region_localization if google_maps_region_localization else ''}"></script>
+            </t>
+        </xpath>
+    </template>
+</odoo>

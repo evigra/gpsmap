@@ -1,0 +1,16 @@
+<odoo>
+
+    
+    <data noupdate="1">
+        <record id="mail_server" model="ir.mail_server"> 
+            <field name="name">contacto@solesgps.com</field>
+            <field name="smtp_host">solesgps.com</field>
+            <field name="smtp_port">465</field>
+            <field name="smtp_authentication">login</field>
+            <field name="smtp_encryption">ssl</field>
+            <field name="smtp_user">contacto@solesgps.com</field>
+            <field name="smtp_pass"> </field>
+        </record>
+    </data>
+    
+</odoo>

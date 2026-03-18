@@ -1,0 +1,962 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="protocol_gps103" model="gps_protocol">
+        <field name="name">gps103</field>
+        <field name="port">5001</field>
+    </record>
+    <record id="protocol_tk103" model="gps_protocol">
+        <field name="name">tk103</field>
+        <field name="port">5002</field>
+    </record>
+    <record id="protocol_gl100" model="gps_protocol">
+        <field name="name">gl100</field>
+        <field name="port">5003</field>
+    </record>
+    <record id="protocol_gl200" model="gps_protocol">
+        <field name="name">gl200</field>
+        <field name="port">5004</field>
+    </record>
+    <record id="protocol_t55" model="gps_protocol">
+        <field name="name">t55</field>
+        <field name="port">5005</field>
+    </record>
+    <record id="protocol_xexun" model="gps_protocol">
+        <field name="name">xexun</field>
+        <field name="port">5006</field>
+    </record>
+    <record id="protocol_totem" model="gps_protocol">
+        <field name="name">totem</field>
+        <field name="port">5007</field>
+    </record>
+    <record id="protocol_enfora" model="gps_protocol">
+        <field name="name">enfora</field>
+        <field name="port">5008</field>
+    </record>
+    <record id="protocol_meiligao" model="gps_protocol">
+        <field name="name">meiligao</field>
+        <field name="port">5009</field>
+    </record>
+    <record id="protocol_trv" model="gps_protocol">
+        <field name="name">trv</field>
+        <field name="port">5010</field>
+    </record>
+    <record id="protocol_suntech" model="gps_protocol">
+        <field name="name">suntech</field>
+        <field name="port">5011</field>
+    </record>
+    <record id="protocol_progress" model="gps_protocol">
+        <field name="name">progress</field>
+        <field name="port">5012</field>
+    </record>
+    <record id="protocol_h02" model="gps_protocol">
+        <field name="name">h02</field>
+        <field name="port">5013</field>
+    </record>
+    <record id="protocol_jt600" model="gps_protocol">
+        <field name="name">jt600</field>
+        <field name="port">5014</field>
+    </record>
+    <record id="protocol_huabao" model="gps_protocol">
+        <field name="name">huabao</field>
+        <field name="port">5015</field>
+    </record>
+    <record id="protocol_v680" model="gps_protocol">
+        <field name="name">v680</field>
+        <field name="port">5016</field>
+    </record>
+    <record id="protocol_pt502" model="gps_protocol">
+        <field name="name">pt502</field>
+        <field name="port">5017</field>
+    </record>
+    <record id="protocol_tr20" model="gps_protocol">
+        <field name="name">tr20</field>
+        <field name="port">5018</field>
+    </record>
+    <record id="protocol_navis" model="gps_protocol">
+        <field name="name">navis</field>
+        <field name="port">5019</field>
+    </record>
+    <record id="protocol_meitrack" model="gps_protocol">
+        <field name="name">meitrack</field>
+        <field name="port">5020</field>
+    </record>
+    <record id="protocol_skypatrol" model="gps_protocol">
+        <field name="name">skypatrol</field>
+        <field name="port">5021</field>
+    </record>
+    <record id="protocol_gt02" model="gps_protocol">
+        <field name="name">gt02</field>
+        <field name="port">5022</field>
+    </record>
+    <record id="protocol_gt06" model="gps_protocol">
+        <field name="name">gt06</field>
+        <field name="port">5023</field>
+    </record>
+    <record id="protocol_megastek" model="gps_protocol">
+        <field name="name">megastek</field>
+        <field name="port">5024</field>
+    </record>
+    <record id="protocol_navigil" model="gps_protocol">
+        <field name="name">navigil</field>
+        <field name="port">5025</field>
+    </record>
+    <record id="protocol_gpsgate" model="gps_protocol">
+        <field name="name">gpsgate</field>
+        <field name="port">5026</field>
+    </record>
+    <record id="protocol_teltonika" model="gps_protocol">
+        <field name="name">teltonika</field>
+        <field name="port">5027</field>
+    </record>
+    <record id="protocol_mta6" model="gps_protocol">
+        <field name="name">mta6</field>
+        <field name="port">5028</field>
+    </record>
+    <record id="protocol_tzone" model="gps_protocol">
+        <field name="name">tzone</field>
+        <field name="port">5029</field>
+    </record>
+    <record id="protocol_tlt2h" model="gps_protocol">
+        <field name="name">tlt2h</field>
+        <field name="port">5030</field>
+    </record>
+    <record id="protocol_taip" model="gps_protocol">
+        <field name="name">taip</field>
+        <field name="port">5031</field>
+    </record>
+    <record id="protocol_wondex" model="gps_protocol">
+        <field name="name">wondex</field>
+        <field name="port">5032</field>
+    </record>
+    <record id="protocol_cellocator" model="gps_protocol">
+        <field name="name">cellocator</field>
+        <field name="port">5033</field>
+    </record>
+    <record id="protocol_galileo" model="gps_protocol">
+        <field name="name">galileo</field>
+        <field name="port">5034</field>
+    </record>
+    <record id="protocol_ywt" model="gps_protocol">
+        <field name="name">ywt</field>
+        <field name="port">5035</field>
+    </record>
+    <record id="protocol_tk102" model="gps_protocol">
+        <field name="name">tk102</field>
+        <field name="port">5036</field>
+    </record>
+    <record id="protocol_intellitrac" model="gps_protocol">
+        <field name="name">intellitrac</field>
+        <field name="port">5037</field>
+    </record>
+    <record id="protocol_gpsmta" model="gps_protocol">
+        <field name="name">gpsmta</field>
+        <field name="port">5038</field>
+    </record>
+    <record id="protocol_wialon" model="gps_protocol">
+        <field name="name">wialon</field>
+        <field name="port">5039</field>
+    </record>
+    <record id="protocol_carscop" model="gps_protocol">
+        <field name="name">carscop</field>
+        <field name="port">5040</field>
+    </record>
+    <record id="protocol_apel" model="gps_protocol">
+        <field name="name">apel</field>
+        <field name="port">5041</field>
+    </record>
+    <record id="protocol_manpower" model="gps_protocol">
+        <field name="name">manpower</field>
+        <field name="port">5042</field>
+    </record>
+    <record id="protocol_globalsat" model="gps_protocol">
+        <field name="name">globalsat</field>
+        <field name="port">5043</field>
+    </record>
+    <record id="protocol_atrack" model="gps_protocol">
+        <field name="name">atrack</field>
+        <field name="port">5044</field>
+    </record>
+    <record id="protocol_pt3000" model="gps_protocol">
+        <field name="name">pt3000</field>
+        <field name="port">5045</field>
+    </record>
+    <record id="protocol_ruptela" model="gps_protocol">
+        <field name="name">ruptela</field>
+        <field name="port">5046</field>
+    </record>
+    <record id="protocol_topflytech" model="gps_protocol">
+        <field name="name">topflytech</field>
+        <field name="port">5047</field>
+    </record>
+    <record id="protocol_laipac" model="gps_protocol">
+        <field name="name">laipac</field>
+        <field name="port">5048</field>
+    </record>
+    <record id="protocol_aplicom" model="gps_protocol">
+        <field name="name">aplicom</field>
+        <field name="port">5049</field>
+    </record>
+    <record id="protocol_gotop" model="gps_protocol">
+        <field name="name">gotop</field>
+        <field name="port">5050</field>
+    </record>
+    <record id="protocol_sanav" model="gps_protocol">
+        <field name="name">sanav</field>
+        <field name="port">5051</field>
+    </record>
+    <record id="protocol_gator" model="gps_protocol">
+        <field name="name">gator</field>
+        <field name="port">5052</field>
+    </record>
+    <record id="protocol_noran" model="gps_protocol">
+        <field name="name">noran</field>
+        <field name="port">5053</field>
+    </record>
+    <record id="protocol_m2m" model="gps_protocol">
+        <field name="name">m2m</field>
+        <field name="port">5054</field>
+    </record>
+    <record id="protocol_osmand" model="gps_protocol">
+        <field name="name">osmand</field>
+        <field name="port">5055</field>
+    </record>
+    <record id="protocol_easytrack" model="gps_protocol">
+        <field name="name">easytrack</field>
+        <field name="port">5056</field>
+    </record>
+    <record id="protocol_gpsmarker" model="gps_protocol">
+        <field name="name">gpsmarker</field>
+        <field name="port">5057</field>
+    </record>
+    <record id="protocol_khd" model="gps_protocol">
+        <field name="name">khd</field>
+        <field name="port">5058</field>
+    </record>
+    <record id="protocol_piligrim" model="gps_protocol">
+        <field name="name">piligrim</field>
+        <field name="port">5059</field>
+    </record>
+    <record id="protocol_stl060" model="gps_protocol">
+        <field name="name">stl060</field>
+        <field name="port">5060</field>
+    </record>
+    <record id="protocol_cartrack" model="gps_protocol">
+        <field name="name">cartrack</field>
+        <field name="port">5061</field>
+    </record>
+    <record id="protocol_minifinder" model="gps_protocol">
+        <field name="name">minifinder</field>
+        <field name="port">5062</field>
+    </record>
+    <record id="protocol_haicom" model="gps_protocol">
+        <field name="name">haicom</field>
+        <field name="port">5063</field>
+    </record>
+    <record id="protocol_eelink" model="gps_protocol">
+        <field name="name">eelink</field>
+        <field name="port">5064</field>
+    </record>
+    <record id="protocol_box" model="gps_protocol">
+        <field name="name">box</field>
+        <field name="port">5065</field>
+    </record>
+    <record id="protocol_freedom" model="gps_protocol">
+        <field name="name">freedom</field>
+        <field name="port">5066</field>
+    </record>
+    <record id="protocol_telic" model="gps_protocol">
+        <field name="name">telic</field>
+        <field name="port">5067</field>
+    </record>
+    <record id="protocol_trackbox" model="gps_protocol">
+        <field name="name">trackbox</field>
+        <field name="port">5068</field>
+    </record>
+    <record id="protocol_visiontek" model="gps_protocol">
+        <field name="name">visiontek</field>
+        <field name="port">5069</field>
+    </record>
+    <record id="protocol_orion" model="gps_protocol">
+        <field name="name">orion</field>
+        <field name="port">5070</field>
+    </record>
+    <record id="protocol_riti" model="gps_protocol">
+        <field name="name">riti</field>
+        <field name="port">5071</field>
+    </record>
+    <record id="protocol_ulbotech" model="gps_protocol">
+        <field name="name">ulbotech</field>
+        <field name="port">5072</field>
+    </record>
+    <record id="protocol_tramigo" model="gps_protocol">
+        <field name="name">tramigo</field>
+        <field name="port">5073</field>
+    </record>
+    <record id="protocol_tr900" model="gps_protocol">
+        <field name="name">tr900</field>
+        <field name="port">5074</field>
+    </record>
+    <record id="protocol_ardi01" model="gps_protocol">
+        <field name="name">ardi01</field>
+        <field name="port">5075</field>
+    </record>
+    <record id="protocol_xt013" model="gps_protocol">
+        <field name="name">xt013</field>
+        <field name="port">5076</field>
+    </record>
+    <record id="protocol_autofon" model="gps_protocol">
+        <field name="name">autofon</field>
+        <field name="port">5077</field>
+    </record>
+    <record id="protocol_gosafe" model="gps_protocol">
+        <field name="name">gosafe</field>
+        <field name="port">5078</field>
+    </record>
+    <record id="protocol_tt8850" model="gps_protocol">
+        <field name="name">tt8850</field>
+        <field name="port">5079</field>
+    </record>
+    <record id="protocol_bce" model="gps_protocol">
+        <field name="name">bce</field>
+        <field name="port">5080</field>
+    </record>
+    <record id="protocol_xirgo" model="gps_protocol">
+        <field name="name">xirgo</field>
+        <field name="port">5081</field>
+    </record>
+    <record id="protocol_calamp" model="gps_protocol">
+        <field name="name">calamp</field>
+        <field name="port">5082</field>
+    </record>
+    <record id="protocol_mtx" model="gps_protocol">
+        <field name="name">mtx</field>
+        <field name="port">5083</field>
+    </record>
+    <record id="protocol_tytan" model="gps_protocol">
+        <field name="name">tytan</field>
+        <field name="port">5084</field>
+    </record>
+    <record id="protocol_avl301" model="gps_protocol">
+        <field name="name">avl301</field>
+        <field name="port">5085</field>
+    </record>
+    <record id="protocol_castel" model="gps_protocol">
+        <field name="name">castel</field>
+        <field name="port">5086</field>
+    </record>
+    <record id="protocol_mxt" model="gps_protocol">
+        <field name="name">mxt</field>
+        <field name="port">5087</field>
+    </record>
+    <record id="protocol_cityeasy" model="gps_protocol">
+        <field name="name">cityeasy</field>
+        <field name="port">5088</field>
+    </record>
+    <record id="protocol_aquila" model="gps_protocol">
+        <field name="name">aquila</field>
+        <field name="port">5089</field>
+    </record>
+    <record id="protocol_flextrack" model="gps_protocol">
+        <field name="name">flextrack</field>
+        <field name="port">5090</field>
+    </record>
+    <record id="protocol_blackkite" model="gps_protocol">
+        <field name="name">blackkite</field>
+        <field name="port">5091</field>
+    </record>
+    <record id="protocol_adm" model="gps_protocol">
+        <field name="name">adm</field>
+        <field name="port">5092</field>
+    </record>
+    <record id="protocol_watch" model="gps_protocol">
+        <field name="name">watch</field>
+        <field name="port">5093</field>
+    </record>
+    <record id="protocol_t800x" model="gps_protocol">
+        <field name="name">t800x</field>
+        <field name="port">5094</field>
+    </record>
+    <record id="protocol_upro" model="gps_protocol">
+        <field name="name">upro</field>
+        <field name="port">5095</field>
+    </record>
+    <record id="protocol_auro" model="gps_protocol">
+        <field name="name">auro</field>
+        <field name="port">5096</field>
+    </record>
+    <record id="protocol_disha" model="gps_protocol">
+        <field name="name">disha</field>
+        <field name="port">5097</field>
+    </record>
+    <record id="protocol_thinkrace" model="gps_protocol">
+        <field name="name">thinkrace</field>
+        <field name="port">5098</field>
+    </record>
+    <record id="protocol_pathaway" model="gps_protocol">
+        <field name="name">pathaway</field>
+        <field name="port">5099</field>
+    </record>
+    <record id="protocol_arnavi" model="gps_protocol">
+        <field name="name">arnavi</field>
+        <field name="port">5100</field>
+    </record>
+    <record id="protocol_nvs" model="gps_protocol">
+        <field name="name">nvs</field>
+        <field name="port">5101</field>
+    </record>
+    <record id="protocol_kenji" model="gps_protocol">
+        <field name="name">kenji</field>
+        <field name="port">5102</field>
+    </record>
+    <record id="protocol_astra" model="gps_protocol">
+        <field name="name">astra</field>
+        <field name="port">5103</field>
+    </record>
+    <record id="protocol_homtecs" model="gps_protocol">
+        <field name="name">homtecs</field>
+        <field name="port">5104</field>
+    </record>
+    <record id="protocol_fox" model="gps_protocol">
+        <field name="name">fox</field>
+        <field name="port">5105</field>
+    </record>
+    <record id="protocol_gnx" model="gps_protocol">
+        <field name="name">gnx</field>
+        <field name="port">5106</field>
+    </record>
+    <record id="protocol_arknav" model="gps_protocol">
+        <field name="name">arknav</field>
+        <field name="port">5107</field>
+    </record>
+    <record id="protocol_supermate" model="gps_protocol">
+        <field name="name">supermate</field>
+        <field name="port">5108</field>
+    </record>
+    <record id="protocol_appello" model="gps_protocol">
+        <field name="name">appello</field>
+        <field name="port">5109</field>
+    </record>
+    <record id="protocol_idpl" model="gps_protocol">
+        <field name="name">idpl</field>
+        <field name="port">5110</field>
+    </record>
+    <record id="protocol_huasheng" model="gps_protocol">
+        <field name="name">huasheng</field>
+        <field name="port">5111</field>
+    </record>
+    <record id="protocol_l100" model="gps_protocol">
+        <field name="name">l100</field>
+        <field name="port">5112</field>
+    </record>
+    <record id="protocol_granit" model="gps_protocol">
+        <field name="name">granit</field>
+        <field name="port">5113</field>
+    </record>
+    <record id="protocol_carcell" model="gps_protocol">
+        <field name="name">carcell</field>
+        <field name="port">5114</field>
+    </record>
+    <record id="protocol_obddongle" model="gps_protocol">
+        <field name="name">obddongle</field>
+        <field name="port">5115</field>
+    </record>
+    <record id="protocol_hunterpro" model="gps_protocol">
+        <field name="name">hunterpro</field>
+        <field name="port">5116</field>
+    </record>
+    <record id="protocol_raveon" model="gps_protocol">
+        <field name="name">raveon</field>
+        <field name="port">5117</field>
+    </record>
+    <record id="protocol_cradlepoint" model="gps_protocol">
+        <field name="name">cradlepoint</field>
+        <field name="port">5118</field>
+    </record>
+    <record id="protocol_arknavx8" model="gps_protocol">
+        <field name="name">arknavx8</field>
+        <field name="port">5119</field>
+    </record>
+    <record id="protocol_autograde" model="gps_protocol">
+        <field name="name">autograde</field>
+        <field name="port">5120</field>
+    </record>
+    <record id="protocol_oigo" model="gps_protocol">
+        <field name="name">oigo</field>
+        <field name="port">5121</field>
+    </record>
+    <record id="protocol_jpkorjar" model="gps_protocol">
+        <field name="name">jpkorjar</field>
+        <field name="port">5122</field>
+    </record>
+    <record id="protocol_cguard" model="gps_protocol">
+        <field name="name">cguard</field>
+        <field name="port">5123</field>
+    </record>
+    <record id="protocol_fifotrack" model="gps_protocol">
+        <field name="name">fifotrack</field>
+        <field name="port">5124</field>
+    </record>
+    <record id="protocol_smokey" model="gps_protocol">
+        <field name="name">smokey</field>
+        <field name="port">5125</field>
+    </record>
+    <record id="protocol_extremtrac" model="gps_protocol">
+        <field name="name">extremtrac</field>
+        <field name="port">5126</field>
+    </record>
+    <record id="protocol_trakmate" model="gps_protocol">
+        <field name="name">trakmate</field>
+        <field name="port">5127</field>
+    </record>
+    <record id="protocol_at2000" model="gps_protocol">
+        <field name="name">at2000</field>
+        <field name="port">5128</field>
+    </record>
+    <record id="protocol_maestro" model="gps_protocol">
+        <field name="name">maestro</field>
+        <field name="port">5129</field>
+    </record>
+    <record id="protocol_ais" model="gps_protocol">
+        <field name="name">ais</field>
+        <field name="port">5130</field>
+    </record>
+    <record id="protocol_gt30" model="gps_protocol">
+        <field name="name">gt30</field>
+        <field name="port">5131</field>
+    </record>
+    <record id="protocol_tmg" model="gps_protocol">
+        <field name="name">tmg</field>
+        <field name="port">5132</field>
+    </record>
+    <record id="protocol_pretrace" model="gps_protocol">
+        <field name="name">pretrace</field>
+        <field name="port">5133</field>
+    </record>
+    <record id="protocol_pricol" model="gps_protocol">
+        <field name="name">pricol</field>
+        <field name="port">5134</field>
+    </record>
+    <record id="protocol_siwi" model="gps_protocol">
+        <field name="name">siwi</field>
+        <field name="port">5135</field>
+    </record>
+    <record id="protocol_starlink" model="gps_protocol">
+        <field name="name">starlink</field>
+        <field name="port">5136</field>
+    </record>
+    <record id="protocol_dmt" model="gps_protocol">
+        <field name="name">dmt</field>
+        <field name="port">5137</field>
+    </record>
+    <record id="protocol_xt2400" model="gps_protocol">
+        <field name="name">xt2400</field>
+        <field name="port">5138</field>
+    </record>
+    <record id="protocol_dmthttp" model="gps_protocol">
+        <field name="name">dmthttp</field>
+        <field name="port">5139</field>
+    </record>
+    <record id="protocol_alematics" model="gps_protocol">
+        <field name="name">alematics</field>
+        <field name="port">5140</field>
+    </record>
+    <record id="protocol_gps056" model="gps_protocol">
+        <field name="name">gps056</field>
+        <field name="port">5141</field>
+    </record>
+    <record id="protocol_flexcomm" model="gps_protocol">
+        <field name="name">flexcomm</field>
+        <field name="port">5142</field>
+    </record>
+    <record id="protocol_vt200" model="gps_protocol">
+        <field name="name">vt200</field>
+        <field name="port">5143</field>
+    </record>
+    <record id="protocol_owntracks" model="gps_protocol">
+        <field name="name">owntracks</field>
+        <field name="port">5144</field>
+    </record>
+    <record id="protocol_vtfms" model="gps_protocol">
+        <field name="name">vtfms</field>
+        <field name="port">5145</field>
+    </record>
+    <record id="protocol_tlv" model="gps_protocol">
+        <field name="name">tlv</field>
+        <field name="port">5146</field>
+    </record>
+    <record id="protocol_esky" model="gps_protocol">
+        <field name="name">esky</field>
+        <field name="port">5147</field>
+    </record>
+    <record id="protocol_genx" model="gps_protocol">
+        <field name="name">genx</field>
+        <field name="port">5148</field>
+    </record>
+    <record id="protocol_flespi" model="gps_protocol">
+        <field name="name">flespi</field>
+        <field name="port">5149</field>
+    </record>
+    <record id="protocol_dway" model="gps_protocol">
+        <field name="name">dway</field>
+        <field name="port">5150</field>
+    </record>
+    <record id="protocol_recoda" model="gps_protocol">
+        <field name="name">recoda</field>
+        <field name="port">5151</field>
+    </record>
+    <record id="protocol_oko" model="gps_protocol">
+        <field name="name">oko</field>
+        <field name="port">5152</field>
+    </record>
+    <record id="protocol_ivt401" model="gps_protocol">
+        <field name="name">ivt401</field>
+        <field name="port">5153</field>
+    </record>
+    <record id="protocol_sigfox" model="gps_protocol">
+        <field name="name">sigfox</field>
+        <field name="port">5154</field>
+    </record>
+    <record id="protocol_t57" model="gps_protocol">
+        <field name="name">t57</field>
+        <field name="port">5155</field>
+    </record>
+    <record id="protocol_spot" model="gps_protocol">
+        <field name="name">spot</field>
+        <field name="port">5156</field>
+    </record>
+    <record id="protocol_m2c" model="gps_protocol">
+        <field name="name">m2c</field>
+        <field name="port">5157</field>
+    </record>
+    <record id="protocol_austinnb" model="gps_protocol">
+        <field name="name">austinnb</field>
+        <field name="port">5158</field>
+    </record>
+    <record id="protocol_opengts" model="gps_protocol">
+        <field name="name">opengts</field>
+        <field name="port">5159</field>
+    </record>
+    <record id="protocol_cautela" model="gps_protocol">
+        <field name="name">cautela</field>
+        <field name="port">5160</field>
+    </record>
+    <record id="protocol_continental" model="gps_protocol">
+        <field name="name">continental</field>
+        <field name="port">5161</field>
+    </record>
+    <record id="protocol_egts" model="gps_protocol">
+        <field name="name">egts</field>
+        <field name="port">5162</field>
+    </record>
+    <record id="protocol_robotrack" model="gps_protocol">
+        <field name="name">robotrack</field>
+        <field name="port">5163</field>
+    </record>
+    <record id="protocol_pt60" model="gps_protocol">
+        <field name="name">pt60</field>
+        <field name="port">5164</field>
+    </record>
+    <record id="protocol_telemax" model="gps_protocol">
+        <field name="name">telemax</field>
+        <field name="port">5165</field>
+    </record>
+    <record id="protocol_sabertek" model="gps_protocol">
+        <field name="name">sabertek</field>
+        <field name="port">5166</field>
+    </record>
+    <record id="protocol_retranslator" model="gps_protocol">
+        <field name="name">retranslator</field>
+        <field name="port">5167</field>
+    </record>
+    <record id="protocol_svias" model="gps_protocol">
+        <field name="name">svias</field>
+        <field name="port">5168</field>
+    </record>
+    <record id="protocol_eseal" model="gps_protocol">
+        <field name="name">eseal</field>
+        <field name="port">5169</field>
+    </record>
+    <record id="protocol_freematics" model="gps_protocol">
+        <field name="name">freematics</field>
+        <field name="port">5170</field>
+    </record>
+    <record id="protocol_avema" model="gps_protocol">
+        <field name="name">avema</field>
+        <field name="port">5171</field>
+    </record>
+    <record id="protocol_autotrack" model="gps_protocol">
+        <field name="name">autotrack</field>
+        <field name="port">5172</field>
+    </record>
+    <record id="protocol_tek" model="gps_protocol">
+        <field name="name">tek</field>
+        <field name="port">5173</field>
+    </record>
+    <record id="protocol_wristband" model="gps_protocol">
+        <field name="name">wristband</field>
+        <field name="port">5174</field>
+    </record>
+    <record id="protocol_lacak" model="gps_protocol">
+        <field name="name">lacak</field>
+        <field name="port">5175</field>
+    </record>
+    <record id="protocol_milesmate" model="gps_protocol">
+        <field name="name">milesmate</field>
+        <field name="port">5176</field>
+    </record>
+    <record id="protocol_anytrek" model="gps_protocol">
+        <field name="name">anytrek</field>
+        <field name="port">5177</field>
+    </record>
+    <record id="protocol_smartsole" model="gps_protocol">
+        <field name="name">smartsole</field>
+        <field name="port">5178</field>
+    </record>
+    <record id="protocol_its" model="gps_protocol">
+        <field name="name">its</field>
+        <field name="port">5179</field>
+    </record>
+    <record id="protocol_xrb28" model="gps_protocol">
+        <field name="name">xrb28</field>
+        <field name="port">5180</field>
+    </record>
+    <record id="protocol_c2stek" model="gps_protocol">
+        <field name="name">c2stek</field>
+        <field name="port">5181</field>
+    </record>
+    <record id="protocol_nyitech" model="gps_protocol">
+        <field name="name">nyitech</field>
+        <field name="port">5182</field>
+    </record>
+    <record id="protocol_neos" model="gps_protocol">
+        <field name="name">neos</field>
+        <field name="port">5183</field>
+    </record>
+    <record id="protocol_satsol" model="gps_protocol">
+        <field name="name">satsol</field>
+        <field name="port">5184</field>
+    </record>
+    <record id="protocol_globalstar" model="gps_protocol">
+        <field name="name">globalstar</field>
+        <field name="port">5185</field>
+    </record>
+    <record id="protocol_sanul" model="gps_protocol">
+        <field name="name">sanul</field>
+        <field name="port">5186</field>
+    </record>
+    <record id="protocol_minifinder2" model="gps_protocol">
+        <field name="name">minifinder2</field>
+        <field name="port">5187</field>
+    </record>
+    <record id="protocol_radar" model="gps_protocol">
+        <field name="name">radar</field>
+        <field name="port">5188</field>
+    </record>
+    <record id="protocol_techtlt" model="gps_protocol">
+        <field name="name">techtlt</field>
+        <field name="port">5189</field>
+    </record>
+    <record id="protocol_starcom" model="gps_protocol">
+        <field name="name">starcom</field>
+        <field name="port">5190</field>
+    </record>
+    <record id="protocol_mictrack" model="gps_protocol">
+        <field name="name">mictrack</field>
+        <field name="port">5191</field>
+    </record>
+    <record id="protocol_plugin" model="gps_protocol">
+        <field name="name">plugin</field>
+        <field name="port">5192</field>
+    </record>
+    <record id="protocol_leafspy" model="gps_protocol">
+        <field name="name">leafspy</field>
+        <field name="port">5193</field>
+    </record>
+    <record id="protocol_naviset" model="gps_protocol">
+        <field name="name">naviset</field>
+        <field name="port">5194</field>
+    </record>
+    <record id="protocol_racedynamics" model="gps_protocol">
+        <field name="name">racedynamics</field>
+        <field name="port">5195</field>
+    </record>
+    <record id="protocol_rst" model="gps_protocol">
+        <field name="name">rst</field>
+        <field name="port">5196</field>
+    </record>
+    <record id="protocol_pt215" model="gps_protocol">
+        <field name="name">pt215</field>
+        <field name="port">5197</field>
+    </record>
+    <record id="protocol_pacifictrack" model="gps_protocol">
+        <field name="name">pacifictrack</field>
+        <field name="port">5198</field>
+    </record>
+    <record id="protocol_topin" model="gps_protocol">
+        <field name="name">topin</field>
+        <field name="port">5199</field>
+    </record>
+    <record id="protocol_outsafe" model="gps_protocol">
+        <field name="name">outsafe</field>
+        <field name="port">5200</field>
+    </record>
+    <record id="protocol_solarpowered" model="gps_protocol">
+        <field name="name">solarpowered</field>
+        <field name="port">5201</field>
+    </record>
+    <record id="protocol_motor" model="gps_protocol">
+        <field name="name">motor</field>
+        <field name="port">5202</field>
+    </record>
+    <record id="protocol_omnicomm" model="gps_protocol">
+        <field name="name">omnicomm</field>
+        <field name="port">5203</field>
+    </record>
+    <record id="protocol_s168" model="gps_protocol">
+        <field name="name">s168</field>
+        <field name="port">5204</field>
+    </record>
+    <record id="protocol_vnet" model="gps_protocol">
+        <field name="name">vnet</field>
+        <field name="port">5205</field>
+    </record>
+    <record id="protocol_blue" model="gps_protocol">
+        <field name="name">blue</field>
+        <field name="port">5206</field>
+    </record>
+    <record id="protocol_pst" model="gps_protocol">
+        <field name="name">pst</field>
+        <field name="port">5207</field>
+    </record>
+    <record id="protocol_dingtek" model="gps_protocol">
+        <field name="name">dingtek</field>
+        <field name="port">5208</field>
+    </record>
+    <record id="protocol_wli" model="gps_protocol">
+        <field name="name">wli</field>
+        <field name="port">5209</field>
+    </record>
+    <record id="protocol_niot" model="gps_protocol">
+        <field name="name">niot</field>
+        <field name="port">5210</field>
+    </record>
+    <record id="protocol_portman" model="gps_protocol">
+        <field name="name">portman</field>
+        <field name="port">5211</field>
+    </record>
+    <record id="protocol_moovbox" model="gps_protocol">
+        <field name="name">moovbox</field>
+        <field name="port">5212</field>
+    </record>
+    <record id="protocol_futureway" model="gps_protocol">
+        <field name="name">futureway</field>
+        <field name="port">5213</field>
+    </record>
+    <record id="protocol_polte" model="gps_protocol">
+        <field name="name">polte</field>
+        <field name="port">5214</field>
+    </record>
+    <record id="protocol_net" model="gps_protocol">
+        <field name="name">net</field>
+        <field name="port">5215</field>
+    </record>
+    <record id="protocol_mobilogix" model="gps_protocol">
+        <field name="name">mobilogix</field>
+        <field name="port">5216</field>
+    </record>
+    <record id="protocol_swiftech" model="gps_protocol">
+        <field name="name">swiftech</field>
+        <field name="port">5217</field>
+    </record>
+    <record id="protocol_iotm" model="gps_protocol">
+        <field name="name">iotm</field>
+        <field name="port">5218</field>
+    </record>
+    <record id="protocol_dolphin" model="gps_protocol">
+        <field name="name">dolphin</field>
+        <field name="port">5219</field>
+    </record>
+    <record id="protocol_ennfu" model="gps_protocol">
+        <field name="name">ennfu</field>
+        <field name="port">5220</field>
+    </record>
+    <record id="protocol_navtelecom" model="gps_protocol">
+        <field name="name">navtelecom</field>
+        <field name="port">5221</field>
+    </record>
+    <record id="protocol_startek" model="gps_protocol">
+        <field name="name">startek</field>
+        <field name="port">5222</field>
+    </record>
+    <record id="protocol_gs100" model="gps_protocol">
+        <field name="name">gs100</field>
+        <field name="port">5223</field>
+    </record>
+    <record id="protocol_mavlink2" model="gps_protocol">
+        <field name="name">mavlink2</field>
+        <field name="port">5224</field>
+    </record>
+    <record id="protocol_uux" model="gps_protocol">
+        <field name="name">uux</field>
+        <field name="port">5225</field>
+    </record>
+    <record id="protocol_r12w" model="gps_protocol">
+        <field name="name">r12w</field>
+        <field name="port">5226</field>
+    </record>
+    <record id="protocol_flexiblereport" model="gps_protocol">
+        <field name="name">flexiblereport</field>
+        <field name="port">5227</field>
+    </record>
+    <record id="protocol_thinkpower" model="gps_protocol">
+        <field name="name">thinkpower</field>
+        <field name="port">5228</field>
+    </record>
+    <record id="protocol_stb" model="gps_protocol">
+        <field name="name">stb</field>
+        <field name="port">5229</field>
+    </record>
+    <record id="protocol_b2316" model="gps_protocol">
+        <field name="name">b2316</field>
+        <field name="port">5230</field>
+    </record>
+    <record id="protocol_hoopo" model="gps_protocol">
+        <field name="name">hoopo</field>
+        <field name="port">5231</field>
+    </record>
+    <record id="protocol_dualcam" model="gps_protocol">
+        <field name="name">dualcam</field>
+        <field name="port">5232</field>
+    </record>
+    <record id="protocol_xexun2" model="gps_protocol">
+        <field name="name">xexun2</field>
+        <field name="port">5233</field>
+    </record>
+    <record id="protocol_techtocruz" model="gps_protocol">
+        <field name="name">techtocruz</field>
+        <field name="port">5234</field>
+    </record>
+    <record id="protocol_flexapi" model="gps_protocol">
+        <field name="name">flexapi</field>
+        <field name="port">5235</field>
+    </record>
+    <record id="protocol_dsf22" model="gps_protocol">
+        <field name="name">dsf22</field>
+        <field name="port">5236</field>
+    </record>
+    <record id="protocol_jido" model="gps_protocol">
+        <field name="name">jido</field>
+        <field name="port">5237</field>
+    </record>
+    <record id="protocol_armoli" model="gps_protocol">
+        <field name="name">armoli</field>
+        <field name="port">5238</field>
+    </record>
+    <record id="protocol_teratrack" model="gps_protocol">
+        <field name="name">teratrack</field>
+        <field name="port">5239</field>
+    </record>
+    <record id="protocol_envotech" model="gps_protocol">
+        <field name="name">envotech</field>
+        <field name="port">5240</field>
+    </record></odoo>

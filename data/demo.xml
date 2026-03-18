@@ -1,0 +1,84 @@
+<odoo>
+      <record id="base.main_company" model="res.company">
+          <field name="name">SolesGPS</field>
+          <field name="company_registry">Eduardo Vizcaino Granados</field>
+          <field name="vat">VIGE850830GKA</field>
+          <field name="website">http://www.soelsgps.com</field>
+          <field name="phone">52 (312) 454 - 9998</field>
+          <field name="email">contacto@solesgps.com</field>
+          <field name="street2">Jardines de Bugambilias</field>
+          <field name="zip">28978</field>
+          <field name="city">Villa de Alvarez</field>
+          <field name="state_id" ref="base.state_mx_col" />
+          <field name="country_id" ref="base.mx" />
+      </record>
+
+      <record id="gps_1" model="gps_devices"> 
+          <field name="solesgps_id">5</field>
+          <field name="name">UHCAM 02</field>
+      </record>
+      <record id="gps_2" model="gps_devices">
+          <field name="solesgps_id">7</field>
+          <field name="name">UHCAM Frei- plana</field>
+      </record>
+      <record id="gps_3" model="gps_devices">
+          <field name="solesgps_id">36</field>
+          <field name="name">UHCAM 01</field>
+      </record>
+      <record id="gps_4" model="gps_devices"> 
+          <field name="id">4</field>
+          <field name="solesgps_id">4</field>
+          <field name="name">UHCAM 65 - 743EW3</field>
+      </record>
+      <record id="gps_5" model="gps_devices"> 
+          <field name="id">5</field>
+          <field name="solesgps_id">53</field>
+          <field name="name">UHCAM 65 - 743EW3</field>
+      </record>
+
+      <record id="fleet.vehicle_1" model="fleet.vehicle">
+          <field name="image_vehicle">02</field>
+          <field name="gps1_id" ref="gpsmap.gps_1"/>
+          <field name="economic_number">01</field>
+      </record>
+      <record id="fleet.vehicle_2" model="fleet.vehicle">
+          <field name="image_vehicle">05</field>
+          <field name="gps1_id" ref="gpsmap.gps_2"/>
+          <field name="economic_number">02</field>
+      </record>
+      <record id="fleet.vehicle_3" model="fleet.vehicle">
+          <field name="image_vehicle">90</field>
+          <field name="gps1_id" ref="gpsmap.gps_3"/>
+          <field name="economic_number">03</field>
+      </record>
+      <record id="fleet.vehicle_4" model="fleet.vehicle">
+          <field name="image_vehicle">06</field>
+          <field name="gps1_id" ref="gpsmap.gps_4"/>
+          <field name="economic_number">04</field>
+      </record>
+      <record id="fleet.vehicle_5" model="fleet.vehicle">
+          <field name="image_vehicle">01</field>
+          <field name="economic_number">05</field>
+          <field name="gps1_id" ref="gpsmap.gps_5"/>
+      </record>
+
+      <record id="geofence_1" model="gps_geofences">
+          <field name="name">PTO MZO</field>
+          <field name="area">-104.30283719913557 19.059976812624498, -104.30049831287458 19.060686656732546, -104.29856712238386 19.057137405808803, -104.29339582340315 19.058577396769177, -104.29015571491315 19.07676184622002, -104.293009585305 19.077268826694016, -104.29218017217532 19.07871567040251, -104.29110728856936 19.07946599210376, -104.29230891820804 19.08070300154227, -104.29391824361697 19.07966878116936, -104.29501258489505 19.080621886452278, -104.29591380712405 19.083197271168334, -104.29853164312259 19.082264459282456, -104.29597818014041 19.07212486079398, -104.29915391561404 19.07066470750177, -104.30474541598056 19.085200844403566, -104.30114052706455 19.08629586449128, -104.29680607729648 19.087066429841897, -104.295819024379 19.087167819752654, -104.2943599026749 19.086579757406064, -104.28752437681948 19.078529176694296, -104.28769603819643 19.077778850749944, -104.28720251173769 19.076987962967603, -104.28662315459047 19.077028521407275, -104.28567901701723 19.075852322626147, -104.28488508314882 19.07412856794816, -104.2848636254767 19.07218171757248, -104.28658023924623 19.068125705833403, -104.28885475249086 19.06583401531974, -104.28951994032656 19.065083631894904, -104.28999200911318 19.06348145051222, -104.29087177367006 19.058553124652516, -104.29149404616152 19.057539047665063, -104.29250255675112 19.056910316819067, -104.29788843245302 19.05563256614357, -104.30303827376162 19.05536890208069, -104.30456176848207 19.055835384368294, -104.30283719913557 19.059976812624498</field>          
+      </record>
+      <record id="geofence_2" model="gps_geofences">
+          <field name="name">Workshop</field>
+          <field name="area">-104.24060518533818 19.056892630823747, -104.24049789697759 19.054235709360295, -104.24378092081182 19.054235709360295, -104.24382383615605 19.057095447507706, -104.24060518533818 19.056892630823747</field>          
+      </record>
+
+      <record id="alerts_1" model="gps_alerts">
+          <field name="name">Alert type 1</field>
+          <field name="vehicle_ids" eval="[(6,0,[ref('fleet.vehicle_1'),ref('fleet.vehicle_2'),ref('fleet.vehicle_3')])]"/>
+          <field name="geofence_ids" eval="[(6,0,[ref('geofence_1'),ref('geofence_2')])]"/>
+      </record>
+      <record id="alerts_2" model="gps_alerts">
+          <field name="name">Alert type 2</field>
+          <field name="vehicle_ids" eval="[(6,0,[ref('fleet.vehicle_2'),ref('fleet.vehicle_4'),ref('fleet.vehicle_5')])]"/>
+          <field name="geofence_ids" eval="[(6,0,[ref('geofence_1'),ref('geofence_2')])]"/>
+      </record>
+</odoo>

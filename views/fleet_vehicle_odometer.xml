@@ -1,0 +1,25 @@
+<odoo>
+    <record id="fleet_vehicle_odometer_view_search" model="ir.ui.view">
+        <field name="name">gpsmap.vehicle.odometer.search</field>
+        <field name="model">fleet.vehicle.odometer</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_odometer_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/filter[@name='groupby_vehicle']" position="after">            
+                <filter name="groupby_day" context="{'group_by': 'date:day', 'order_by': 'date DESC'}" string="Day"/>
+                <filter name="groupby_week" context="{'group_by': 'date:week', 'order_by': 'date DESC'}" string="Week"/>
+                <filter name="groupby_month" context="{'group_by': 'date:month', 'order_by': 'date DESC'}" string="Month"/>            
+            </xpath>
+        </field>
+    </record>
+            
+    <record id="fleet_vehicle_odometer_view_tree" model="ir.ui.view">
+        <field name="name">gpsmap.vehicle.tree</field>
+        <field name="model">fleet.vehicle.odometer</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_odometer_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='driver_id']" position="before">            
+                <field name="activeTime"/>                
+            </xpath> 
+        </field>
+    </record>
+</odoo>

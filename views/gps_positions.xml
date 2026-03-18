@@ -1,0 +1,168 @@
+<odoo>
+    <record id='gps_positions_view_form' model='ir.ui.view'>
+        <field name="name">gps_positions.form</field>
+        <field name="model">gps_positions</field>
+        <field name="arch" type="xml">
+            <form string="Positions">
+                <sheet>
+                    <group col="2">
+                        <group string="Device">
+                            <field name="deviceid"/>
+                            <field name="vehicleid"/>      
+                            <field name="protocol"/>
+                            <field name="devicetime"/>
+                        </group>       
+                        <group string="Data GPS">
+                            <field name="latitude"/>
+                            <field name="longitude"/>
+                            <field name="altitude"/>
+                            <field name="speed"/>
+                            <field name="course"/>                            
+                            
+                            <field name="totalDistance"/>
+                            <field name="active_time"/>
+                            <field name="event"/>
+                            <field name="status"/>
+                        </group>       
+
+                    </group>         
+                    <field name="attributes"/>
+                    <field name="network"/>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id='gps_positions_view_tree' model='ir.ui.view'>
+        <field name="name">gps_positions.tree</field>
+        <field name="model">gps_positions</field>
+        <field name="arch" type="xml">
+            <tree default_order="devicetime desc">
+                <field name="deviceid"/>
+                <field name="vehicleid"/>      
+                <field name="protocol"/>
+                <field name="devicetime"/>            
+                <field name="latitude"/>
+                <field name="longitude"/>
+                <field name="altitude"/>
+                <field name="speed"/>
+                <field name="active_time"/>
+                
+                <field name="totalDistance"/>
+                <field name="gas"/>
+                <field name="batery"/>
+                <!--
+                <field name="geofence_ids" widget="many2many_tags"/>
+                -->
+                <field name="ignition"/>
+                <field name="event"/>
+                <field name="status"/>
+                <field name="valid"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='gps_positions_distance_view_tree' model='ir.ui.view'>
+        <field name="name">gps_positions_distance.tree</field>
+        <field name="model">gps_positions</field>
+        <field name="arch" type="xml">
+            <tree default_order="devicetime desc">
+                <field name="deviceid"/>
+                <field name="vehicleid"/>
+                <field name="devicetime"/>
+            
+                <field name="totalDistance"/>
+                <field name="event"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='gps_positions_time_view_tree' model='ir.ui.view'>
+        <field name="name">gps_positions_time.tree</field>
+        <field name="model">gps_positions</field>
+        <field name="arch" type="xml">
+            <tree default_order="devicetime desc">
+                <field name="deviceid"/>
+                <field name="vehicleid"/>
+                <field name="devicetime"/>
+                <field name="active_time"/>
+                <field name="offline_time"/>
+                <field name="event"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id='gps_positions_geofence_view_tree' model='ir.ui.view'>
+        <field name="name">gps_positions_geofence.tree</field>
+        <field name="model">gps_positions</field>
+        <field name="arch" type="xml">
+            <tree default_order="devicetime desc">
+                <field name="deviceid"/>
+                <field name="vehicleid"/>
+                <field name="devicetime"/>
+                <field name="speed"/>
+                <field name="event"/>
+                <field name="status"/>
+                <!-- 
+                <field name="geofence_ids" widget="many2many_tags"/>
+                -->
+            </tree>
+        </field>
+    </record>
+
+
+
+    <record id='gps_positions_view_graph' model='ir.ui.view'>
+        <field name="name">gps_positions.graph</field>
+        <field name="model">gps_positions</field>
+        <field name="arch" type="xml">
+            <graph>
+                <field name="totalDistance" type="measure"/>
+                
+            </graph>
+        </field>
+    </record>
+
+                
+    <record id='gps_positions_view_search' model='ir.ui.view'>
+        <field name="name">gps_positions.search</field>
+        <field name="model">gps_positions</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="vehicleid"/>
+                <field name="deviceid"/>
+                <field name="event"/>
+                <separator/>
+
+                <filter string="Stopped" name="Stopped" domain="[('event', '=', 'Stopped')]"/>
+                <filter string="Moving" name="Moving" domain="[('event', '=', 'Moving')]"/>
+                <filter string="Geofence" name="Geofence" domain="[('event', 'like', 'geofence')]"/>
+                <filter string="Alarm" name="Alarm" domain="[('status', '=', 'Alarm')]"/>
+                <filter string="Today" name="today" domain="[('devicetime', '&gt;', (datetime.datetime.combine(context_today(), datetime.time(0,0,0)).to_utc()).strftime('%Y-%m-%d %H:%M:%S'))]"/>
+
+                <group expand="0" string="Group By">
+                    <filter string="Vehicle" name="groupby_vehicleid" domain="[]" context="{'group_by': 'vehicleid'}"/>
+                    <filter string="Device GPS" name="groupby_deviceid" domain="[]" context="{'group_by': 'deviceid'}"/>
+                    <filter string="Device Time" name="groupby_deviceday" domain="[]" context="{'group_by': 'devicetime:day'}"/>
+            
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="gps_positions_distance_hour_view_pivot" model="ir.ui.view">
+        <field name="name">gps_positions_distance_hour.pivot</field>
+        <field name="model">gps_positions</field>
+        <field name="arch" type="xml">
+            <pivot string="Activities Analysis" sample="1">
+                <field name="totalDistance" type="measure"/>
+                <field name="devicetime" interval="hour" type="col"/>
+                <field name="vehicleid" type="row"/>
+            </pivot>
+        </field>
+    </record>
+</odoo>

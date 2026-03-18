@@ -1,0 +1,340 @@
+/* #################### */
+/* ##### EJEMPLOS ##### */
+    div#maponline.map90{        
+        height: -o-calc(100% - 65px); /* opera */
+        height: -webkit-calc(100% - 65px); /* google, safari */
+        height: -moz-calc(100% - 65px); /* firefox */    
+    }      
+/* #################### */
+div#odometer{
+    z-index:101; 
+    position:absolute; 
+    bottom:0px; 
+    height:50px; 
+    width:300px; 
+    right:0px; 
+}
+/* #################### */
+div#speed {
+    z-index:100;
+    position:absolute; 
+    bottom:0px; 
+    right:150px; 
+    width:250px; 
+    height:10px;    
+}
+div#speed div, div#speed div svg, div#speed div.template{
+    position:absolute; 
+    bottom:0px; 
+    right:0px; 
+}
+div#speed div{
+    z-index:100; 
+    width:260px;
+    height:220px;
+    overflow: hidden;
+}
+div#speed div svg{
+    height:350px;
+    width:380px; 
+}
+div#speed div.template{
+    z-index:1; 
+    width:370px; 
+    height:250px;
+    bottom:0px; 
+}
+
+/* #################### */
+
+div#batery {
+    z-index:90; 
+    position:absolute; 
+    bottom:0px; 
+    right:290px; 
+    width:250px; 
+    height:10px;    
+}
+div#batery div, div#batery div svg, div#batery div.template{
+    position:absolute; 
+    bottom:0px; 
+    right:0px; 
+}
+div#batery div{
+    z-index:100; 
+    width:260px;
+    height:175px;
+    overflow: hidden;
+}
+div#batery div svg{
+    height:300px;
+    width:380px; 
+}
+div#batery div.template{
+    z-index:1; 
+    width:370px; 
+    height:250px;
+    bottom:0px; 
+}
+
+/* #################### */
+
+div#gas {
+    z-index:90; 
+    position:absolute; 
+    bottom:0px; 
+    right:0px; 
+    width:250px; 
+    height:10px;    
+}
+div#gas div, div#gas div svg, div#gas div.template{
+    position:absolute; 
+    bottom:0px; 
+    right:0px; 
+}
+div#gas div{
+    z-index:100; 
+    width:260px;
+    height:175px;
+    overflow: hidden;
+}
+div#gas div svg{
+    height:300px;
+    width:380px; 
+}
+div#gas div.template{
+    z-index:1; 
+    width:370px; 
+    height:250px;
+    bottom:0px; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+div#llaves {    
+    position:absolute; 
+    bottom:0px; 
+    right:530px; 
+    color:#ccc;
+}
+div#date {    
+    color:          #fff;
+    position:       absolute; 
+    bottom:            10px; 
+    right:           380px;  
+    font-size:  20px;
+    text-align: center;
+}
+div#time {        
+    color:          #fff;
+    position:       absolute; 
+    bottom:            10px; 
+    right:           80px;  
+    font-size:  20px;
+    width: 80px;  
+    text-align: center;
+}
+div#distance {    
+    color:          #fff;
+    position:       absolute; 
+    bottom:            55px; 
+    right:           220px;  
+    font-size:  20px;
+    width:100px;  
+    text-align: center;
+}
+div#buttons_history {    
+    position:absolute; 
+    bottom:30px; 
+    right:220px; 
+    width:100px;
+}
+.fields1 {
+    float:left;
+	height: 60px;
+}
+.fields2 {
+    float:left;
+	height: 120px;
+}
+.vehicle_active{
+    background-color: #7c7bad;
+    border-radius: 0;
+    color: white;
+    width:          100%;     
+}
+.select{
+    background-color: #7c7bad;
+}
+
+.type_report {
+    border-radius: 0;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-left:15px;
+}
+
+div#filtro{    
+    z-index:        100; 
+    text-align:     left; 
+    position:       absolute; 
+    top:            10px; 
+    left:           310px;  
+    height:         41px; 
+    color:          #aaa; 
+    padding:        5px;
+    background-color:#efffff;
+}
+
+div#maponline{        
+    z-index:        100; 
+    position:       absolute; 
+    bottom:         0px; 
+    left:           0px;   
+    width:          100%;     
+    height:         100%;
+}      
+
+
+/* ####################################### */
+/* ######      DESKTOP GRANDE       ###### */
+/* ####################################### */
+@media (min-width:1200px)
+{
+    div#odometro div#centro {
+        bottom:         0px; 
+        left:           100px; 
+    }    
+    .filtro{            
+        width:          140px;     
+    }      
+    div#filtro{    
+        width: -o-calc(100% - 290px); /* opera */
+        width: -webkit-calc(100% - 290px); /* google, safari */
+        width: -moz-calc(100% - 290px); /* firefox */    
+    }
+
+}
+
+
+/* ####################################### */
+/* ######      DESKTOP MEDIO        ###### */
+/* ####################################### */
+@media (max-width:1199px) and (min-width:992px)
+{
+    div#odometro div#centro {
+        bottom:         0px; 
+        left:           100px; 
+    }
+    .filtro{            
+        width:          140px;     
+    }          
+    div#filtro{    
+        width: -o-calc(100% - 290px); /* opera */
+        width: -webkit-calc(100% - 290px); /* google, safari */
+        width: -moz-calc(100% - 290px); /* firefox */    
+    }
+
+}
+
+
+/* ####################################### */
+/* ######         TABLETS           ###### */
+/* ####################################### */
+@media (max-width:991px) 
+{
+    div#odometro  div#centro {
+        bottom:         0px; 
+        right:          -160px; 
+        width:          190px; 
+    }
+    div#odometer div#batery,  div#odometer div#gas, div#odometer div#distance, header#top {
+        display:        none;
+    }
+    div#speed {
+        z-index:90; 
+        position:absolute; 
+        bottom:0px; 
+        right:0px; 
+        width:250px; 
+        height:10px;    
+    }
+    div#speed div, div#speed div svg, div#speed div.template{
+        position:absolute; 
+        bottom:0px; 
+        right:0px; 
+    }
+    div#speed div{
+        z-index:100; 
+        width:260px;
+        height:170px;
+        overflow: hidden;
+    }
+    div#speed div svg{
+        height:300px;
+        width:380px; 
+    }
+    div#speed div.template{
+        z-index:1; 
+        width:370px; 
+        height:250px;
+        bottom:0px; 
+    }
+       
+    div#date {    
+        color:          #fff;
+        position:       absolute; 
+        bottom:            0px; 
+        right:           85px;  
+        font-size:  15px;
+    }
+    div#time {    
+        bottom:            15px; 
+        right:           125x;  
+        font-size:  15px;
+    }
+    div#distance {    
+        color:          #fff;
+        position:       absolute; 
+        bottom:            75px; 
+        right:           100px;  
+        font-size:  20px;
+    }
+    div#odometer div#llaves {    
+        bottom:0px; 
+        right:230px; 
+        z-index:1; 
+    }
+    
+
+    a.o_sub_menu_logo {
+        display:        none;
+    }
+    .filtro{            
+        width:          120px;     
+    }      
+    div#filtro{    
+        width: -o-calc(100% - 350px); /* opera */
+        width: -webkit-calc(100% - 350px); /* google, safari */
+        width: -moz-calc(100% - 350px); /* firefox */    
+    }
+    div#buttons_history {    
+        bottom:20px; 
+        right:250px; 
+    }
+    
+
+}
