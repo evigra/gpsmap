@@ -24,17 +24,8 @@ odoo.define('gpsmap.action', function (require) {
 
                 this.$("div.vehicle").removeClass("vehicle_active");
                 this.device_active = objeto.device_id.value;
-
-                this.$("[device_id='" + this.device_active + "']")
-                    .addClass("vehicle_active");
-
-                if (this.contentTemplate === "gpsmaps_maphistory") {
-                    this.status_device();
-                } else {
-                    this.status_device(
-                        this.$("div.vehicle[device_id='" + this.device_active + "']")
-                    );
-                }
+                
+                this.activate_menu(); 
             },
             'click li.type_report': function (e) {
                 var objeto = e.currentTarget.attributes;
@@ -73,8 +64,18 @@ odoo.define('gpsmap.action', function (require) {
         ////////////////////////////////////////////////
         
         ////////////////////////////////////////////////
-        
-        
+        activate_menu: function(){
+            this.$("[device_id='" + this.device_active + "']")
+                .addClass("vehicle_active");
+
+            if (this.contentTemplate === "gpsmaps_maphistory") {
+                this.status_device();
+            } else {
+                this.status_device(
+                    this.$("div.vehicle[device_id='" + this.device_active + "']")
+                );
+            }
+        },
         ////////////////////////////////////////////////
 
         send_command: function(){
@@ -123,6 +124,18 @@ odoo.define('gpsmap.action', function (require) {
                 self.vehicles = result;     
                 self.user=session;
                 self.$("div#menu_vehicles").html(QWeb.render("menu_vehicles", {'widget': self}));           
+
+                if (self.vehicles.length === 1) {                    
+                    
+                    self.device_active = self.vehicles[0].gps1_id
+                        ? self.vehicles[0].gps1_id[0]
+                        : 0;
+
+                    self.activate_menu(); 
+                }
+                
+
+
             });  
         },
 
