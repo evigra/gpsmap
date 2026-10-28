@@ -13,6 +13,7 @@ class vehicle(models.Model):
     speed = fields.Char(default = 0, size = 3)
     active_time_today = fields.Integer()
     speeding = fields.Boolean(default = False)
+    speeding_time = fields.Datetime(string = "Speeding Time", store=True)
     gpsoffline = fields.Boolean(default = False)
     alarm = fields.Boolean(default = False)
     ignition = fields.Boolean(default = False)
