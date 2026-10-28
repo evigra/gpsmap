@@ -27,11 +27,6 @@ odoo.define('gpsmap.action', function (require) {
                 
                 this.activate_menu(); 
             },
-            'click li.type_report': function (e) {
-                var objeto = e.currentTarget.attributes;
-                this.$("li.type_report").removeClass("select");
-                this.$("li.type_report[filter='" + objeto.filter.value + "']").addClass("select");
-            },
             'click div#llaves': function (e) {
 
                 if( $("img#key").attr("src") == "/gpsmap/static/img/template/swich_off.png" )
@@ -139,58 +134,73 @@ odoo.define('gpsmap.action', function (require) {
             });  
         },
 
+        get_geofences: function () {
+            var self = this;
 
+            this._rpc({
+                model: 'gps_geofence',
+                method: 'search_read',
+                args: [[]],
+                fields: [
+                    'name',
+                    'polygon_coords',
+                    'color',
+                    'hidden'
+                ],
+                context: session.user_context,
+            }).then(function (result) {
 
-get_geofences: function () {
+                result.forEach(function (geofence) {
 
-    
+                    if (geofence.hidden) {
+                        return;
+                    }
 
-    var self = this;
+                    var points = self.array_points(
+                        geofence.polygon_coords
+                    );
 
-    
-    this._rpc({
-        method: 'search_read',
-        context: session.user_context,
-        model: 'gps_geofence'
-    }).then(function (result) {
+                    if (points.length < 3) {
+                        return;
+                    }
 
-    
-        result.forEach(function (geofence) {
+                    var polygon = self.Polygon(points, {
+                        color: geofence.color || 'green',
+                        opacity: 0.15,
+                        geofence: geofence.name
+                    });
 
-    
-            if (!geofence.hidden) {
-
-                var points = self.array_points(
-                    geofence.polygon_coords
-                );
-
-    
-                self.Polygon(points, {
-                    color: geofence.color,
-                    opacity: 0.8,
-                    geofence: geofence.name
+                    if (polygon) {
+                        self.geofencePolygons.push(polygon);
+                    }
                 });
+
+            }).catch(function (error) {
+                console.error(
+                    "GPSMap: Error al cargar las geocercas:",
+                    error
+                );
+            });
+        },
+
+        Polygon: function (LocationsLine, option) {
+
+            if (!this.obj_map || !LocationsLine || LocationsLine.length < 3) {
+                return null;
             }
 
-        });
+            var polygon = new google.maps.Polygon({
+                paths: LocationsLine,
+                strokeColor: option.color || '#FF0000',
+                strokeOpacity:  0.2,
+                strokeWeight: 2,
+                fillColor: option.color || '#FF0000',
+                fillOpacity: 0.25,
+                map: this.obj_map,
+            });
 
-    });
-},
-  Polygon: function (LocationsLine, option) {
-
-    var polygon = new google.maps.Polygon({
-        paths: LocationsLine,
-        strokeColor: option.color || "#FF0000",
-        strokeOpacity: option.opacity || 0.8,
-        strokeWeight: 2,
-        fillColor: option.color || "#FF0000",
-        fillOpacity: 0.35,
-        map: this.obj_map
-    });
-
-    polygon.setMap(this.obj_map);
-    return polygon;
-},
+            return polygon;
+        },
         ////////////////////////////////////////////////
         
 array_points: function (data) {
@@ -412,18 +422,19 @@ array_points: function (data) {
                 this.positions();
             return data;
         },
+
         _initMap: function (idmap) {
 
-            this.idmap = "maponline";
+            this.idmap = 'maponline';
 
             var self = create_map(this);
             this.obj_map = self.obj_map;
 
             if (!this._geofencesLoaded) {
-                this._geofencesLoaded = true;
                 this.get_geofences();
             }
-        },
+        },        
+
     });
     core.action_registry.add('gpsmap.maponline', local.maponline);
     ////////////////////////////////////////////////
