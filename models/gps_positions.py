@@ -48,6 +48,8 @@ class gps_positions(models.Model):
     active_time = fields.Float(string = 'Active Time', digits = (3, 2))
     offline_time = fields.Integer('Offline Time')
 
+    traccar_position_id = fields.Integer(string="Traccar Position ID",index=True,copy=False,)
+
     def get_distance(self, json_vals):
         data = 0
         if("distance" in json_vals and json_vals["distance"]):
@@ -122,21 +124,26 @@ class gps_positions(models.Model):
             data = "Moving"
         return data
 
-    def get_event_speeding(self, vals,gps_position, fleet):
+    def get_event_speeding(self, vals, gps_position, fleet):
+        speed_knots = float(gps_position.get("speed") or 0.0)
+
+        if fleet.odometer_unit == 'miles':
+            speed = speed_knots * 1.15078  # mph
+        else:
+            speed = speed_knots * 1.852    # km/h
+
+        vals["speed"] = speed
+
         vals["speeding"] = False
 
-        if(fleet.odometer_unit=='miles'):
-            vals["speed"] = 1.15 * float(gps_position["speed"])
-        else:
-            vals["speed"] = 1.852 * float(gps_position["speed"])
-        
-        if(int(fleet.speed)>0 and int(gps_position["speed"]) > int(fleet.speed)):        
-            vals["event"] ="Speeding"
+        speed_limit = float(fleet.speed or 0.0)
+
+        if speed_limit > 0 and speed > speed_limit:
+            vals["event"] = "Speeding"
             vals["speeding"] = True
-        else:
-            vals["speeding"] = False
-            
+
         return vals
+
     
     def get_status(self, gps_position, json_vals,data, fleet):
         time_now = datetime.now(timezone.utc)
@@ -170,41 +177,72 @@ class gps_positions(models.Model):
         host, session = self.env['gpsmap'].sudo()._get_session_information()
         try:
             to_time = fields.Datetime.now()
-            params = {
-                "from": to_time.strftime("%Y-%m-%dT%H:%M:%SZ"),
-                "to": to_time.strftime("%Y-%m-%dT%H:%M:%SZ")
-            }
-            
-            requests = session.get(f"{host}/positions", params=params)
-            if requests.status_code != 200:
-                raise Exception(f"Error getting positions: {requests.text}")
-            return requests.json()
-        except requests.exceptions.RequestException as e:
-            raise UserError(f"Error obtaining the latest positions: {str(e)}")
+            from_time = to_time - timedelta(minutes=2)
 
+            params = {
+                "from": from_time.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "to": to_time.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            }
+
+            response = session.get(f"{host}/positions",params=params,timeout=30,)
+
+            if response.status_code != 200:
+                raise UserError(
+                    f"Error getting positions: {response.text}"
+                )
+
+            return response.json()
+
+        except requests.exceptions.RequestException as e:
+            raise UserError(
+                f"Error obtaining the latest positions: {str(e)}"
+            )
 
     def run_scheduler_get_position(self):
         positions = self.last_positions()
+
         try:
             for gps_position in positions:
-                device = self.env['gps_devices'].search([["solesgps_id","=",gps_position["deviceId"]]])
-                fleet = self.env['fleet.vehicle'].search([["gps1_id","=",device.id]])
 
-                json_vals=gps_position["attributes"]
+                traccar_position_id = gps_position["id"]
 
-                if int(gps_position["course"]) ==0:
-                    course = device.course 
+                existing_position = self.search([
+                    ("traccar_position_id", "=", traccar_position_id)
+                ], limit=1)
+
+                if existing_position:
+                    continue
+
+                device = self.env["gps_devices"].search([
+                    ("solesgps_id", "=", gps_position["deviceId"])
+                ], limit=1)
+
+                if not device:
+                    continue
+
+                fleet = self.env["fleet.vehicle"].search([
+                    ("gps1_id", "=", device.id)
+                ], limit=1)
+
+                if not fleet:
+                    continue
+
+                json_vals = gps_position["attributes"]
+
+                if int(gps_position["course"]) == 0:
+                    course = device.course
                 else:
-                    course          = gps_position["course"]
+                    course = gps_position["course"]
 
-                data={}
-                #data["distance"]        = self.get_distance(json_vals)
+                data = {}
+
+                # data["distance"] = self.get_distance(json_vals)
                 data["gas"]             = self.get_gas(json_vals)
                 data["totalDistance"]   = self.get_totalDistance(json_vals)
                 data["batery"]          = self.get_batery(json_vals)
                 data["event"]           = self.get_event(json_vals, gps_position)
                 data["ignition"]        = self.get_ignition(json_vals)
-                
+
                 data["vehicleid"]       = fleet.id
                 data["deviceid"]        = device.id
 
@@ -214,16 +252,23 @@ class gps_positions(models.Model):
                 data["protocol"]        = gps_position["protocol"]
                 data["latitude"]        = round(gps_position["latitude"],6)
                 data["longitude"]       = round(gps_position["longitude"],6)
-                
-                data = self.get_status(gps_position, json_vals, data, fleet)
-                data = self.get_event_speeding(data, gps_position, fleet)
 
-                data["servertime"]      = data["servertime"].strftime("%Y-%m-%d %H:%M:%S") 
+                data = self.get_status(
+                    gps_position, json_vals, data, fleet
+                )
+
+                data = self.get_event_speeding(
+                    data, gps_position, fleet
+                )
+
+                data["servertime"]      = data["servertime"].strftime("%Y-%m-%d %H:%M:%S")
                 data["devicetime"]      = data["devicetime"].strftime("%Y-%m-%d %H:%M:%S")
                 data["fixtime"]         = data["fixtime"].strftime("%Y-%m-%d %H:%M:%S")
 
-                data["attributes"]      = gps_position["attributes"]
-                data["network"]         = gps_position["network"]
+                data["attributes"] = gps_position["attributes"]
+                data["network"] = gps_position["network"]
+
+                data["traccar_position_id"] = traccar_position_id
 
                 data_devicetime = datetime.strptime(data["devicetime"], "%Y-%m-%d %H:%M:%S")
 
@@ -231,39 +276,56 @@ class gps_positions(models.Model):
                     time_delta = data_devicetime - device.lastupdate
                     time = time_delta.total_seconds() / 60
                 else:
-                    time =0
+                    time = 0
 
                 data["active_time"]=0
-                if (fleet.positionid.devicetime is False or fleet.positionid.devicetime < data_devicetime) and data["speed"]>5:
-                    if time<4 :
+
+                if (not fleet.positionid.devicetime or fleet.positionid.devicetime < data_devicetime) and data["speed"] > 5:
+
+                    if time<4:
                         data["active_time"] = time
-                    else: 
+                    else:
                         data["active_time"] = 3
                         data["offline_time"] = time
 
                 position = self.create(data)
 
-                data_fleet={
-                    "positionid":           position,
-                    "ignition":             data["ignition"],                    
-                    "speeding":             data["speeding"],
-                    "gpsoffline":           data["gpsoffline"],    
-                    "active_time_today":    fleet.active_time_today + data["active_time"]
+                data_fleet = {
+                    "positionid": position.id,
+                    "ignition": data["ignition"],
+                    "speeding": data["speeding"],
+                    
+                    "speeding_time":data["devicetime"],
+                    "gpsoffline": data["gpsoffline"],
+                    "active_time_today": (
+                        fleet.active_time_today + data["active_time"]
+                    ),
                 }
 
-                if fleet.positionid.devicetime is False or fleet.positionid.devicetime < data_devicetime:
-                    data_device={
-                        "positionid":position,
-                        "lastupdate":data["devicetime"],
-                        "course":gps_position["course"]
+                if (not fleet.speeding_time and data["speeding"]):
+                    data_fleet["speeding_time"] = data["devicetime"] 
+                if (fleet.speeding_time and not data["speeding"]):
+                    data_fleet["speeding_time"] =  False
+
+
+                if (not fleet.positionid.devicetime or fleet.positionid.devicetime < data_devicetime):
+                    data_device = {
+                        "positionid": position.id,
+                        "lastupdate": data["devicetime"],
+                        "course": gps_position["course"],
                     }
+
                     if not device.protocolid:
-                        protocol = self.env['gps_protocol'].search([["name","=",gps_position["protocol"]]])
-                        data_device["protocolid"]=protocol
-                        data_device["port"]=protocol.port
+                        protocol = self.env["gps_protocol"].search([
+                            ("name", "=", gps_position["protocol"])
+                        ], limit=1)
+
+                        if protocol:
+                            data_device["protocolid"] = protocol.id
+                            data_device["port"] = protocol.port
 
                     device.write(data_device)
-                    data_fleet["positionid"]=position
+                    data_fleet["positionid"] = position.id
 
                 fleet.write(data_fleet)
 
